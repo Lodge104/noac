@@ -20,7 +20,7 @@ if (isset($_GET['bsaID'])) {
     if ($getbsaIDQ->num_rows > 0) {
     header("Location: index.php?bsaID=" . $bsaID);
     } else {
-        $url = "https://registration-test.lodge104.net/api/members/118185971";
+        $url = ("https://registration-test.lodge104.net/api/members/" . $bsaID);
 
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -28,7 +28,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $headers = array(
    "Accept: application/json",
-   "Authorization: Bearer ". $bearer,
+   ("Authorization: Bearer ". $bearer),
 );
 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 //for debug only!
@@ -42,6 +42,6 @@ var_dump($resp);
 
 
 
-        header("Location: application.php?bsaID=" . $bsaID);
+        //header("Location: application.php?bsaID=" . $bsaID);
     }}
 ?>
