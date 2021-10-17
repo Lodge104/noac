@@ -46,15 +46,15 @@ $resp = curl_exec($curl);
 if (!curl_errno($curl)) {
     switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
       case 200:  # OK
-      header("Location: application.php?bsaID=" . $bsaID);
+      //header("Location: application.php?bsaID=" . $bsaID);
         break;
       default:
-      header("Location: index.php?status=3");
+      //header("Location: index.php?status=3");
     }
   }
 curl_close($curl);
 $json = json_decode($resp, true);
-print_r($json)
+print_r($json);
 
 
 
