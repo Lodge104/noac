@@ -9,6 +9,7 @@ $servername = getenv('SERVERNAME');
 $username = getenv('DBUSERNAME');
 $password = getenv('DBPASSWORD');
 $dbname = getenv('DBNAME');
+$bearer = getenv('BEARER');
 $host = getenv('SMTPHOST');
 $port = getenv('SMTPPORT');
 $musername = getenv('SMTPUSERNAME');

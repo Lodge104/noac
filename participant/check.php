@@ -18,10 +18,30 @@ if (isset($_GET['bsaID'])) {
     $getbsaIDQuery->execute();
     $getbsaIDQ = $getbsaIDQuery->get_result();
     if ($getbsaIDQ->num_rows > 0) {
-    header("Location: index.php?bsaID" . $bsaID);
+    header("Location: index.php?bsaID=" . $bsaID);
     } else {
-        header("Location: application.php?bsaID" . $bsaID);
-    }} else{
-        header("Location: index.php?status=3");
-    }
+        $url = "https://registration-test.lodge104.net/api/members/118185971";
+
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+$headers = array(
+   "Accept: application/json",
+   "Authorization: Bearer ". $bearer,
+);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+//for debug only!
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+$resp = curl_exec($curl);
+curl_close($curl);
+var_dump($resp);
+
+
+
+
+        header("Location: application.php?bsaID=" . $bsaID);
+    }}
 ?>
