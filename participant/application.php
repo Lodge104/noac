@@ -71,13 +71,12 @@ $json = $_SESSION['jsonData'];
                       <div class="col-md-3">
                         <div class="form-group">
                           <input type="hidden" id="unitId" name="unitId" value="<?php echo $getUnitElections['id']; ?>">
-                          <input type="hidden" id="bsaID" name="bsaID" value="<?php echo $getUnitElections['bsaID']; ?>">
                           <input type="hidden" id="unitCommunity" name="unitCommunity" value="<?php echo $getUnitElections['unitCommunity']; ?>">
                           <input type="hidden" id="unitNumber" name="unitNumber" value="<?php echo $getUnitElections['unitNumber']; ?>">
                           <input id="firstName" name="firstName" type="text" class="form-control" value="<?php echo $json['firstName']; ?>" disabled>
                         </div>
                         <div class="form-group">
-                          <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" required>
+                          <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" value="<?php echo $json['lastName']; ?>" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -117,8 +116,8 @@ $json = $_SESSION['jsonData'];
                     <div class="form-row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="position" class="required">Unit Position</label>
-                          <input id="position" name="position" type="text" class="form-control" required>
+                          <label for="position" class="required">Chapter</label>
+                          <input id="position" name="position" type="text" class="form-control" value="<?php echo $json['chapter']; ?>" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -135,8 +134,8 @@ $json = $_SESSION['jsonData'];
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label for="years_adult" class="required">Years in Scouting as an Adult</label>
-                          <input id="years_adult" name="years_adult" type="text" class="form-control" required>
+                          <label for="years_adult" class="required">Membership Level</label>
+                          <input id="years_adult" name="years_adult" type="text" class="form-control" value="<?php echo $json['obv']; ?>" disabled>
                         </div>
                       </div>
                     </div>
