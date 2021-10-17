@@ -21,7 +21,7 @@ if (!$userInfo) : ?>
     <meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1" />
     <meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
-    <title>Adult Nomination Portal | Occoneechee Lodge - Order of the Arrow, BSA</title>
+    <title>NOAC Registration Portal | Occoneechee Lodge - Order of the Arrow, BSA</title>
 
     <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
@@ -59,7 +59,7 @@ if (!$userInfo) : ?>
             if ($_GET['error'] == 'unauthorized') { ?>
               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
               <div class="alert alert-danger" role="alert">
-                <strong>Error!</strong> You do not have the required role to access the Nomination Portal!
+                <strong>Error!</strong> You do not have the required role to access the administrator area of the NOAC Registration Portal!
                 <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
               </div>
             <?php } ?>
@@ -67,11 +67,23 @@ if (!$userInfo) : ?>
             <div class="card mb-3">
               <div class="card-body">
                 <h3 class="card-title d-inline-flex">Instructions</h3>
-                <p>Welcome to the Adult Nomination Portal for Occoneechee Lodge. Our lodge is moving away from paper forms and instead inviting unit leaders to use this online portal to submit adult nominations. Access to this portal is sent to unit leaders via email using a unique link <b>after</b> a unit election has been conducted and verified by Lodge Leadership. If you did not receive an invitation but should have, please use the live chat in the bottom right-hand corner to request one.</p>
+                <p>Welcome to the NOAC Registration Portal for Occoneechee Lodge. Our lodge is moving away from paper forms and instead inviting unit leaders to use this online portal to submit adult nominations. Access to this portal is sent to unit leaders via email using a unique link <b>after</b> a unit election has been conducted and verified by Lodge Leadership. If you did not receive an invitation but should have, please use the live chat in the bottom right-hand corner to request one.</p>
               </div>
             </div>
             <div class="row justify-content-center">
-              <div class="card col-md-11">
+              <div class="card col-md-5">
+                <div class="card-body">
+                <form action="/unitleader/" method="get">
+                <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
+                  <div class="form-group">
+                    <label for="accessKey" class="required">BSA ID</label>
+                    <input type="text" id="accessKey" name="accessKey" class="form-control" required>
+                  </div>
+                  <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+                </form>
+                </div>
+              </div>
+              <div class="card col-md-5">
                 <div class="card-body">
                   <h3 class="form-signin-heading text-center">Administrator Login</h3>
                   <a role="button" class="btn btn-lg btn-primary btn-block" href="/login.php">Login</a>
