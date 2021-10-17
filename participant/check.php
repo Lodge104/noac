@@ -39,9 +39,10 @@ $resp = curl_exec($curl);
 if (!curl_errno($curl)) {
     switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
       case 200:  # OK
+      header("Location: application.php?bsaID=" . $bsaID);
         break;
       default:
-        echo 'Unexpected HTTP code: ', $http_code, "\n";
+      header("Location: index.php?status=3");
     }
   }
 curl_close($curl);
