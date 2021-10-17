@@ -70,9 +70,7 @@ $json = $_SESSION['jsonData'];
                     <div class="form-row">
                       <div class="col-md-3">
                         <div class="form-group">
-                          <input type="hidden" id="unitId" name="unitId" value="<?php echo $getUnitElections['id']; ?>">
-                          <input type="hidden" id="unitCommunity" name="unitCommunity" value="<?php echo $getUnitElections['unitCommunity']; ?>">
-                          <input type="hidden" id="unitNumber" name="unitNumber" value="<?php echo $getUnitElections['unitNumber']; ?>">
+                          <input type="hidden" id="oalmID" name="oalmID" value="<?php echo $json['oalmID']; ?>">
                           <input id="firstName" name="firstName" type="text" class="form-control" value="<?php echo $json['firstName']; ?>" disabled>
                         </div>
                         <div class="form-group">
@@ -123,7 +121,7 @@ $json = $_SESSION['jsonData'];
                       <div class="col-md-3">
                         <div class="form-group">
                           <label for="bsa_id" class="required">BSA ID</label>
-                          <input id="bsa_id" name="bsa_id" type="text" class="form-control" required>
+                          <input id="bsa_id" name="bsa_id" type="text" class="form-control" value="<?php echo $json['bsaID']; ?>" disabled>
                         </div>
                       </div>
                       <div class="col-md-2">
