@@ -13,6 +13,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+$json = $_SESSION['jsonData'];
+
 ?>
 
 <!DOCTYPE html>
@@ -52,18 +54,9 @@ if ($conn->connect_error) {
     <main class="container-fluid flex-shrink-0">
 
       <?php
-      if (isset($_GET['accessKey'])) {
-        if (preg_match("/^([a-z\d]){8}-([a-z\d]){4}-([a-z\d]){4}-([a-z\d]){4}-([a-z\d]){12}$/", $_GET['accessKey'])) {
-          $accessKey = $_POST['accessKey'] = $_GET['accessKey'];
+      if (isset($_GET['bsaID'])) {
+          $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
       ?>
-          <?php
-          $getUnitElectionsQuery = $conn->prepare("SELECT * from unitElections where accessKey = ?");
-          $getUnitElectionsQuery->bind_param("s", $accessKey);
-          $getUnitElectionsQuery->execute();
-          $getUnitElectionsQ = $getUnitElectionsQuery->get_result();
-          if ($getUnitElectionsQ->num_rows > 0) {
-            //print election info
-          ?>
             <div class="card mb-3">
               <div class="card-body">
                 <h1 class="card-title">New Adult Nomination</h1>
@@ -91,10 +84,10 @@ if ($conn->connect_error) {
                       <div class="col-md-3">
                         <div class="form-group">
                           <input type="hidden" id="unitId" name="unitId" value="<?php echo $getUnitElections['id']; ?>">
-                          <input type="hidden" id="accessKey" name="accessKey" value="<?php echo $getUnitElections['accessKey']; ?>">
+                          <input type="hidden" id="bsaID" name="bsaID" value="<?php echo $getUnitElections['bsaID']; ?>">
                           <input type="hidden" id="unitCommunity" name="unitCommunity" value="<?php echo $getUnitElections['unitCommunity']; ?>">
                           <input type="hidden" id="unitNumber" name="unitNumber" value="<?php echo $getUnitElections['unitNumber']; ?>">
-                          <input id="firstName" name="firstName" type="text" class="form-control" placeholder="First Name" required>
+                          <input id="firstName" name="firstName" type="text" class="form-control" value="<?php echo $json['firstName']; ?>" disabled>
                         </div>
                         <div class="form-group">
                           <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" required>
@@ -343,7 +336,7 @@ if ($conn->connect_error) {
                         </div>
                       </div>
                     </div>
-                    <a href="index.php?accessKey=<?php echo $accessKey; ?>&status=3" class="btn btn-secondary">Cancel</a>
+                    <a href="index.php?bsaID=<?php echo $bsaID; ?>&status=3" class="btn btn-secondary">Cancel</a>
                     <input type="submit" class="btn btn-primary" value="Submit">
                     <div class="my-2"><small class="text-muted">Note: You will not be allowed to edit after this has submitted! Your Unit Chair will be invited via email to review this submission. Make sure their email and phone number are correct!</small></div>
                   </form>
@@ -368,7 +361,7 @@ if ($conn->connect_error) {
 <?php
           }
         } else {
-          //accesskey bad
+          //bsaID bad
 ?>
 <div class="alert alert-danger" role="alert">
   <h5 class="alert-heading">Invalid Access Key</h5>
@@ -379,8 +372,8 @@ if ($conn->connect_error) {
     <h5 class="card-title">Access Key </h5>
     <form action='' method="get">
       <div class="form-group">
-        <label for="accessKey">Access Key</label>
-        <input type="text" id="accessKey" name="accessKey" class="form-control">
+        <label for="bsaID">Access Key</label>
+        <input type="text" id="bsaID" name="bsaID" class="form-control">
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
@@ -389,15 +382,15 @@ if ($conn->connect_error) {
 <?php
         }
       } else {
-        //no accessKey
+        //no bsaID
 ?>
 <div class="card col-md-6 mx-auto">
   <div class="card-body">
     <h5 class="card-title">Access Key </h5>
     <form action='' method="get">
       <div class="form-group">
-        <label for="accessKey">Access Key</label>
-        <input type="text" id="accessKey" name="accessKey" class="form-control">
+        <label for="bsaID">Access Key</label>
+        <input type="text" id="bsaID" name="bsaID" class="form-control">
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
