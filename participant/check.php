@@ -2,6 +2,13 @@
 include '../unitelections-info.php';
 require '../vendor/autoload.php';
 
+session_start();
+if (!isset($_SESSION['count'])) {
+  $_SESSION['count'] = 0;
+} else {
+  $_SESSION['count']++;
+}
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -46,7 +53,8 @@ if (!curl_errno($curl)) {
     }
   }
 curl_close($curl);
-var_dump($resp);
+$json = json_decode($resp, true);
+print_r($json)
 
 
 
