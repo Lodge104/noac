@@ -70,10 +70,10 @@ if (!$userInfo) : ?>
                 <p>Welcome to the NOAC Registration Portal for Occoneechee Lodge. Our lodge is moving away from paper forms and instead inviting unit leaders to use this online portal to submit adult nominations. Access to this portal is sent to unit leaders via email using a unique link <b>after</b> a unit election has been conducted and verified by Lodge Leadership. If you did not receive an invitation but should have, please use the live chat in the bottom right-hand corner to request one.</p>
               </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row gx-5 justify-content-center">
               <div class="card col-md-5">
                 <div class="card-body">
-                <form action="/unitleader/" method="get">
+                <form action="/participant/check.php" method="get">
                 <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
                   <div class="form-group">
                     <label for="accessKey" class="required">BSA ID</label>
