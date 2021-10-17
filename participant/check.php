@@ -36,6 +36,14 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
 $resp = curl_exec($curl);
+if (!curl_errno($curl)) {
+    switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+      case 200:  # OK
+        break;
+      default:
+        echo 'Unexpected HTTP code: ', $http_code, "\n";
+    }
+  }
 curl_close($curl);
 var_dump($resp);
 
