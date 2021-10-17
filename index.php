@@ -76,8 +76,8 @@ if (!$userInfo) : ?>
                 <form action="/participant/check.php" method="get">
                 <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
                   <div class="form-group">
-                    <label for="accessKey" class="required">BSA ID</label>
-                    <input type="text" id="accessKey" name="accessKey" class="form-control" required>
+                    <label for="bsaID" class="required">BSA ID</label>
+                    <input type="text" id="bsaID" name="bsaID" class="form-control" required>
                   </div>
                   <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
                 </form>
@@ -211,11 +211,11 @@ if (!$userInfo) : ?>
                               <td><?php echo $getAdult['position']; ?></td>
                               <td><?php
                                   if (($getAdult['advisor_signature'] == '1')) { ?>
-                                  <a href="approve-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review Again</a>
+                                  <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review Again</a>
                                 <?php } elseif (($getAdult['advisor_signature'] == '2')) { ?>
-                                  <a href="approve-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review Again</a>
+                                  <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review Again</a>
                                 <?php } elseif (($getAdult['chair_signature'] == '1')) { ?>
-                                  <a href="approve-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review and Approve</a>
+                                  <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review and Approve</a>
                                   <? } else { ?>
                                   <span class="text-muted">Not Ready</span>
                                 <?php } ?>
