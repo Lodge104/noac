@@ -20,7 +20,7 @@
         "components/jquery": "^3.1",
         "components/bootstrap": "^3",
         "firebase/php-jwt": "^5.0",
-        "phpmailer/phpmailer": "^6.2",
+        "phpmailer/phpmailer": "^6.5",
         "fengyuanchen/cropper": "dev-master",
         "auth0/auth0-php": "~7.0",
         "twilio/sdk": "^6.18"
