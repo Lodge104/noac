@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 
 if (isset($_POST['bsa_id'])) {  $bsa_id = $_POST['bsa_id']; } else { die("No BSA id."); }
-if (isset($_POST['oalmID'])) { $oalmID = $_POST['oalmID']; } else { die("No OALM id."); }
+if (isset($_POST['oalm_id'])) { $oalmID = $_POST['oalm_id']; } else { die("No OALM id."); }
 if (isset($_POST['firstName'])) {  $firstName = $_POST['firstName']; } else { $firstName = ""; }
 if (isset($_POST['lastName'])) {  $lastName = $_POST['lastName']; } else { $lastName = ""; }
 if (isset($_POST['address_line1'])) {  $address_line1 = $_POST['address_line1']; } else { $address_line1 = ""; }
@@ -36,7 +36,7 @@ if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
 if (isset($_POST['aia_check'])) {  $aiacheck = "1"; } else { $aiacheck = "0"; }
 if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
 if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
-if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { die("No OALM id."); }
+if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { $parent = ""; }
 
 
 $createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, aia_check, aia, signature, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
