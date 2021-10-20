@@ -24,7 +24,7 @@ $json = $_SESSION['jsonData'];
   <meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1" />
   <meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
-  <title>Add Adult Nomination | Occoneechee Lodge - Order of the Arrow, BSA</title>
+  <title>Add NOAC Application | Occoneechee Lodge - Order of the Arrow, BSA</title>
 
   <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
@@ -65,7 +65,7 @@ $json = $_SESSION['jsonData'];
                 <h3 class="required">Personal Information</h3>
               </div>
             </div>
-            <form action="add-nomination-process.php" method="post">
+            <form action="add-application-process.php" method="post">
               <div class="form-row">
                 <div class="col-md-3">
                   <div class="form-group">
@@ -130,7 +130,7 @@ $json = $_SESSION['jsonData'];
                     <input id="email" name="email" type="email" class="form-control" placeholder="Email" required>
                   </div>
                   <div class="form-group">
-                    <input id="hphone" name="hphone" type="text" class="form-control" placeholder="Home Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
+                    <input id="hphone" name="hphone" type="text" class="form-control" placeholder="Home Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555">
                   </div>
                   <div class="form-group">
                     <input id="cphone" name="cphone" type="text" class="form-control" placeholder="Cell Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
