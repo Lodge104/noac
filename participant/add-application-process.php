@@ -36,16 +36,18 @@ if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
 if (isset($_POST['aia_check'])) {  $aiacheck = $_POST['aia_check']; } else { $aiacheck = ""; }
 if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
 if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
-if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { $parent = ""; }
+if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { die("No OALM id."); }
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, aia_check, aia, signature, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("ssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent);
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, aia_check, aia, signature, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("sssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent);
 $createAdult->execute();
 $createAdult->close();
 
 
 /*
+$parent = "";
+
 include '../unitelections-info.php';
 $mail = new PHPMailer(true);
   $mail->IsSMTP();        //Sets Mailer to send message using SMTP
