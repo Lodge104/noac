@@ -208,100 +208,22 @@ $json = $_SESSION['jsonData'];
               </div>
               <h4 class="card-title">Unit Chair's Information</h4>
               <div class="form-row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <input id="uc_name" name="uc_name" type="text" class="form-control" placeholder="Name" value="<?php echo $getUnitElections['uc_name']; ?>" required>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <input id="uc_address_line1" name="uc_address_line1" type="text" class="form-control" placeholder="Address" value="<?php echo $getUnitElections['uc_address_line1']; ?>" required>
-                  </div>
-                  <div class="form-group">
-                    <input id="uc_address_line2" name="uc_address_line2" type="text" class="form-control" placeholder="Address Line 2 (optional)" value="<?php echo $getUnitElections['uc_address_line2']; ?>">
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <input id="uc_city" name="uc_city" type="text" class="form-control" placeholder="City" value="<?php echo $getUnitElections['uc_city']; ?>" required>
-                  </div>
-                  <div class="form-row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <input id="uc_state" name="uc_state" type="text" class="form-control" placeholder="State" value="<?php echo $getUnitElections['uc_state']; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <input id="uc_zip" name="uc_zip" type="text" class="form-control" placeholder="Zip" value="<?php echo $getUnitElections['uc_zip']; ?>" required>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <input id="uc_email" name="uc_email" type="email" class="form-control" placeholder="Email" value="<?php echo $getUnitElections['uc_email']; ?>" required>
-                  </div>
-                  <div class="form-group">
-                    <input id="uc_phone" name="uc_phone" type="text" class="form-control" placeholder="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" value="<?php echo $getUnitElections['uc_phone']; ?>" required>
+                    <input id="signature" name="signature" type="text" class="form-control" placeholder="Please type your full name if you agree to the contract above." required>
                   </div>
                 </div>
               </div>
-              <h4 class="card-title">Unit Leader's Information</h4>
               <div class="form-row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <input id="sm_name" name="sm_name" type="text" class="form-control" placeholder="Name" value="<?php echo $getUnitElections['sm_name']; ?>" disabled>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <input id="sm_address_line1" name="sm_address_line1" type="text" class="form-control" placeholder="Address" value="<?php echo $getUnitElections['sm_address_line1']; ?>" disabled>
-                  </div>
-                  <div class="form-group">
-                    <input id="sm_address_line2" name="sm_address_line2" type="text" class="form-control" placeholder="Address Line 2 (optional)" value="<?php echo $getUnitElections['sm_address_line2']; ?>" disabled>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <input id="sm_city" name="sm_city" type="text" class="form-control" placeholder="City" value="<?php echo $getUnitElections['sm_city']; ?>" disabled>
-                  </div>
-                  <div class="form-row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <input id="sm_state" name="sm_state" type="text" class="form-control" placeholder="State" value="<?php echo $getUnitElections['sm_state']; ?>" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <input id="sm_zip" name="sm_zip" type="text" class="form-control" placeholder="Zip" value="<?php echo $getUnitElections['sm_zip']; ?>" disabled>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <input id="sm_emaild" name="sm_emaild" type="email" class="form-control" placeholder="Email" value="<?php echo $getUnitElections['sm_email']; ?>" disabled>
-                    <input id="sm_email" name="sm_email" type="hidden" class="form-control" placeholder="Email" value="<?php echo $getUnitElections['sm_email']; ?>">
-                  </div>
-                  <div class="form-group">
-                    <input id="sm_phone" name="sm_phone" type="text" class="form-control" placeholder="Phone" value="<?php echo $getUnitElections['sm_phone']; ?>" disabled>
-                  </div>
-                </div>
-              </div>
-              <div class="form-row justify-content-center">
-                <div class="col-md-9">
-                  <div class="form-group">
-                    <input class="form-check-input" type="checkbox" value="1" id="leader_signature" required>
-                    <label class="required" for="leader_signature">
-                      By checking here, you, as the unit leader, testify the adult leader, who fulfills the above requirements, is recommended for membership consideration in the Order of the Arrow.
-                    </label>
+                    <input id="parent" name="parent" type="text" class="form-control" placeholder="Please type your parent's full name if you are under 18 and they agree to the contract above.">
                   </div>
                 </div>
               </div>
               <a href="index.php?bsaID=<?php echo $bsaID; ?>&status=3" class="btn btn-secondary">Cancel</a>
               <input type="submit" class="btn btn-primary" value="Submit">
-              <div class="my-2"><small class="text-muted">Note: You will not be allowed to edit after this has submitted! Your Unit Chair will be invited via email to review this submission. Make sure their email and phone number are correct!</small></div>
+              <div class="my-2"><small class="text-muted">Note: You will not be allowed to edit after this has submitted!</small></div>
             </form>
           </div>
         </div>
