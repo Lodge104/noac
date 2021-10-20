@@ -93,7 +93,7 @@ $json = $_SESSION['jsonData'];
                   </div>
                   <div class="form-group">
                     <select id="tshirt" name="tshirt" type="custom-select" class="form-control" required>
-                      <option value="" disabled selected>Adult T-Shirt Size</option>
+                      <option value="" disabled>Adult T-Shirt Size</option>
                       <option value="small">Small</option>
                       <option value="medium">Medium</option>
                       <option value="large">Large</option>
@@ -135,7 +135,7 @@ $json = $_SESSION['jsonData'];
                     </div>
                   </div>
                   <div class="form-group">
-                    <input class="form-check-input" type="checkbox" value="1" id="text-agreement" required>
+                    <input class="form-check-input" type="checkbox" value="1" id="text-agreement" checked>
                     <label class="required" for="text-agreement">
                       By checking here, I agree to receive text messages to my cell phone number.
                     </label>
