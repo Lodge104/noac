@@ -185,18 +185,18 @@ $json = $_SESSION['jsonData'];
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>Conduct and Commitment Agreement</h3>
-                  <p>I understand that the Contingent fees are $700/Arrowman which include NOAC registration, transportation to the event, 1 nights lodging prior to the event, all meals during the Conference, selected meals while travelling and Contingent spirit items as determined by the Lodge NOAC Committee.<br>As a member of the Order of the Arrow and wanting to attend the 2018 NOAC, I will do the following:
+                  <p>I understand that the Contingent fees are $700/Arrowman which include NOAC registration, transportation to the event, 1 nights lodging prior to the event, all meals during the Conference, selected meals while travelling and Contingent spirit items as determined by the Lodge NOAC Committee.<br><br>As a member of the Order of the Arrow and wanting to attend the 2022 NOAC, I will do the following:
                   <ol>
-                    <li>Attend all contingent meetings for NOAC 2018 which will be held during regular Lodge weekends or as otherwise scheduled prior to departure.</li>
-                    <li>Pay the Fee presented by the Lodge which is not refundable, but fully transferrable to another person. If I am unable to attend NOAC, I understand that it is my responsibility to find a replacement for my registration or forfeit.</li>
+                    <li>Attend all contingent meetings for NOAC 2022 which will be held during regular Lodge weekends or as otherwise scheduled prior to departure.</li>
+                    <li><b>Pay the Fee presented by the Lodge which is not refundable, but fully transferrable to another person. If I am unable to attend NOAC, I understand that it is my responsibility to find a replacement for my registration or forfeit.</b></li>
                     <li>I will attend all evening shows with the Lodge Contingent and wear the uniform indicated by the Contingent Leadership.</li>
                     <li>I will not leave the IU campus without the expressed consent of the Contingent Leadership.</li>
                     <li>I will be in the dorm by our curfew.</li>
-                    <li>I will obey all NOAC 2018 and Lodge Rules; I will set the example as a proper Arrowman and be a representative of our Lodge. I will follow all instructions given to me by the Contingent leadership.</li>
+                    <li>I will obey all NOAC 2022 and Lodge Rules; I will set the example as a proper Arrowman and be a representative of our Lodge. I will follow all instructions given to me by the Contingent leadership.</li>
                     <li>I will follow the priorities of activities set by the group and stay with the plan.</li>
                     <li>I will participate in the Founder's Day Activities and assist as requested.</li>
                     <li>I will show Lodge Spirit by participating actively in all events.</li>
-                    <li>If I am 18 years of age or older while at NOAC 2018, I will have current certification for Youth Protection Training.</li>
+                    <li>If I am 18 years of age or older while at NOAC 2022, I will have current certification for Youth Protection Training.</li>
                     <li>I will wear my full field uniform during meals, evening shows, and when other events request or require it. I understand that this includes proper scout pants.</li>
                     <li>I will accept leadership responsibilities as they may be assigned to me and carry them out to the best of my ability.</li>
                     <li>I will carry with me to NOAC any medications that are prescribed in my name on a regular basis and disclose all medical conditions for my own safety and the safety of the Contingent. If I am under 18, I will designate an adult to assist me with any medications and will indicate this on my health form.</li>
@@ -204,53 +204,8 @@ $json = $_SESSION['jsonData'];
                     <li>I will make scheduled payments according to the attached payment plan.</li>
                   </ol>
                   </p>
-                  <div class="alert alert-danger" role="alert">
-                    <b>For 2021 nominations only,</b> the requirement for a long-term camp of five (5) consecutive nights is relaxed. While council long-term camps should be utilized if available, any combination of short-term and/or long-term nights, in camp or virtual, that are part of a BSA unit-organized unit camping event held within the two years prior to the election may be counted toward the 15-night requirement. If long term camping has not been completed, please state that in the relevant box.
-                  </div>
-                  <div class="form-group">
-                    <label for="short_term" class="required">Short Term Camping</label>
-                    <textarea id="short_term" name="short_term" rows="2" class="form-control" required></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="long_term" class="required">Long Term Camping</label>
-                    <textarea id="long_term" name="long_term" rows="2" class="form-control" required></textarea>
-                  </div>
                 </div>
               </div>
-              <hr>
-              </hr>
-              <div class="form-row">
-                <div class="col-md-12">
-                  <h3>Statement of Purpose</h3>
-                  <div class="form-group">
-                    <label for="abilities" class="required">Please state why you want to attend NOAC 2018, and what you will contribute to the contingent for it to be successful:</label>
-                    <textarea id="abilities" name="abilities" rows="4" class="form-control" required></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <p>As Scouting’s National Honor Society, our purpose is to:
-                    <li>Recognize those who best exemplify the Scout Oath and Law in their daily lives and through that recognition cause others to conduct themselves in a way that warrants similar recognition.</li>
-                    <li>Promote camping, responsible outdoor adventure, and environmental stewardship as essential components of every Scout’s experience, in the unit, year-round, and in summer camp.</li>
-                    <li>Develop leaders with the willingness, character, spirit and ability to advance the activities of their units, our Brotherhood, Scouting, and ultimately our nation.</li>
-                    <li>Crystallize the Scout habit of helpfulness into a life purpose of leadership in cheerful service to others.</li>
-                  </p>
-                  <div class="form-group">
-                    <label for="purpose" class="required">
-                      This adult will be an asset to the Order of the Arrow due to demonstrated skills and abilities, which fulfill the purpose of the Order of the Arrow, in the following manner:</label>
-                    <textarea id="purpose" name="purpose" rows="4" class="form-control" required></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="role_modal" class="required">This adult leader's membership will provide a positive role model for the growth and development of the youth members of the lodge because:</label>
-                    <textarea id="role_modal" name="role_modal" rows="4" class="form-control" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              </hr>
               <h4 class="card-title">Unit Chair's Information</h4>
               <div class="form-row">
                 <div class="col-md-3">
