@@ -28,12 +28,12 @@ if (isset($_POST['email'])) {  $email = $_POST['email']; } else { $email = ""; }
 if (isset($_POST['hphone'])) {  $hphone = $_POST['hphone']; } else { $hphone = ""; }
 if (isset($_POST['cphone'])) {  $cphone = $_POST['cphone']; } else { $cphone = ""; }
 if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { $tshirt = ""; }
-if (isset($_POST['text_agreement'])) {  $text = $_POST['text_agreement']; } else { die("No Text id."); }
+if (isset($_POST['text_agreement'])) {  $text = "1"; } else { $text = "0"; }
 if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { $gender = ""; }
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { $dob = ""; }
 if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
-if (isset($_POST['aia_check'])) {  $aiacheck = $_POST['aia_check']; } else { $aiacheck = ""; }
+if (isset($_POST['aia_check'])) {  $aiacheck = "1"; } else { $aiacheck = "0"; }
 if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
 if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
 if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { die("No OALM id."); }
