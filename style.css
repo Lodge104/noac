@@ -67,14 +67,10 @@ h3 {
 .text-muted a {
     color: inherit;
 }
-.text-agreement {
+label.text-agreement {
     display: inline-block;
     margin-bottom: .5rem;
     padding-left: 19px;
-}
-
-.form-check-input {
-    margin-left: unset !important;
 }
 
 /*!
