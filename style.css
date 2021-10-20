@@ -73,6 +73,9 @@ label.text-agreement {
     padding-left: 19px;
     font-weight: unset;
 }
+input#text-agreement {
+    margin-left: unset !important;
+}
 
 /*!
  *  BOOTSTRAP CLASSES
