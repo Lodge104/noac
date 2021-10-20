@@ -109,7 +109,7 @@ $json = $_SESSION['jsonData'];
                   <div class="form-row">
                     <div class="col-md-4">
                       <div class="form-group">
-                        <input id="state" name="state" type="text" class="form-control" placeholder="State" required>
+                        <input id="state" name="state" type="text" class="form-control" placeholder="State" maxlength="2" required>
                       </div>
                     </div>
                     <div class="col-md-8">

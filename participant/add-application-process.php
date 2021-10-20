@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 }
 
 
+if (isset($_POST['bsa_id'])) {  $bsa_id = $_POST['bsa_id']; } else { die("No BSA id."); }
 if (isset($_POST['oalmID'])) { $oalmID = $_POST['oalmID']; } else { die("No OALM id."); }
 if (isset($_POST['firstName'])) {  $firstName = $_POST['firstName']; } else { $firstName = ""; }
 if (isset($_POST['lastName'])) {  $lastName = $_POST['lastName']; } else { $lastName = ""; }
@@ -30,7 +31,6 @@ if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { $tshirt = "
 if (isset($_POST['text-agreement'])) {  $text = $_POST['text-agreement']; } else { $text = ""; }
 if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { $gender = ""; }
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
-if (isset($_POST['bsa_id'])) {  $bsa_id = $_POST['bsa_id']; } else { $bsa_id = ""; }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { $dob = ""; }
 if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
 if (isset($_POST['aia-check'])) {  $aiacheck = $_POST['aia-check']; } else { $aiacheck = ""; }
