@@ -28,7 +28,7 @@ if (isset($_POST['email'])) {  $email = $_POST['email']; } else { $email = ""; }
 if (isset($_POST['hphone'])) {  $hphone = $_POST['hphone']; } else { $hphone = ""; }
 if (isset($_POST['cphone'])) {  $cphone = $_POST['cphone']; } else { $cphone = ""; }
 if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { $tshirt = ""; }
-if (isset($_POST['text_agreement'])) {  $text = $_POST['text_agreement']; } else { $text = ""; }
+if (isset($_POST['text_agreement'])) {  $text = $_POST['text_agreement']; } else { die("No Text id."); }
 if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { $gender = ""; }
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { $dob = ""; }
