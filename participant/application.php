@@ -92,7 +92,8 @@ $json = $_SESSION['jsonData'];
                     <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" value="<?php echo $json['lastName']; ?>" disabled>
                   </div>
                   <div class="form-group">
-                    <select id="tshirt" name="tshirt" type="custom-select" class="form-control" placeholder="Adult T-Shirt Size" required>
+                    <select id="tshirt" name="tshirt" type="custom-select" class="form-control" required>
+                      <option value="" disabled selected>Adult T-Shirt Size</option>
                       <option value="small">Small</option>
                       <option value="medium">Medium</option>
                       <option value="large">Large</option>
@@ -111,6 +112,7 @@ $json = $_SESSION['jsonData'];
                   </div>
                   <div class="form-group">
                     <select id="gender" name="gender" type="custom-select" class="form-control" placeholder="Gender" required>
+                    <option value="" disabled selected>Gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
@@ -131,6 +133,12 @@ $json = $_SESSION['jsonData'];
                         <input id="zip" name="zip" type="text" class="form-control" placeholder="Zip" required>
                       </div>
                     </div>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-check-input" type="checkbox" value="1" id="text-agreement" required>
+                    <label class="required" for="text-agreement">
+                      By checking here, I agree to receive text messages to my cell phone number.
+                    </label>
                   </div>
                 </div>
                 <div class="col-md-3">
