@@ -71,6 +71,7 @@ label.text-agreement {
     display: inline-block;
     margin-bottom: .5rem;
     padding-left: 19px;
+    font-weight: unset;
 }
 
 /*!
