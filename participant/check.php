@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 if (isset($_GET['bsaID'])) {
     $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
 
-    $getbsaIDQuery = $conn->prepare("SELECT * from applications where bsa_id = ?");
+    $getbsaIDQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
     $getbsaIDQuery->bind_param("s", $bsaID);
     $getbsaIDQuery->execute();
     $getbsaIDQ = $getbsaIDQuery->get_result();
