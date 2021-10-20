@@ -119,7 +119,7 @@ $json = $_SESSION['jsonData'];
                     </div>
                   </div>
                   <div class="form-group">
-                    <input class="form-check-input" type="checkbox" value="1" id="text_agreement" checked>
+                    <input class="form-check-input" type="checkbox" id="text_agreement" checked>
                     <label class="text_agreement" for="text_agreement">
                       By checking here, I agree to receive text messages to my cell phone number.
                     </label>
@@ -169,7 +169,7 @@ $json = $_SESSION['jsonData'];
                 <div class="col-md-12">
                   <h3>American Indian Affairs</h3>
                   <div class="form-group">
-                    <input class="form-check-input" type="checkbox" value="1" id="aia_check">
+                    <input class="form-check-input" type="checkbox" id="aia_check">
                     <label class="text-agreement" for="aia_check">
                       By checking here, I plan on participating in AIA competitions at NOAC 2022.
                     </label>
