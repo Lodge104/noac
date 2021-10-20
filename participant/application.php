@@ -96,7 +96,7 @@ $json = $_SESSION['jsonData'];
                   </div>
                   <div class="form-group">
                     <select id="gender" name="gender" type="custom-select" class="form-control" placeholder="Gender" required>
-                    <option value="" disabled selected>Gender</option>
+                      <option value="" disabled selected>Gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
@@ -176,7 +176,7 @@ $json = $_SESSION['jsonData'];
                   </div>
                   <div class="form-group">
                     <label for="aia">Please describe which AIA competitions you plan on participating in: (only answer if you checked the box above)</label>
-                    <textarea id="aia" name="aia" rows="2" class="form-control" ></textarea>
+                    <textarea id="aia" name="aia" rows="2" class="form-control"></textarea>
                   </div>
                 </div>
               </div>
@@ -184,8 +184,26 @@ $json = $_SESSION['jsonData'];
               </hr>
               <div class="form-row">
                 <div class="col-md-12">
-                  <h3>Camping Requirements</h3>
-                  <p>The camping requirement set forth for youth candidates must be fulfilled by adults for them to be considered. To be eligible, the adult must have completed 15 days and nights of Boy Scout camping during the two-year period prior to nomination. The 15 days and nights must include one, but no more than one, long-term camp consisting of six consecutive days and five nights of resident camping, approved and under the auspices and standards of the BSA. The balance must be overnight, weekend, or other short-term camps. Include the dates and location of the resident camping experience in the space below.</p>
+                  <h3>Conduct and Commitment Agreement</h3>
+                  <p>I understand that the Contingent fees are $700/Arrowman which include NOAC registration, transportation to the event, 1 nights lodging prior to the event, all meals during the Conference, selected meals while travelling and Contingent spirit items as determined by the Lodge NOAC Committee.<br>As a member of the Order of the Arrow and wanting to attend the 2018 NOAC, I will do the following:
+                  <ol>
+                    <li>Attend all contingent meetings for NOAC 2018 which will be held during regular Lodge weekends or as otherwise scheduled prior to departure.</li>
+                    <li>Pay the Fee presented by the Lodge which is not refundable, but fully transferrable to another person. If I am unable to attend NOAC, I understand that it is my responsibility to find a replacement for my registration or forfeit.</li>
+                    <li>I will attend all evening shows with the Lodge Contingent and wear the uniform indicated by the Contingent Leadership.</li>
+                    <li>I will not leave the IU campus without the expressed consent of the Contingent Leadership.</li>
+                    <li>I will be in the dorm by our curfew.</li>
+                    <li>I will obey all NOAC 2018 and Lodge Rules; I will set the example as a proper Arrowman and be a representative of our Lodge. I will follow all instructions given to me by the Contingent leadership.</li>
+                    <li>I will follow the priorities of activities set by the group and stay with the plan.</li>
+                    <li>I will participate in the Founder's Day Activities and assist as requested.</li>
+                    <li>I will show Lodge Spirit by participating actively in all events.</li>
+                    <li>If I am 18 years of age or older while at NOAC 2018, I will have current certification for Youth Protection Training.</li>
+                    <li>I will wear my full field uniform during meals, evening shows, and when other events request or require it. I understand that this includes proper scout pants.</li>
+                    <li>I will accept leadership responsibilities as they may be assigned to me and carry them out to the best of my ability.</li>
+                    <li>I will carry with me to NOAC any medications that are prescribed in my name on a regular basis and disclose all medical conditions for my own safety and the safety of the Contingent. If I am under 18, I will designate an adult to assist me with any medications and will indicate this on my health form.</li>
+                    <li>I agree that any violation of the Contingent or NOAC policies may result in my immediate dismissal from the delegation and I agree to bear the cost of return transportation as may be determined by the Lodge.</li>
+                    <li>I will make scheduled payments according to the attached payment plan.</li>
+                  </ol>
+                  </p>
                   <div class="alert alert-danger" role="alert">
                     <b>For 2021 nominations only,</b> the requirement for a long-term camp of five (5) consecutive nights is relaxed. While council long-term camps should be utilized if available, any combination of short-term and/or long-term nights, in camp or virtual, that are part of a BSA unit-organized unit camping event held within the two years prior to the election may be counted toward the 15-night requirement. If long term camping has not been completed, please state that in the relevant box.
                   </div>

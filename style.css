@@ -74,7 +74,10 @@ label.text-agreement {
     font-weight: unset;
 }
 input#text-agreement {
-    margin-left: unset !important;
+    margin-left: unset;
+}
+input#aia-check {
+    margin-left: unset;
 }
 
 /*!
