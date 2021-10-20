@@ -175,7 +175,7 @@ $json = $_SESSION['jsonData'];
                     </label>
                   </div>
                   <div class="form-group">
-                    <label for="aia">Please describe which competitions you plan on participating in:</label>
+                    <label for="aia">Please describe which AIA competitions you plan on participating in: (only answer if you checked the box above)</label>
                     <textarea id="aia" name="aia" rows="2" class="form-control" ></textarea>
                   </div>
                 </div>
