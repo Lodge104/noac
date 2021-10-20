@@ -15,10 +15,7 @@ if ($conn->connect_error) {
 }
 
 
-if (isset($_POST['unitId'])) { $unitId = $_POST['unitId']; } else { die("No unit id."); }
-if (isset($_POST['accessKey'])) { $accessKey = $_POST['accessKey']; } else { die("No unit key."); }
-if (isset($_POST['unitCommunity'])) {  $unitCommunity = $_POST['unitCommunity']; } else { $unitCommunity = ""; }
-if (isset($_POST['unitNumber'])) {  $unitNumber = $_POST['unitNumber']; } else { $unitNumber = ""; }
+if (isset($_POST['oalmID'])) { $oalmID = $_POST['oalmID']; } else { die("No OALM id."); }
 if (isset($_POST['firstName'])) {  $firstName = $_POST['firstName']; } else { $firstName = ""; }
 if (isset($_POST['lastName'])) {  $lastName = $_POST['lastName']; } else { $lastName = ""; }
 if (isset($_POST['address_line1'])) {  $address_line1 = $_POST['address_line1']; } else { $address_line1 = ""; }
@@ -27,49 +24,28 @@ if (isset($_POST['city'])) {  $city = $_POST['city']; } else { $city = ""; }
 if (isset($_POST['state'])) {  $state = $_POST['state']; } else { $state = ""; }
 if (isset($_POST['zip'])) {  $zip = $_POST['zip']; } else { $zip = ""; }
 if (isset($_POST['email'])) {  $email = $_POST['email']; } else { $email = ""; }
-if (isset($_POST['phone'])) {  $phone = $_POST['phone']; } else { $phone = ""; }
-if (isset($_POST['position'])) {  $position = $_POST['position']; } else { $position = ""; }
+if (isset($_POST['hphone'])) {  $hphone = $_POST['hphone']; } else { $hphone = ""; }
+if (isset($_POST['cphone'])) {  $cphone = $_POST['cphone']; } else { $cphone = ""; }
+if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { $tshirt = ""; }
+if (isset($_POST['text-agreement'])) {  $text = $_POST['text-agreement']; } else { $text = ""; }
+if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { $gender = ""; }
+if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
 if (isset($_POST['bsa_id'])) {  $bsa_id = $_POST['bsa_id']; } else { $bsa_id = ""; }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { $dob = ""; }
-if (isset($_POST['years_adult'])) {  $years_adult = $_POST['years_adult']; } else { $years_adult = ""; }
-
-if (isset($_POST['training'])) {  $training = $_POST['training']; } else { $training = ""; }
-if (isset($_POST['position_held'])) {  $position_held = $_POST['position_held']; } else { $position_held = ""; }
-if (isset($_POST['youth_rank'])) {  $youth_rank = $_POST['youth_rank']; } else { $youth_rank = ""; }
-if (isset($_POST['community_activities'])) {  $community_activities = $_POST['community_activities']; } else { $community_activities = ""; }
-if (isset($_POST['employment'])) {  $employment = $_POST['employment']; } else { $employment = ""; }
-if (isset($_POST['short_term'])) {  $short_term = $_POST['short_term']; } else { $short_term = ""; }
-if (isset($_POST['long_term'])) {  $long_term = $_POST['long_term']; } else { $long_term = ""; }
-if (isset($_POST['abilities'])) {  $abilities = $_POST['abilities']; } else { $abilities = ""; }
-if (isset($_POST['purpose'])) {  $purpose = $_POST['purpose']; } else { $purpose = ""; }
-if (isset($_POST['role_modal'])) {  $role_modal = $_POST['role_modal']; } else { $role_modal = ""; }
-if (isset($_POST['leader_signature'])) {  $leader_signature = "1"; } else { $leader_signature = "1"; }
+if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
+if (isset($_POST['aia-check'])) {  $aiacheck = $_POST['aia-check']; } else { $aiacheck = ""; }
+if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
+if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
+if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { $parent = ""; }
 
 
-if (isset($_POST['uc_name'])) {  $uc_name = $_POST['uc_name']; } else { $uc_name = ""; }
-if (isset($_POST['uc_address_line1'])) {  $uc_address_line1 = $_POST['uc_address_line1']; } else { $uc_address_line1 = ""; }
-if (isset($_POST['uc_address_line2'])) {  $uc_address_line2 = $_POST['uc_address_line2']; } else { $uc_address_line2 = ""; }
-if (isset($_POST['uc_city'])) {  $uc_city = $_POST['uc_city']; } else { $uc_city = ""; }
-if (isset($_POST['uc_state'])) {  $uc_state = $_POST['uc_state']; } else { $uc_state = ""; }
-if (isset($_POST['uc_zip'])) {  $uc_zip = $_POST['uc_zip']; } else { $uc_zip = ""; }
-if (isset($_POST['sm_email'])) {  $sm_email = $_POST['sm_email']; } else { $sm_email = ""; }
-if (isset($_POST['uc_email'])) {  $uc_email = $_POST['uc_email']; } else { $uc_email = ""; }
-if (isset($_POST['uc_phone'])) {  $uc_phone = $_POST['uc_phone']; } else { $uc_phone = ""; }
-
-
-
-
-$createAdult = $conn->prepare("INSERT INTO adultNominations(unitId, firstName, lastName, address_line1, address_line2, city, state, zip, email, phone, position, bsa_id, dob, years_adult, training, position_held, youth_rank, community_activities, employment, short_term, long_term, abilities, purpose, role_modal, leader_signature, leader_email, chair_email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("sssssssssssssssssssssssssss", $unitId, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $phone, $position, $bsa_id, $dob, $years_adult, $training, $position_held, $youth_rank, $community_activities, $employment, $short_term, $long_term, $abilities, $purpose, $role_modal, $leader_signature, $sm_email, $uc_email);
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, aia_check, aia, signature, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("ssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent);
 $createAdult->execute();
 $createAdult->close();
 
-$updateElection = $conn->prepare("UPDATE unitElections SET uc_name=?,uc_address_line1=?,uc_address_line2=?,uc_city=?,uc_state=?,uc_zip=?,uc_email=?,uc_phone=? WHERE id = ?");
-$updateElection->bind_param("sssssssss", $uc_name, $uc_address_line1, $uc_address_line2, $uc_city, $uc_state, $uc_zip, $uc_email, $uc_phone, $unitId);
-$updateElection->execute();
-$updateElection->close();
 
-
+/*
 include '../unitelections-info.php';
 $mail = new PHPMailer(true);
   $mail->IsSMTP();        //Sets Mailer to send message using SMTP
@@ -135,7 +111,7 @@ $mail = new PHPMailer(true);
 </table>';   //An HTML or plain text message body
   if($mail->Send())        //Send an Email. Return true on success or false on error
 
-
+*/
 header("Location: index.php?accessKey=" . $accessKey . "&status=2");
 
 ?>

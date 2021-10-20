@@ -140,8 +140,8 @@ $json = $_SESSION['jsonData'];
               <div class="form-row">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="position" class="required">Chapter</label>
-                    <input id="position" name="position" type="text" class="form-control" value="<?php echo $json['chapter']; ?>" disabled>
+                    <label for="chapter" class="required">Chapter</label>
+                    <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $json['chapter']; ?>" disabled>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -158,8 +158,8 @@ $json = $_SESSION['jsonData'];
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="years_adult" class="required">Membership Level</label>
-                    <input id="years_adult" name="years_adult" type="text" class="form-control" value="<?php echo $json['obv']; ?>" disabled>
+                    <label for="level" class="required">Membership Level</label>
+                    <input id="level" name="level" type="text" class="form-control" value="<?php echo $json['obv']; ?>" disabled>
                   </div>
                 </div>
               </div>
@@ -206,7 +206,6 @@ $json = $_SESSION['jsonData'];
                   </p>
                 </div>
               </div>
-              <h4 class="card-title">Unit Chair's Information</h4>
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-group">
