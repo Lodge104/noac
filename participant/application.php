@@ -69,11 +69,13 @@ $json = $_SESSION['jsonData'];
               <div class="form-row">
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="hidden" id="oalmID" name="oalmID" value="<?php echo $json['oalmID']; ?>">
+                    <input type="hidden" id="oalm_id" name="oalm_id" value="<?php echo $json['oalmID']; ?>">
                     <input id="firstName" name="firstName" type="text" class="form-control" value="<?php echo $json['firstName']; ?>" disabled>
+                    <input id="firstName" name="firstName" type="hidden" class="form-control" value="<?php echo $json['firstName']; ?>">
                   </div>
                   <div class="form-group">
                     <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" value="<?php echo $json['lastName']; ?>" disabled>
+                    <input id="lastName" name="lastName" type="hidden" class="form-control" placeholder="Last Name" value="<?php echo $json['lastName']; ?>" >
                   </div>
                   <div class="form-group">
                     <select id="tshirt" name="tshirt" type="custom-select" class="form-control" required>
@@ -142,12 +144,14 @@ $json = $_SESSION['jsonData'];
                   <div class="form-group">
                     <label for="chapter" class="required">Chapter</label>
                     <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $json['chapter']; ?>" disabled>
+                    <input id="chapter" name="chapter" type="hidden" class="form-control" value="<?php echo $json['chapter']; ?>">
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="bsa_id" class="required">BSA ID</label>
-                    <input id="bsa_id" name="bsa_id" type="text" class="form-control" value="<?php echo $json['bsaID']; ?>">
+                    <input id="bsa_id" name="bsa_id" type="text" class="form-control" value="<?php echo $json['bsaID']; ?>" disabled>
+                    <input id="bsa_id" name="bsa_id" type="hidden" class="form-control" value="<?php echo $json['bsaID']; ?>">
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -160,6 +164,7 @@ $json = $_SESSION['jsonData'];
                   <div class="form-group">
                     <label for="level" class="required">Membership Level</label>
                     <input id="level" name="level" type="text" class="form-control" value="<?php echo $json['obv']; ?>" disabled>
+                    <input id="level" name="level" type="hidden" class="form-control" value="<?php echo $json['obv']; ?>">
                   </div>
                 </div>
               </div>
