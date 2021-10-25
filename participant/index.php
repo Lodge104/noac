@@ -40,6 +40,7 @@ $session = \Stripe\Checkout\Session::create([
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
   <link rel="stylesheet" href="../style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
@@ -187,17 +188,17 @@ $session = \Stripe\Checkout\Session::create([
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                  <button type="deposit">Pay Deposit</button>
-                  <script>
-      var stripe = Stripe('<?php $stripe ?>');
-      const btn = document.getElementById("deposit")
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        stripe.redirectToCheckout({
-          sessionId: "<?php echo $session->id; ?>"
-        });
-      });
-    </script>
+                <button type="deposit">Pay Deposit</button>
+                <script>
+                  var stripe = Stripe('<?php $stripe ?>');
+                  const btn = document.getElementById("deposit")
+                  btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    stripe.redirectToCheckout({
+                      sessionId: "<?php echo $session->id; ?>"
+                    });
+                  });
+                </script>
               <?php } ?>
             </div>
           </div>
@@ -394,7 +395,6 @@ $session = \Stripe\Checkout\Session::create([
   <script src="../libraries/popper-1.16.0.min.js"></script>
   <script src="../libraries/bootstrap-4.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-  <script src="https://js.stripe.com/v3/"></script>
 
   <script>
     var clipboard = new ClipboardJS('.btn');
