@@ -7,33 +7,6 @@ header("Pragma: no-cache");
 include '../unitelections-info.php';
 
 $host = $_SERVER['SERVER_NAME'];
-
-$url = ("https://registration-test.lodge104.net/api/transactions/" . $bsaID);
-
-$curl = curl_init($url);
-curl_setopt($curl, CURLOPT_URL, $url);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-$headers = array(
-   "Accept: application/json",
-   ("Authorization: Bearer ". $bearer),
-);
-curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-//for debug only!
-curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-$resp = curl_exec($curl);
-if (!curl_errno($curl)) {
-    switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
-      case 200:  # OK
-        break;
-      default:
-    }
-  }
-curl_close($curl);
-$json = json_decode($resp, true);
-$transactions = $json['transactions'];
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +82,33 @@ $transactions = $json['transactions'];
 
       if (isset($_GET['bsaID'])) {
         $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
+
+        $url = ("https://registration-test.lodge104.net/api/transactions/" . $bsaID);
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+          "Accept: application/json",
+          ("Authorization: Bearer " . $bearer),
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $resp = curl_exec($curl);
+        if (!curl_errno($curl)) {
+          switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+            case 200:  # OK
+              break;
+            default:
+          }
+        }
+        curl_close($curl);
+        $json = json_decode($resp, true);
+        $transactions = $json['transactions'];
 
         $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
         $getParticipantsQuery->bind_param("s", $bsaID);
@@ -202,8 +202,8 @@ $transactions = $json['transactions'];
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <script src="https://js.stripe.com/v3/"></script>
                 <form action="/participant/create-deposit-session.php" method="POST">
-        <button type="submit" id="checkout-button">Checkout</button>
-      </form>
+                  <button type="submit" id="checkout-button">Checkout</button>
+                </form>
               <?php } ?>
             </div>
           </div>
