@@ -15,7 +15,7 @@ $session = \Stripe\Checkout\Session::create([
       'product_data' => [
         'name' => 'NOAC Deposit',
       ],
-      'unit_amount' => 100,
+      'unit_amount' => 10000,
     ],
     'quantity' => 1,
   ]],
@@ -198,7 +198,9 @@ $session = \Stripe\Checkout\Session::create([
                     stripe.redirectToCheckout({
                       sessionId: "<?php echo $session->id; ?>"
                     },{
-                      customerEmail: "<?php echo $getParticipants['email']; ?>"
+                      receipt_email: "<?php echo $getParticipants['email']; ?>"
+                    },{
+                      successUrl: "<?php echo $host . '/participants/create-deposit.php?bsaID=' . $getParticipants['bsa_id']?>"
                     });
                   });
                 </script>
