@@ -20,7 +20,6 @@ $session = \Stripe\Checkout\Session::create([
     'quantity' => 1,
   ]],
   'mode' => 'payment',
-  'success_url' => 'https://lodge104-noac-staging.herokuapp.com/participant/create-deposit.php?session_id={CHECKOUT_SESSION_ID}',
   'cancel_url' => 'https://lodge104-noac-staging.herokuapp.com/participant/index.php?status=3',
 ]);
 ?>
