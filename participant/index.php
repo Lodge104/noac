@@ -29,7 +29,6 @@ if (!curl_errno($curl)) {
       case 200:  # OK
         break;
       default:
-      header("Location: index.php?status=3");
     }
   }
 curl_close($curl);
