@@ -78,189 +78,220 @@ include '../unitelections-info.php';
       }
 
       if (isset($_GET['bsaID'])) {
-          $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
+        $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
       ?>
-          <section class="row">
-            <div class="col-12">
-              <h2>Unit Leader's Adult Nomination Dashboard</h2>
-            </div>
-          </section>
+        <section class="row">
+          <div class="col-12">
+            <h2>NOAC Participant Dashboard</h2>
+          </div>
+        </section>
+        <!-- Horizontal Steppers -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <!-- Stepers Wrapper -->
+            <ul class="stepper stepper-horizontal">
+
+              <!-- First Step -->
+              <li class="completed">
+                <a href="#!">
+                  <span class="circle">1</span>
+                  <span class="label">Application Submitted</span>
+                </a>
+              </li>
+
+              <!-- Second Step -->
+              <li class="active">
+                <a href="#!">
+                  <span class="circle">2</span>
+                  <span class="label">Application Approval</span>
+                </a>
+              </li>
+
+            </ul>
+            <!-- /.Stepers Wrapper -->
+
+          </div>
+        </div>
+        <!-- /.Horizontal Steppers -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h3 class="card-title d-inline-flex">Instructions</h3>
+            <p>This is the unit leader's dashboard for adult nominations to the Order of the Arrow. <b>If you are not the unit leader, please forward the original email to the correct person.</b></p>
+            <p><span class="badge badge-danger">Important:</span> Please start by updating your information, as the unit leader, using the edit button.</p>
+            <p>When you submit a new adult nomination, your unit's chair will be notified. They will review the submission on their own dashboard and approve it. Once approved, the nomination will go to the selection committee of the lodge. The status will be updated on this dashboard; use the link from the email you received to check back routinely.</p>
+          </div>
+        </div>
+        <?php
+        $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
+        $getParticipantsQuery->bind_param("s", $bsaID);
+        $getParticipantsQuery->execute();
+        $getParticipantssQ = $getParticipantsQuery->get_result();
+        if ($getParticipantsQ->num_rows > 0) {
+          //print election info
+        ?>
           <div class="card mb-3">
             <div class="card-body">
-              <h3 class="card-title d-inline-flex">Instructions</h3>
-              <p>This is the unit leader's dashboard for adult nominations to the Order of the Arrow. <b>If you are not the unit leader, please forward the original email to the correct person.</b></p><p><span class="badge badge-danger">Important:</span> Please start by updating your information, as the unit leader, using the edit button.</p><p>When you submit a new adult nomination, your unit's chair will be notified. They will review the submission on their own dashboard and approve it. Once approved, the nomination will go to the selection committee of the lodge. The status will be updated on this dashboard; use the link from the email you received to check back routinely.</p>
-            </div>
-          </div>
-          <?php
-          $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
-          $getParticipantsQuery->bind_param("s", $bsaID);
-          $getParticipantsQuery->execute();
-          $getParticipantssQ = $getParticipantsQuery->get_result();
-          if ($getParticipantsQ->num_rows > 0) {
-            //print election info
-          ?>
-            <div class="card mb-3">
-              <div class="card-body">
-                <a href="edit-unit-election.php?accessKey=<?php echo $accessKey; ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">edit</a>
-                <h3 class="card-title d-inline-flex">Unit Information</h3>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Unit Type</th>
-                        <th scope="col">Unit Number</th>
-                        <th scope="col"># of Youth Elected</th>
-                        <th scope="col">Chapter</th>
-                        <th scope="col">Date of Election</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $getUnitElections = $getUnitElectionsQ->fetch_assoc(); ?>
-                      <tr>
-                        <td><?php echo $getUnitElections['unitCommunity']; ?></td>
-                        <td><?php echo $getUnitElections['unitNumber']; ?></td>
-                        <td><?php echo $getUnitElections['numRegisteredYouth']; ?></td>
-                        <td><?php echo $getUnitElections['chapter']; ?></td>
-                        <td><?php echo date("m-d-Y", strtotime($getUnitElections['dateOfElection'])); ?></td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <a href="edit-unit-election.php?accessKey=<?php echo $accessKey; ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">edit</a>
+              <h3 class="card-title d-inline-flex">Unit Information</h3>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Unit Type</th>
+                      <th scope="col">Unit Number</th>
+                      <th scope="col"># of Youth Elected</th>
+                      <th scope="col">Chapter</th>
+                      <th scope="col">Date of Election</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $getUnitElections = $getUnitElectionsQ->fetch_assoc(); ?>
+                    <tr>
+                      <td><?php echo $getUnitElections['unitCommunity']; ?></td>
+                      <td><?php echo $getUnitElections['unitNumber']; ?></td>
+                      <td><?php echo $getUnitElections['numRegisteredYouth']; ?></td>
+                      <td><?php echo $getUnitElections['chapter']; ?></td>
+                      <td><?php echo date("m-d-Y", strtotime($getUnitElections['dateOfElection'])); ?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h5 class="card-title">Unit Leader Information</h5>
+              <div class="row">
+                <div class="col-md-3">
+                  <?php echo $getUnitElections['sm_name']; ?><br>
                 </div>
-                <h5 class="card-title">Unit Leader Information</h5>
-                <div class="row">
-                  <div class="col-md-3">
-                    <?php echo $getUnitElections['sm_name']; ?><br>
-                  </div>
-                  <div class="col-md-3">
-                    <?php echo $getUnitElections['sm_address_line1']; ?><br>
-                    <?php echo ($getUnitElections['sm_address_line2'] == "" ? '' : $getUnitElections['sm_address_line2'] . "<br>"); ?>
-                    <?php echo $getUnitElections['sm_city']; ?>, <?php echo $getUnitElections['sm_state']; ?> <?php echo $getUnitElections['sm_zip']; ?><br>
-                  </div>
-                  <div class="col-md-3">
-                    <?php echo $getUnitElections['sm_email']; ?><br>
-                    <?php echo $getUnitElections['sm_phone']; ?><br>
-                  </div>
+                <div class="col-md-3">
+                  <?php echo $getUnitElections['sm_address_line1']; ?><br>
+                  <?php echo ($getUnitElections['sm_address_line2'] == "" ? '' : $getUnitElections['sm_address_line2'] . "<br>"); ?>
+                  <?php echo $getUnitElections['sm_city']; ?>, <?php echo $getUnitElections['sm_state']; ?> <?php echo $getUnitElections['sm_zip']; ?><br>
+                </div>
+                <div class="col-md-3">
+                  <?php echo $getUnitElections['sm_email']; ?><br>
+                  <?php echo $getUnitElections['sm_phone']; ?><br>
                 </div>
               </div>
             </div>
+          </div>
 
+          <?php
+
+          $rawadults = ($getUnitElections['numRegisteredYouth'] * (2 / 3));
+          $numadults = ceil($rawadults);
+
+          $tz = 'America/New_York';
+          $timestamp = time();
+          $dt = new DateTime("now", new DateTimeZone($tz));
+          $dt->setTimestamp($timestamp);
+
+          $date = $dt->format("Y-m-d");
+          $hour = $dt->format("H");
+          if ((strtotime($getUnitElections['dateOfElection']) < strtotime($date)) || ($getUnitElections['dateOfElection'] == $date && $hour >= 21)) { ?>
             <?php
-
-            $rawadults = ($getUnitElections['numRegisteredYouth'] * (2/3));
-            $numadults = ceil($rawadults);
-
-            $tz = 'America/New_York';
-            $timestamp = time();
-            $dt = new DateTime("now", new DateTimeZone($tz));
-            $dt->setTimestamp($timestamp);
-
-            $date = $dt->format("Y-m-d");
-            $hour = $dt->format("H");
-            if ((strtotime($getUnitElections['dateOfElection']) < strtotime($date)) || ($getUnitElections['dateOfElection'] == $date && $hour >= 21)) { ?>
-              <?php
-              $adultNominationQuery = $conn->prepare("SELECT * from adultNominations where unitId = ?");
-              $adultNominationQuery->bind_param("s", $getUnitElections['id']);
-              $adultNominationQuery->execute();
-              $adultNominationQ = $adultNominationQuery->get_result();
-              if ($adultNominationQ->num_rows > 0) {
-                //print election info
-              ?>
-                <!--<div class="collapse" id="online">-->
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h3 class="card-title">Adult Nominations</h3>
-                    <div class="row">
-                      <?php
-                      if ($adultNominationQ->num_rows < $numadults) { ?>
-                        <div class="col-auto">
-                          <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
-                        </div>
-                      <?php } else { ?>
-                        <div class="col-auto">
-                          <div class="alert alert-danger" role="alert">
-                            All out of nominations!
-                          </div>
-                        </div>
-                      <?php } ?>
-                    </div><br>
-                    <div class="alert alert-primary" role="alert">
-                      <b>Your unit is allowed <?php echo ($numadults) ?> adult nominations.</b><br>The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
-                    </div><br>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">BSA ID</th>
-                            <th scope="col">Position</th>
-                            <th scope="col">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
-                          ?><tr>
-                              <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
-                              <td><?php echo $getAdult['bsa_id']; ?></td>
-                              <td><?php echo $getAdult['position']; ?></td>
-                              <td>
-                                <?php
-                                if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
-                                  <span class="badge badge-warning">Not Approved by Selection Committee</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
-                                  <span class="badge badge-success">Approved by Selection Committee</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1' && $getAdult['chair_signature'] == '1')) { ?>
-                                  <span class="badge badge-danger">Waiting for Selection Committee</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
-                                  <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
-                                <?php } ?>
-                              </td>
-                            </tr>
-                          <?php } ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <!--</div>-->
-              <?php
-              } else {
-              ?>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h3 class="card-title">Adult Nominations</h3>
-                    <div class="row">
-                      <div class="col-auto">
-                        <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
-                      </div>
-                    </div><br>
-                    <div class="alert alert-danger" role="alert">
-                      <b>There are no adult nominations yet. Your unit is allowed <?php echo ($numadults) ?> adult nominations.</b><br>Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
-                    </div>
-                  </div>
-                </div>
-              <?php
-              }
-              ?>
-            <?php } else { ?>
+            $adultNominationQuery = $conn->prepare("SELECT * from adultNominations where unitId = ?");
+            $adultNominationQuery->bind_param("s", $getUnitElections['id']);
+            $adultNominationQuery->execute();
+            $adultNominationQ = $adultNominationQuery->get_result();
+            if ($adultNominationQ->num_rows > 0) {
+              //print election info
+            ?>
+              <!--<div class="collapse" id="online">-->
               <div class="card mb-3">
                 <div class="card-body">
                   <h3 class="card-title">Adult Nominations</h3>
-                  <div class="alert alert-danger" role="alert">
-                    Adult nominations are not available until 9:00 pm EST on the day of the election. Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months. To prepare your nominations in advance, please see this <a href='https://lodge104.net/download/5525/' target="_blank">PDF with the exact same questions</a>.
+                  <div class="row">
+                    <?php
+                    if ($adultNominationQ->num_rows < $numadults) { ?>
+                      <div class="col-auto">
+                        <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
+                      </div>
+                    <?php } else { ?>
+                      <div class="col-auto">
+                        <div class="alert alert-danger" role="alert">
+                          All out of nominations!
+                        </div>
+                      </div>
+                    <?php } ?>
+                  </div><br>
+                  <div class="alert alert-primary" role="alert">
+                    <b>Your unit is allowed <?php echo ($numadults) ?> adult nominations.</b><br>The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
+                  </div><br>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">BSA ID</th>
+                          <th scope="col">Position</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
+                        ?><tr>
+                            <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
+                            <td><?php echo $getAdult['bsa_id']; ?></td>
+                            <td><?php echo $getAdult['position']; ?></td>
+                            <td>
+                              <?php
+                              if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
+                                <span class="badge badge-warning">Not Approved by Selection Committee</span>
+                              <?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
+                                <span class="badge badge-success">Approved by Selection Committee</span>
+                              <?php } elseif (($getAdult['leader_signature'] == '1' && $getAdult['chair_signature'] == '1')) { ?>
+                                <span class="badge badge-danger">Waiting for Selection Committee</span>
+                              <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
+                                <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
+                              <?php } ?>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-            <?php } ?>
-
-
-          <?php
-          } else {
-          ?>
-            <div class="alert alert-danger" role="alert">
-              There are no elections in the database.
+              <!--</div>-->
+            <?php
+            } else {
+            ?>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h3 class="card-title">Adult Nominations</h3>
+                  <div class="row">
+                    <div class="col-auto">
+                      <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
+                    </div>
+                  </div><br>
+                  <div class="alert alert-danger" role="alert">
+                    <b>There are no adult nominations yet. Your unit is allowed <?php echo ($numadults) ?> adult nominations.</b><br>Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
+                  </div>
+                </div>
+              </div>
+            <?php
+            }
+            ?>
+          <?php } else { ?>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h3 class="card-title">Adult Nominations</h3>
+                <div class="alert alert-danger" role="alert">
+                  Adult nominations are not available until 9:00 pm EST on the day of the election. Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months. To prepare your nominations in advance, please see this <a href='https://lodge104.net/download/5525/' target="_blank">PDF with the exact same questions</a>.
+                </div>
+              </div>
             </div>
-          <?php
-          }
+          <?php } ?>
+
+
+        <?php
+        } else {
+        ?>
+          <div class="alert alert-danger" role="alert">
+            There are no elections in the database.
+          </div>
+        <?php
+        }
       } else {
         //no accessKey
         ?>
