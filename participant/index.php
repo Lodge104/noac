@@ -190,7 +190,7 @@ $session = \Stripe\Checkout\Session::create([
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <button type="deposit">Pay Deposit</button>
                 <script>
-                  var stripe = Stripe('<?php $stripe ?>');
+                  var stripe = Stripe('pk_live_FsBEU7l4mPPn8VbjTQodbC9h');
                   const btn = document.getElementById("deposit")
                   btn.addEventListener('click', function(e) {
                     e.preventDefault();
