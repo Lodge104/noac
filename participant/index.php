@@ -194,6 +194,7 @@ $transactions = $json['transactions'];
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               <?php
+              echo $transactions;
               if ($transactions['sku'] != 'WB20-EVENT') {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
