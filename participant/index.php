@@ -7,11 +7,6 @@ header("Pragma: no-cache");
 include '../unitelections-info.php';
 
 $host = $_SERVER['SERVER_NAME'];
-
-$intent = \Stripe\PaymentIntent::create([
-  'amount' => 1099,
-  'currency' => 'usd',
-]);
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +23,7 @@ $intent = \Stripe\PaymentIntent::create([
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
   <link rel="stylesheet" href="../style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
@@ -176,73 +172,9 @@ $intent = \Stripe\PaymentIntent::create([
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <script src="https://js.stripe.com/v3/"></script>
-                <div id="payment-request-button">
-                  <!-- A Stripe Element will be inserted here. -->
-                </div>
-                <script>
-                  var stripe = Stripe('<?php echo getenv('STRIPEPKEY') ?>', {
-                    apiVersion: "2020-08-27",
-                  });
-                  var paymentRequest = stripe.paymentRequest({
-                    country: 'US',
-                    currency: 'usd',
-                    total: {
-                      label: 'Demo total',
-                      amount: 1099,
-                    },
-                    requestPayerName: true,
-                    requestPayerEmail: true,
-                  });
-                  var elements = stripe.elements();
-                  var prButton = elements.create('paymentRequestButton', {
-                    paymentRequest: paymentRequest,
-                  });
-
-                  // Check the availability of the Payment Request API first.
-                  paymentRequest.canMakePayment().then(function(result) {
-                    if (result) {
-                      prButton.mount('#payment-request-button');
-                    } else {
-                      document.getElementById('payment-request-button').style.display = 'none';
-                    }
-                  });
-                  paymentRequest.on('paymentmethod', function(ev) {
-                    // Confirm the PaymentIntent without handling potential next actions (yet).
-                    stripe.confirmCardPayment(
-                      clientSecret, {
-                        payment_method: ev.paymentMethod.id
-                      }, {
-                        handleActions: false
-                      }
-                    ).then(function(confirmResult) {
-                      if (confirmResult.error) {
-                        // Report to the browser that the payment failed, prompting it to
-                        // re-show the payment interface, or show an error message and close
-                        // the payment interface.
-                        ev.complete('fail');
-                      } else {
-                        // Report to the browser that the confirmation was successful, prompting
-                        // it to close the browser payment method collection interface.
-                        ev.complete('success');
-                        // Check if the PaymentIntent requires any actions and if so let Stripe.js
-                        // handle the flow. If using an API version older than "2019-02-11"
-                        // instead check for: `paymentIntent.status === "requires_source_action"`.
-                        if (confirmResult.paymentIntent.status === "requires_action") {
-                          // Let Stripe.js handle the rest of the payment flow.
-                          stripe.confirmCardPayment(clientSecret).then(function(result) {
-                            if (result.error) {
-                              // The payment failed -- ask your customer for a new payment method.
-                            } else {
-                              // The payment has succeeded.
-                            }
-                          });
-                        } else {
-                          // The payment has succeeded.
-                        }
-                      }
-                    });
-                  });
-                </script>
+                <form action="/create-deposit-session.php" method="POST">
+        <button type="submit" id="checkout-button">Checkout</button>
+      </form>
               <?php } ?>
             </div>
           </div>

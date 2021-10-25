@@ -1,17 +1,24 @@
 <?php
 
 require 'vendor/autoload.php';
+\Stripe\Stripe::setApiKey(getenv('STRIPEPKEY'));
 
-$stripe = new \Stripe\StripeClient(getenv('STRIPEKEY'));
-$stripe->checkout->sessions->create([
-  'success_url' => 'https://example.com/success',
-  'cancel_url' => 'https://example.com/cancel',
-  'payment_method_types' => ['card'],
-  'line_items' => [
-    [
-      'price' => 'price_H5ggYwtDq4fbrJ',
-      'quantity' => 2,
-    ],
+header('Content-Type: application/json');
+
+$YOUR_DOMAIN = $_SERVER['SERVER_NAME'];
+
+$checkout_session = \Stripe\Checkout\Session::create([
+  'line_items' => [[
+    'price' => 'price_1JoYrbEEVK7xotm1yyl6JMVL',
+    'quantity' => 1,
+  ]],
+  'payment_method_types' => [
+    'card',
   ],
   'mode' => 'payment',
+  'success_url' => $YOUR_DOMAIN . '/participants/index.php?sucess=2',
+  'cancel_url' => $YOUR_DOMAIN . 'participants/index.php?sucess=3',
 ]);
+
+header("HTTP/1.1 303 See Other");
+header("Location: " . $checkout_session->url);
