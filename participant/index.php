@@ -6,8 +6,6 @@ header("Pragma: no-cache");
 
 include '../unitelections-info.php';
 
-$bsaID = $_POST['bsaID'] = $_GET['bsaID'];
-
 $host = $_SERVER['SERVER_NAME'];
 $session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
@@ -22,7 +20,7 @@ $session = \Stripe\Checkout\Session::create([
     'quantity' => 1,
   ]],
   'mode' => 'payment',
-  'success_url' => ($host . '/participant/create-deposit.php?bsaID=' . $bsaID . '&session_id={CHECKOUT_SESSION_ID}'),
+  'success_url' => ($host . '/participant/create-deposit.php?session_id={CHECKOUT_SESSION_ID}'),
   'cancel_url' => ($host . '/participant/index.php?status=3'),
 ]);
 ?>
