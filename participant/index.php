@@ -8,22 +8,9 @@ include '../unitelections-info.php';
 
 $host = $_SERVER['SERVER_NAME'];
 
-$success = $host . '/participant/index.php?status=3';
-$session = \Stripe\Checkout\Session::create([
-  'payment_method_types' => ['card'],
-  'line_items' => [[
-    'price_data' => [
-      'currency' => 'usd',
-      'product_data' => [
-        'name' => 'NOAC Deposit',
-      ],
-      'unit_amount' => 10000,
-    ],
-    'quantity' => 1,
-  ]],
-  'mode' => 'payment',
-  'success_url' => $success,
-  'cancel_url' => 'https://lodge104-noac-staging.herokuapp.com/participant/index.php?status=3',
+$intent = \Stripe\PaymentIntent::create([
+  'amount' => 1099,
+  'currency' => 'usd',
 ]);
 ?>
 
@@ -191,18 +178,68 @@ $session = \Stripe\Checkout\Session::create([
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <?php
                 ?>
-                <button id="deposit">Pay Deposit</button>
+                <div id="payment-request-button">
+                  <!-- A Stripe Element will be inserted here. -->
+                </div>
                 <script>
                   var stripe = Stripe('<?php echo getenv('STRIPEPKEY') ?>');
-                  const btn = document.getElementById("deposit")
-                  btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    stripe.redirectToCheckout({
-                      sessionId: "<?php echo $session->id; ?>"
-                    },{
-                      receipt_email: "<?php echo $getParticipants['email']; ?>"
-                    },{
-                      successUrl: "<?php echo $host . '/participants/create-deposit.php?bsaID=' . $getParticipants['bsa_id']?>"
+                  var paymentRequest = stripe.paymentRequest({
+                    country: 'US',
+                    currency: 'usd',
+                    total: {
+                      label: 'Demo total',
+                      amount: 1099,
+                    },
+                    requestPayerName: true,
+                    requestPayerEmail: true,
+                  });
+                  var elements = stripe.elements();
+                  var prButton = elements.create('paymentRequestButton', {
+                    paymentRequest: paymentRequest,
+                  });
+
+                  // Check the availability of the Payment Request API first.
+                  paymentRequest.canMakePayment().then(function(result) {
+                    if (result) {
+                      prButton.mount('#payment-request-button');
+                    } else {
+                      document.getElementById('payment-request-button').style.display = 'none';
+                    }
+                  });
+                  paymentRequest.on('paymentmethod', function(ev) {
+                    // Confirm the PaymentIntent without handling potential next actions (yet).
+                    stripe.confirmCardPayment(
+                      clientSecret, {
+                        payment_method: ev.paymentMethod.id
+                      }, {
+                        handleActions: false
+                      }
+                    ).then(function(confirmResult) {
+                      if (confirmResult.error) {
+                        // Report to the browser that the payment failed, prompting it to
+                        // re-show the payment interface, or show an error message and close
+                        // the payment interface.
+                        ev.complete('fail');
+                      } else {
+                        // Report to the browser that the confirmation was successful, prompting
+                        // it to close the browser payment method collection interface.
+                        ev.complete('success');
+                        // Check if the PaymentIntent requires any actions and if so let Stripe.js
+                        // handle the flow. If using an API version older than "2019-02-11"
+                        // instead check for: `paymentIntent.status === "requires_source_action"`.
+                        if (confirmResult.paymentIntent.status === "requires_action") {
+                          // Let Stripe.js handle the rest of the payment flow.
+                          stripe.confirmCardPayment(clientSecret).then(function(result) {
+                            if (result.error) {
+                              // The payment failed -- ask your customer for a new payment method.
+                            } else {
+                              // The payment has succeeded.
+                            }
+                          });
+                        } else {
+                          // The payment has succeeded.
+                        }
+                      }
                     });
                   });
                 </script>
