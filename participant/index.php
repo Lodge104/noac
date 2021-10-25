@@ -168,7 +168,7 @@ include '../unitelections-info.php';
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                <form action="/create-deposit-session" method="POST">
+                <form action="../create-deposit-session.php" method="POST">
                   <button type="submit">Pay Deposit</button>
                 </form>
               <?php } ?>
