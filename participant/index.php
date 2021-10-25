@@ -83,7 +83,7 @@ include '../unitelections-info.php';
         $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
         $getParticipantsQuery->bind_param("s", $bsaID);
         $getParticipantsQuery->execute();
-        $getParticipantssQ = $getParticipantsQuery->get_result();
+        $getParticipantsQ = $getParticipantsQuery->get_result();
         if ($getParticipantsQ->num_rows > 0) {
           //print election info
         $getParticipants = $getParticipantsQ->fetch_assoc();
@@ -308,10 +308,10 @@ include '../unitelections-info.php';
           <div class="card-body">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-              <h3 class="card-title">Access Key </h3>
+              <h3 class="card-title">BSA ID </h3>
               <form action='' method="get">
                 <div class="form-group">
-                  <label for="accessKey" class="required">Access Key</label>
+                  <label for="accessKey" class="required">BSA ID</label>
                   <input type="text" id="accessKey" name="accessKey" class="form-control" autocomplete="off" required>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Submit">
