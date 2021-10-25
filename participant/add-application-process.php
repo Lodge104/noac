@@ -6,6 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+date_default_timezone_set("America/New_York");
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -38,9 +40,11 @@ if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
 if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
 if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { $parent = ""; }
 
+$d = date("m-d-Y h:i:sa");
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, aia_check, aia, signature, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("ssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aia, $aiacheck, $signature, $parent);
+
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, aia_check, aia, signature, parent, created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("sssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent, $d);
 $createAdult->execute();
 $createAdult->close();
 
