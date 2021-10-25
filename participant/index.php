@@ -196,7 +196,7 @@ $session = \Stripe\Checkout\Session::create([
                   btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     stripe.redirectToCheckout({
-                      sessionId: "<?php echo $session->id; ?>",
+                      sessionId: "<?php echo $session->id; ?>";
                       customerEmail: "<?php echo $getParticipants['email']; ?>"
                     });
                   });
