@@ -140,7 +140,7 @@ $host = $_SERVER['SERVER_NAME'];
                     </a>
                   </li>
                 <?php }
-                if (!in_array("WB20-EVENT", $transactions['sku'])) { ?>
+                if (in_array("WB20-EVENT", $transactions['sku'])) { ?>
                   <li class="completed">
                     <a>
                       <span style="background-color: #4caf50 !important;" class="circle">2</span>
