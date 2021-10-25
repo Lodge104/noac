@@ -1,10 +1,14 @@
 <?php
-include '../unitelections-info.php';
+use Slim\Http\Request;
+use Slim\Http\Response;
+use Stripe\Stripe;
+
+require 'vendor/autoload.php';
 
 $app = new \Slim\App;
 
 $app->add(function ($request, $response, $next) {
-  \Stripe\Stripe::setApiKey($stripekey);
+  \Stripe\Stripe::setApiKey(getenv('STRIPEKEY'));
   return $next($request, $response);
 });
 
@@ -30,3 +34,4 @@ $app->post('/create-deposit-session', function (Request $request, Response $resp
 });
 
 $app->run();
+?>
