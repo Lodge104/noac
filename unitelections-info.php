@@ -19,6 +19,7 @@ $mfromname = getenv('SMTPFROMNAME');
 $comemail = getenv('NOTIFY');
 $sidp = getenv('TWILIOID');
 $tokenp = getenv('TWILIOTOKEN');
+$stripekey = getenv('STRIPEKEY');
 $auth0 = new Auth0([
     'domain' => getenv('AUTH0DOMAIN'),
     'client_id' => getenv('AUTH0CLIENTID'),

@@ -5,6 +5,12 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 include '../unitelections-info.php';
+
+use Slim\Http\Request;
+use Slim\Http\Response;
+use Stripe\Stripe;
+
+require 'vendor/autoload.php';
 ?>
 
 <!DOCTYPE html>
@@ -166,20 +172,47 @@ include '../unitelections-info.php';
               <?php
               if ($getParticipants['deposit'] == '0') {
               ?>
-                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.d </p>
-              <?php } ?>
-            </div>
-          </div>
-          <?php if ($getParticipants['deposit'] == '0') { ?>
-            <div class="card mb-3">
-              <div class="card-body">
-              <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
+                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
+                <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <form action="/create-deposit-session" method="POST">
                   <button type="submit">Pay Deposit</button>
                 </form>
-              </div>
+
+                <?php
+
+                $app = new \Slim\App;
+
+                $app->add(function ($request, $response, $next) {
+                  \Stripe\Stripe::setApiKey($stripekey);
+                  return $next($request, $response);
+                });
+
+                $app->post('/create-deposit-session', function (Request $request, Response $response) {
+                  $session = \Stripe\Checkout\Session::create([
+                    'payment_method_types' => ['card'],
+                    'line_items' => [[
+                      'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                          'name' => 'T-shirt',
+                        ],
+                        'unit_amount' => 2000,
+                      ],
+                      'quantity' => 1,
+                    ]],
+                    'mode' => 'payment',
+                    'success_url' => 'https://example.com/success',
+                    'cancel_url' => 'https://example.com/cancel',
+                  ]);
+
+                  return $response->withHeader('Location', $session->url)->withStatus(303);
+                });
+
+                $app->run();
+                ?>
+              <?php } ?>
             </div>
-          <?php } ?>
+          </div>
 
           <div class="card mb-3">
             <div class="card-body">
