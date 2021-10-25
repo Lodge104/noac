@@ -177,15 +177,15 @@ include '../unitelections-info.php';
                     'price_data' => [
                       'currency' => 'usd',
                       'product_data' => [
-                        'name' => 'T-shirt',
+                        'name' => 'NOAC Deposit',
                       ],
-                      'unit_amount' => 2000,
+                      'unit_amount' => 100,
                     ],
                     'quantity' => 1,
                   ]],
                   'mode' => 'payment',
-                  'success_url' => ($host . "/participant/create-deposit.php?bsaID=" . $bsaID . "&session_id={CHECKOUT_SESSION_ID}"),
-                  'cancel_url' => ($host . '/participant/index.php?status=3'),
+                  'success_url' => $host . "/participant/create-deposit.php?bsaID=" . $bsaID . "&session_id={CHECKOUT_SESSION_ID}",
+                  'cancel_url' => $host . "/participant/index.php?status=3",
                 ]);
                 ?>
                 <button id="deposit">Pay Deposit</button>
