@@ -4,6 +4,9 @@ require 'vendor/autoload.php';
 
 use Auth0\SDK\Auth0;
 use Twilio\Rest\Client;
+use Slim\Http\Request;
+use Slim\Http\Response;
+use Stripe\Stripe;
 
 $servername = getenv('SERVERNAME');
 $username = getenv('DBUSERNAME');
