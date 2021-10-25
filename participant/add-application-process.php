@@ -118,6 +118,6 @@ $mail = new PHPMailer(true);
   if($mail->Send())        //Send an Email. Return true on success or false on error
 
 */
-header("Location: index.php?accessKey=" . $accessKey . "&status=2");
+header("Location: index.php?bsaID=" . $bsa_id . "&status=2");
 
 ?>

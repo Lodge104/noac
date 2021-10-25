@@ -20,6 +20,8 @@ include '../unitelections-info.php';
   <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
   <link rel="stylesheet" href="../style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
 </head>
 
 <?php include "../header.php"; ?>
@@ -75,9 +77,8 @@ include '../unitelections-info.php';
         die("Connection failed: " . $conn->connect_error);
       }
 
-      if (isset($_GET['accessKey'])) {
-        if (preg_match("/^([a-z\d]){8}-([a-z\d]){4}-([a-z\d]){4}-([a-z\d]){4}-([a-z\d]){12}$/", $_GET['accessKey'])) {
-          $accessKey = $_POST['accessKey'] = $_GET['accessKey'];
+      if (isset($_GET['bsaID'])) {
+          $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
       ?>
           <section class="row">
             <div class="col-12">
@@ -91,11 +92,11 @@ include '../unitelections-info.php';
             </div>
           </div>
           <?php
-          $getUnitElectionsQuery = $conn->prepare("SELECT * from unitElections where accessKey = ?");
-          $getUnitElectionsQuery->bind_param("s", $accessKey);
-          $getUnitElectionsQuery->execute();
-          $getUnitElectionsQ = $getUnitElectionsQuery->get_result();
-          if ($getUnitElectionsQ->num_rows > 0) {
+          $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
+          $getParticipantsQuery->bind_param("s", $bsaID);
+          $getParticipantsQuery->execute();
+          $getParticipantssQ = $getParticipantsQuery->get_result();
+          if ($getParticipantsQ->num_rows > 0) {
             //print election info
           ?>
             <div class="card mb-3">
@@ -260,27 +261,6 @@ include '../unitelections-info.php';
             </div>
           <?php
           }
-        } else {
-          //accesskey bad
-          ?>
-          <div class="alert alert-danger" role="alert">
-            <h5 class="alert-heading">Invalid Access Key</h5>
-            You have an invalid access key. Please use the personalized link provided in your email, or enter your access key below.
-          </div>
-          <div class="card col-md-6 mx-lg-5">
-            <div class="card-body">
-              <h3 class="card-title">Access Key </h3>
-              <form action='' method="get">
-                <div class="form-group">
-                  <label for="accessKey" class="required">Access Key</label>
-                  <input type="text" id="accessKey" name="accessKey" class="form-control" autocomplete="off" required>
-                </div>
-                <input type="submit" class="btn btn-primary" value="Submit">
-              </form>
-            </div>
-          </div>
-        <?php
-        }
       } else {
         //no accessKey
         ?>
@@ -312,6 +292,8 @@ include '../unitelections-info.php';
   <script src="../libraries/popper-1.16.0.min.js"></script>
   <script src="../libraries/bootstrap-4.4.1/js/bootstrap.min.js"></script>
   <script src="../dist/clipboard.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
 
   <script>
     var clipboard = new ClipboardJS('.btn');
