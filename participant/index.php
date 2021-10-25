@@ -95,14 +95,17 @@ include '../unitelections-info.php';
             <ul class="stepper stepper-horizontal">
               <!-- First Step -->
               <li class="completed">
+              <a href="#!">
                   <span class="circle">1</span>
                   <span class="label">Application Submitted</span>
+              </a>
               </li>
               <!-- Second Step -->
               <?php 
               if ($getParticipants['status'] == '0') {
               ?>
               <li class="active">
+
                   <span class="circle">2</span>
                   <span class="label">Application Approval</span>
               </li>
