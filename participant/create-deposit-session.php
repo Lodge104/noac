@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-\Stripe\Stripe::setApiKey(getenv('STRIPEPKEY'));
+\Stripe\Stripe::setApiKey('pk_test_4a2mJNxlDhoAzjPi9gcZZ8T1');
 
 header('Content-Type: application/json');
 
