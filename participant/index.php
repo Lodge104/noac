@@ -191,12 +191,13 @@ $session = \Stripe\Checkout\Session::create([
                 ?>
                 <button id="deposit">Pay Deposit</button>
                 <script>
-                  var stripe = Stripe('pk_live_FsBEU7l4mPPn8VbjTQodbC9h');
+                  var stripe = Stripe('<?php echo getenv('STRIPEPKEY') ?>');
                   const btn = document.getElementById("deposit")
                   btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     stripe.redirectToCheckout({
-                      sessionId: "<?php echo $session->id; ?>"
+                      sessionId: "<?php echo $session->id; ?>",
+                      customerEmail: "<?php echo $getParticipants['email']; ?>"
                     });
                   });
                 </script>
