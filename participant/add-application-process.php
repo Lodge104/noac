@@ -39,7 +39,7 @@ if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { di
 if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { die("No parent"); }
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, st, zip, email, hphone, cphone, tshirt, gender, chapter, dob, aia, sr, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, st, zip, email, hphone, cphone, tshirt, gender, chapter, dob, aia, sr, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 $createAdult->bind_param("ssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $gender, $chapter, $dob, $level, $aia, $signature, $parent);
 $createAdult->execute();
 $createAdult->close();
