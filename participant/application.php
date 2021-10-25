@@ -127,6 +127,7 @@ $json = $_SESSION['jsonData'];
                       <option value="0">No</option>
                     </select>
                 </div>
+              </div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <input id="email" name="email" type="email" class="form-control" placeholder="Email" required>
