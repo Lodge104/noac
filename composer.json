@@ -24,8 +24,8 @@
         "fengyuanchen/cropper": "dev-master",
         "auth0/auth0-php": "~7.0",
         "twilio/sdk": "^6.18",
-        "stripe/stripe-php": "^7.100.0",
-        "slim/slim": "^4.9.0"
+        "stripe/stripe-php": "^7.100",
+        "slim/slim": "^4.9"
     },
     "config": {
         "vendor-dir": "vendor",
