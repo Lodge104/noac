@@ -86,63 +86,72 @@ include '../unitelections-info.php';
         $getParticipantsQ = $getParticipantsQuery->get_result();
         if ($getParticipantsQ->num_rows > 0) {
           //print election info
-        $getParticipants = $getParticipantsQ->fetch_assoc();
+          $getParticipants = $getParticipantsQ->fetch_assoc();
       ?>
-        <!-- Horizontal Steppers -->
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Stepers Wrapper -->
-            <ul class="stepper stepper-horizontal">
-              <!-- First Step -->
-              <li class="completed">
-              <a href="#!">
-                  <span class="circle">1</span>
-                  <span class="label">Application Submitted</span>
-              </a>
-              </li>
-              <!-- Second Step -->
-              <?php 
-              if ($getParticipants['status'] == '0') {
-              ?>
-              <li class="active">
-
-                  <span class="circle">2</span>
-                  <span class="label">Application Approval</span>
-              </li>
-              <?php } if ($getParticipants['status'] == '1') { ?>
+          <!-- Horizontal Steppers -->
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Stepers Wrapper -->
+              <ul class="stepper stepper-horizontal">
+                <!-- First Step -->
                 <li class="completed">
-                  <span class="circle">2</span>
-                  <span class="label">Application Approved</span>
-              </li>
-              <?php } if ($getParticipants['status'] == '2') { ?>
-                <li class="warning">
-                  <span class="circle">2</span>
-                  <span class="label">Waitlisted</span>
-              </li>
-              <li class="step">
-                  <span class="circle">3</span>
-                  <span class="label">Application Approved</span>
-              </li>
-              <?php } ?>
-            </ul>
-            <!-- /.Stepers Wrapper -->
+                  <a>
+                    <span style="background-color: #4caf50 !important;" class="circle">1</span>
+                    <span class="label">Application Submitted</span>
+                  </a>
+                </li>
+                <!-- Second Step -->
+                <?php
+                if ($getParticipants['status'] == '0') {
+                ?>
+                  <li class="active">
+                    <a>
+                      <span class="circle">2</span>
+                      <span class="label">Application Approval</span>
+                    </a>
+                  </li>
+                <?php }
+                if ($getParticipants['status'] == '1') { ?>
+                  <li class="completed">
+                    <a>
+                      <span class="circle">2</span>
+                      <span class="label">Application Approved</span>
+                    </a>
+                  </li>
+                <?php }
+                if ($getParticipants['status'] == '2') { ?>
+                  <li class="warning">
+                    <a>
+                      <span class="circle">2</span>
+                      <span class="label">Waitlisted</span>
+                    </a>
+                  </li>
+                  <li class="step">
+                    <a>
+                      <span class="circle">3</span>
+                      <span class="label">Application Approved</span>
+                    </a>
+                  </li>
+                <?php } ?>
+              </ul>
+              <!-- /.Stepers Wrapper -->
+            </div>
           </div>
-        </div>
-        <!-- /.Horizontal Steppers -->
-        <section class="row">
-          <div class="col-12">
-            <h2>NOAC Participant Dashboard</h2>
+          <!-- /.Horizontal Steppers -->
+          <section class="row">
+            <div class="col-12">
+              <h2>NOAC Participant Dashboard</h2>
+            </div>
+          </section>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h3 class="card-title d-inline-flex">Instructions</h3>
+              <p>This is the unit leader's dashboard for adult nominations to the Order of the Arrow. <b>If you are not the unit leader, please forward the original email to the correct person.</b></p>
+              <p><span class="badge badge-danger">Important:</span> Please start by updating your information, as the unit leader, using the edit button.</p>
+              <p>When you submit a new adult nomination, your unit's chair will be notified. They will review the submission on their own dashboard and approve it. Once approved, the nomination will go to the selection committee of the lodge. The status will be updated on this dashboard; use the link from the email you received to check back routinely.</p>
+            </div>
           </div>
-        </section>
-        <div class="card mb-3">
-          <div class="card-body">
-            <h3 class="card-title d-inline-flex">Instructions</h3>
-            <p>This is the unit leader's dashboard for adult nominations to the Order of the Arrow. <b>If you are not the unit leader, please forward the original email to the correct person.</b></p>
-            <p><span class="badge badge-danger">Important:</span> Please start by updating your information, as the unit leader, using the edit button.</p>
-            <p>When you submit a new adult nomination, your unit's chair will be notified. They will review the submission on their own dashboard and approve it. Once approved, the nomination will go to the selection committee of the lodge. The status will be updated on this dashboard; use the link from the email you received to check back routinely.</p>
-          </div>
-        </div>
-      
+
           <div class="card mb-3">
             <div class="card-body">
               <a href="edit-unit-election.php?accessKey=<?php echo $accessKey; ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">edit</a>
