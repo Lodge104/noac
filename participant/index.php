@@ -188,7 +188,7 @@ $session = \Stripe\Checkout\Session::create([
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                <button type="deposit">Pay Deposit</button>
+                <button id="deposit">Pay Deposit</button>
                 <script>
                   var stripe = Stripe('pk_live_FsBEU7l4mPPn8VbjTQodbC9h');
                   const btn = document.getElementById("deposit")
