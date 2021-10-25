@@ -7,6 +7,34 @@ header("Pragma: no-cache");
 include '../unitelections-info.php';
 
 $host = $_SERVER['SERVER_NAME'];
+
+$url = ("https://registration-test.lodge104.net/api/transactions/" . $bsaID);
+
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+$headers = array(
+   "Accept: application/json",
+   ("Authorization: Bearer ". $bearer),
+);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+//for debug only!
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+$resp = curl_exec($curl);
+if (!curl_errno($curl)) {
+    switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+      case 200:  # OK
+        break;
+      default:
+      header("Location: index.php?status=3");
+    }
+  }
+curl_close($curl);
+$json = json_decode($resp, true);
+$transaction = $json['transaction'];
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +132,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </a>
                 </li>
                 <?php
-                if ($getParticipants['deposit'] == '0') {
+                if ($transaction['sku'] != 'WB20-EVENT') {
                 ?>
                   <li class="warning active">
                     <a>
@@ -113,7 +141,7 @@ $host = $_SERVER['SERVER_NAME'];
                     </a>
                   </li>
                 <?php }
-                if ($getParticipants['deposit'] == '1') { ?>
+                if ($transaction['sku'] == 'WB20-EVENT') { ?>
                   <li class="completed">
                     <a>
                       <span style="background-color: #4caf50 !important;" class="circle">2</span>
@@ -167,7 +195,7 @@ $host = $_SERVER['SERVER_NAME'];
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               <?php
-              if ($getParticipants['deposit'] == '0') {
+              if ($transaction['sku'] != 'WB20-EVENT') {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>

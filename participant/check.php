@@ -57,4 +57,3 @@ $json = json_decode($resp, true);
 
 $_SESSION['jsonData'] = $json;
     }}
-?>
