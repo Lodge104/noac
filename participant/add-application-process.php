@@ -28,19 +28,19 @@ if (isset($_POST['email'])) {  $email = $_POST['email']; } else { die("No Email"
 if (isset($_POST['hphone'])) {  $hphone = $_POST['hphone']; } else { die("No hp"); }
 if (isset($_POST['cphone'])) {  $cphone = $_POST['cphone']; } else { die("No cp"); }
 if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { die("No ts"); }
-if (isset($_POST['text_agreement'])) {  $text = "1"; } else { $text = "0"; }
+//if (isset($_POST['text_agreement'])) {  $text = "1"; } else { $text = "0"; }
 if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { die("No Gender"); }
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { die("No Chapter"); }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { die("No dob"); }
 if (isset($_POST['level'])) {  $level = $_POST['level']; } else { die("No level"); }
-if (isset($_POST['aia_check'])) {  $aiacheck = "1"; } else { $aiacheck = "0"; }
+//if (isset($_POST['aia_check'])) {  $aiacheck = "1"; } else { $aiacheck = "0"; }
 if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { die("No aia"); }
 if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { die("No sig"); }
 if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { die("No parent"); }
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, st, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, aia_check, aia, sr, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("ssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent);
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id firstName, lastName, address_line1, address_line2, city, st, zip, email, hphone, cphone, tshirt, gender, chapter, dob, aia, sr, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("ssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $gender, $chapter, $dob, $level, $aia, $signature, $parent);
 $createAdult->execute();
 $createAdult->close();
 
