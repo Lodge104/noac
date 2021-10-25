@@ -194,6 +194,9 @@ $host = $_SERVER['SERVER_NAME'];
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               <?php
+              foreach ($transactions as $transactions) {
+                echo $transactions;
+              }
               echo $json;
               foreach ($transactions as $transactions) { if ($transactions['sku'] != 'WB20-EVENT') {
               ?>
