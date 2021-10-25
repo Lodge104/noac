@@ -184,8 +184,8 @@ include '../unitelections-info.php';
                     'quantity' => 1,
                   ]],
                   'mode' => 'payment',
-                  'success_url' => $host . '/participant/create-deposit.php?bsaID=' . $bsaID . '&session_id={CHECKOUT_SESSION_ID}',
-                  'cancel_url' => $host . '/participant/index.php?status=3',
+                  'success_url' => ($host . "/participant/create-deposit.php?bsaID=" . $bsaID . "&session_id={CHECKOUT_SESSION_ID}"),
+                  'cancel_url' => ($host . '/participant/index.php?status=3'),
                 ]);
                 ?>
                 <button id="deposit">Pay Deposit</button>
