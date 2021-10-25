@@ -197,7 +197,7 @@ $host = $_SERVER['SERVER_NAME'];
               foreach ($transactions as $transactions) {
                 print_r($transactions);
               }
-              print_r($json);
+              // print_r($json);
               foreach ($transactions as $transactions) { if ($transactions['sku'] != 'WB20-EVENT') {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
