@@ -4,9 +4,8 @@ require 'vendor/autoload.php';
 
 use Auth0\SDK\Auth0;
 use Twilio\Rest\Client;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Stripe\Stripe;
+
+\Stripe\Stripe::setApiKey(getenv('STRIPEKEY'));
 
 $servername = getenv('SERVERNAME');
 $username = getenv('DBUSERNAME');
@@ -22,7 +21,6 @@ $mfromname = getenv('SMTPFROMNAME');
 $comemail = getenv('NOTIFY');
 $sidp = getenv('TWILIOID');
 $tokenp = getenv('TWILIOTOKEN');
-$stripekey = getenv('STRIPEKEY');
 $auth0 = new Auth0([
     'domain' => getenv('AUTH0DOMAIN'),
     'client_id' => getenv('AUTH0CLIENTID'),
