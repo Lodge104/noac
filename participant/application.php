@@ -121,11 +121,11 @@ $json = $_SESSION['jsonData'];
                     </div>
                   </div>
                   <div class="form-group">
-                    <input class="form-check-input" type="checkbox" id="text_agreement" value="1" checked>
-                    <label class="text_agreement" for="text_agreement">
-                      By checking here, I agree to receive text messages to my cell phone number.
-                    </label>
-                  </div>
+                    <select id="text_agreement" name="text_agreement" type="custom-select" class="form-control" required>
+                      <option value="" disabled selected>Receive Text Messages?</option>
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
+                    </select>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
@@ -173,11 +173,12 @@ $json = $_SESSION['jsonData'];
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>American Indian Affairs</h3>
+                  <p>I plan on participating in AIA competitions at NOAC 2022.</p>
                   <div class="form-group">
-                    <input class="form-check-input" type="checkbox" value="1" id="aia_check">
-                    <label class="text-agreement" for="aia_check">
-                      By checking here, I plan on participating in AIA competitions at NOAC 2022.
-                    </label>
+                    <select id="aia_check" name="aia_check" type="custom-select" class="form-control" required>
+                      <option value="0" selected>No</option>
+                      <option value="1">Yes</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="aia">Please describe which AIA competitions you plan on participating in: (only answer if you checked the box above)</label>

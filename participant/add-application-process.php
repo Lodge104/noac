@@ -17,26 +17,26 @@ if ($conn->connect_error) {
 
 if (isset($_POST['bsa_id'])) {  $bsa_id = $_POST['bsa_id']; } else { die("No BSA id."); }
 if (isset($_POST['oalm_id'])) { $oalmID = $_POST['oalm_id']; } else { die("No OALM id."); }
-if (isset($_POST['firstName'])) {  $firstName = $_POST['firstName']; } else { die("No FN"); }
-if (isset($_POST['lastName'])) {  $lastName = $_POST['lastName']; } else { die("No LN"); }
-if (isset($_POST['address_line1'])) {  $address_line1 = $_POST['address_line1']; } else { die("No A1"); }
-if (isset($_POST['address_line2'])) {  $address_line2 = $_POST['address_line2']; } else { die("No A2"); }
-if (isset($_POST['city'])) {  $city = $_POST['city']; } else { die("No City"); }
-if (isset($_POST['state'])) {  $state = $_POST['state']; } else { die("No State"); }
-if (isset($_POST['zip'])) {  $zip = $_POST['zip']; } else { die("No Zip"); }
-if (isset($_POST['email'])) {  $email = $_POST['email']; } else { die("No Email"); }
-if (isset($_POST['hphone'])) {  $hphone = $_POST['hphone']; } else { die("No hp"); }
-if (isset($_POST['cphone'])) {  $cphone = $_POST['cphone']; } else { die("No cp"); }
-if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { die("No ts"); }
-if (isset($_POST['text_agreement'])) {  $text = "1"; } else { $text = "0"; }
-if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { die("No Gender"); }
-if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { die("No Chapter"); }
-if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { die("No dob"); }
-if (isset($_POST['level'])) {  $level = $_POST['level']; } else { die("No level"); }
-if (isset($_POST['aia_check'])) {  $aiacheck = "1"; } else { $aiacheck = "0"; }
-if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { die("No aia"); }
-if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { die("No sig"); }
-if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { die("No parent"); }
+if (isset($_POST['firstName'])) {  $firstName = $_POST['firstName']; } else { $firstName = ""; }
+if (isset($_POST['lastName'])) {  $lastName = $_POST['lastName']; } else { $lastName = ""; }
+if (isset($_POST['address_line1'])) {  $address_line1 = $_POST['address_line1']; } else { $address_line1 = ""; }
+if (isset($_POST['address_line2'])) {  $address_line2 = $_POST['address_line2']; } else { $address_line2 = ""; }
+if (isset($_POST['city'])) {  $city = $_POST['city']; } else { $city = ""; }
+if (isset($_POST['state'])) {  $state = $_POST['state']; } else { $state = ""; }
+if (isset($_POST['zip'])) {  $zip = $_POST['zip']; } else { $zip = ""; }
+if (isset($_POST['email'])) {  $email = $_POST['email']; } else { $email = ""; }
+if (isset($_POST['hphone'])) {  $hphone = $_POST['hphone']; } else { $hphone = ""; }
+if (isset($_POST['cphone'])) {  $cphone = $_POST['cphone']; } else { $cphone = ""; }
+if (isset($_POST['tshirt'])) {  $tshirt = $_POST['tshirt']; } else { $tshirt = ""; }
+if (isset($_POST['text_agreement'])) {  $text = $_POST['text_agreement']; } else { $text = ""; }
+if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { $gender = ""; }
+if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
+if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { $dob = ""; }
+if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
+if (isset($_POST['aia_check'])) {  $aiacheck = $_POST['aia_check']; } else { $aiacheck = ""; }
+if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
+if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
+if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { $parent = ""; }
 
 
 $createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, aia_check, aia, signature, parent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
