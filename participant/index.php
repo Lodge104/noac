@@ -7,6 +7,8 @@ header("Pragma: no-cache");
 include '../unitelections-info.php';
 
 $host = $_SERVER['SERVER_NAME'];
+
+$success = $host . '/participant/index.php?status=3';
 $session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
   'line_items' => [[
@@ -20,6 +22,7 @@ $session = \Stripe\Checkout\Session::create([
     'quantity' => 1,
   ]],
   'mode' => 'payment',
+  'success_url' => $success,
   'cancel_url' => 'https://lodge104-noac-staging.herokuapp.com/participant/index.php?status=3',
 ]);
 ?>
