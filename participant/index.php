@@ -131,7 +131,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </a>
                 </li>
                 <?php
-                if ($s['sku'] != 'WB20-EVENT') {
+                if (!in_array("WB20-EVENT", $transactions['sku'])) {
                 ?>
                   <li class="warning active">
                     <a>
@@ -140,7 +140,7 @@ $host = $_SERVER['SERVER_NAME'];
                     </a>
                   </li>
                 <?php }
-                if ($transactions['sku'] == 'WB20-EVENT') { ?>
+                if (!in_array("WB20-EVENT", $transactions['sku'])) { ?>
                   <li class="completed">
                     <a>
                       <span style="background-color: #4caf50 !important;" class="circle">2</span>
@@ -194,9 +194,6 @@ $host = $_SERVER['SERVER_NAME'];
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               <?php
-              foreach ($transactions as $transactions) {
-                print_r($transactions);
-              }
                if (!in_array("WB20-EVENT", $transactions['sku'])) {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
