@@ -194,9 +194,8 @@ $host = $_SERVER['SERVER_NAME'];
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               <?php
-              echo $transactions;
               echo $json;
-              if ($transactions['sku'] != 'WB20-EVENT') {
+              foreach ($transactions as $transactions) { if ($transactions['sku'] != 'WB20-EVENT') {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
@@ -204,7 +203,7 @@ $host = $_SERVER['SERVER_NAME'];
                 <form action="/participant/create-deposit-session.php" method="POST">
                   <button type="submit" id="checkout-button">Checkout</button>
                 </form>
-              <?php } ?>
+              <?php }} ?>
             </div>
           </div>
 
