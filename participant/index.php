@@ -79,41 +79,58 @@ include '../unitelections-info.php';
 
       if (isset($_GET['bsaID'])) {
         $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
+
+        $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
+        $getParticipantsQuery->bind_param("s", $bsaID);
+        $getParticipantsQuery->execute();
+        $getParticipantssQ = $getParticipantsQuery->get_result();
+        if ($getParticipantsQ->num_rows > 0) {
+          //print election info
+        $getParticipants = $getParticipantsQ->fetch_assoc();
       ?>
+        <!-- Horizontal Steppers -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Stepers Wrapper -->
+            <ul class="stepper stepper-horizontal">
+              <!-- First Step -->
+              <li class="completed">
+                  <span class="circle">1</span>
+                  <span class="label">Application Submitted</span>
+              </li>
+              <!-- Second Step -->
+              <?php 
+              if ($getParticipants['status'] == '0') {
+              ?>
+              <li class="active">
+                  <span class="circle">2</span>
+                  <span class="label">Application Approval</span>
+              </li>
+              <?php } if ($getParticipants['status'] == '1') { ?>
+                <li class="completed">
+                  <span class="circle">2</span>
+                  <span class="label">Application Approved</span>
+              </li>
+              <?php } if ($getParticipants['status'] == '2') { ?>
+                <li class="warning">
+                  <span class="circle">2</span>
+                  <span class="label">Waitlisted</span>
+              </li>
+              <li class="step">
+                  <span class="circle">3</span>
+                  <span class="label">Application Approved</span>
+              </li>
+              <?php } ?>
+            </ul>
+            <!-- /.Stepers Wrapper -->
+          </div>
+        </div>
+        <!-- /.Horizontal Steppers -->
         <section class="row">
           <div class="col-12">
             <h2>NOAC Participant Dashboard</h2>
           </div>
         </section>
-        <!-- Horizontal Steppers -->
-        <div class="row">
-          <div class="col-md-12">
-
-            <!-- Stepers Wrapper -->
-            <ul class="stepper stepper-horizontal">
-
-              <!-- First Step -->
-              <li class="completed">
-                <a href="#!">
-                  <span class="circle">1</span>
-                  <span class="label">Application Submitted</span>
-                </a>
-              </li>
-
-              <!-- Second Step -->
-              <li class="active">
-                <a href="#!">
-                  <span class="circle">2</span>
-                  <span class="label">Application Approval</span>
-                </a>
-              </li>
-
-            </ul>
-            <!-- /.Stepers Wrapper -->
-
-          </div>
-        </div>
-        <!-- /.Horizontal Steppers -->
         <div class="card mb-3">
           <div class="card-body">
             <h3 class="card-title d-inline-flex">Instructions</h3>
@@ -122,14 +139,7 @@ include '../unitelections-info.php';
             <p>When you submit a new adult nomination, your unit's chair will be notified. They will review the submission on their own dashboard and approve it. Once approved, the nomination will go to the selection committee of the lodge. The status will be updated on this dashboard; use the link from the email you received to check back routinely.</p>
           </div>
         </div>
-        <?php
-        $getParticipantsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
-        $getParticipantsQuery->bind_param("s", $bsaID);
-        $getParticipantsQuery->execute();
-        $getParticipantssQ = $getParticipantsQuery->get_result();
-        if ($getParticipantsQ->num_rows > 0) {
-          //print election info
-        ?>
+      
           <div class="card mb-3">
             <div class="card-body">
               <a href="edit-unit-election.php?accessKey=<?php echo $accessKey; ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">edit</a>
@@ -146,7 +156,6 @@ include '../unitelections-info.php';
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $getUnitElections = $getUnitElectionsQ->fetch_assoc(); ?>
                     <tr>
                       <td><?php echo $getUnitElections['unitCommunity']; ?></td>
                       <td><?php echo $getUnitElections['unitNumber']; ?></td>

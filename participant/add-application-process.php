@@ -41,10 +41,11 @@ if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $s
 if (isset($_POST['parent'])) {  $parent = $_POST['parent']; } else { $parent = ""; }
 
 $d = date("m-d-Y h:i:sa");
+$s = "0";
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, aia_check, aia, signature, parent, created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("sssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent, $d);
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("ssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent, $d, $s);
 $createAdult->execute();
 $createAdult->close();
 
