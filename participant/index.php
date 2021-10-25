@@ -33,7 +33,7 @@ if (!curl_errno($curl)) {
   }
 curl_close($curl);
 $json = json_decode($resp, true);
-$transaction = $json['transaction'];
+$transactions = $json['transactions'];
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +131,7 @@ $transaction = $json['transaction'];
                   </a>
                 </li>
                 <?php
-                if ($transaction['sku'] != 'WB20-EVENT') {
+                if ($s['sku'] != 'WB20-EVENT') {
                 ?>
                   <li class="warning active">
                     <a>
@@ -140,7 +140,7 @@ $transaction = $json['transaction'];
                     </a>
                   </li>
                 <?php }
-                if ($transaction['sku'] == 'WB20-EVENT') { ?>
+                if ($transactions['sku'] == 'WB20-EVENT') { ?>
                   <li class="completed">
                     <a>
                       <span style="background-color: #4caf50 !important;" class="circle">2</span>
@@ -194,7 +194,7 @@ $transaction = $json['transaction'];
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               <?php
-              if ($transaction['sku'] != 'WB20-EVENT') {
+              if ($transactions['sku'] != 'WB20-EVENT') {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
