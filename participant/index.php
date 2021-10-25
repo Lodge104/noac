@@ -28,7 +28,6 @@ $intent = \Stripe\PaymentIntent::create([
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
   <link rel="stylesheet" href="../style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-  <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
@@ -176,13 +175,14 @@ $intent = \Stripe\PaymentIntent::create([
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                <?php
-                ?>
+                <script src="https://js.stripe.com/v3/"></script>
                 <div id="payment-request-button">
                   <!-- A Stripe Element will be inserted here. -->
                 </div>
                 <script>
-                  var stripe = Stripe('<?php echo getenv('STRIPEPKEY') ?>');
+                  var stripe = Stripe('<?php echo getenv('STRIPEPKEY') ?>', {
+                    apiVersion: "2020-08-27",
+                  });
                   var paymentRequest = stripe.paymentRequest({
                     country: 'US',
                     currency: 'usd',
