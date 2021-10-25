@@ -100,13 +100,30 @@ include '../unitelections-info.php';
                     <span class="label">Application Submitted</span>
                   </a>
                 </li>
-                <!-- Second Step -->
+                <?php
+                if ($getParticipants['deposit'] == '0') {
+                ?>
+                  <li class="warning active">
+                    <a>
+                      <span class="circle">2</span>
+                      <span class="label">Deposit Needed</span>
+                    </a>
+                  </li>
+                <?php }
+                if ($getParticipants['deposit'] == '1') { ?>
+                  <li class="completed">
+                    <a>
+                      <span style="background-color: #4caf50 !important;" class="circle">2</span>
+                      <span class="label">Deposit Completed</span>
+                    </a>
+                  </li>
+                <?php } ?>
                 <?php
                 if ($getParticipants['status'] == '0') {
                 ?>
-                  <li class="active">
+                  <li class="">
                     <a>
-                      <span class="circle">2</span>
+                      <span class="circle">3</span>
                       <span class="label">Application Approval</span>
                     </a>
                   </li>
@@ -114,21 +131,21 @@ include '../unitelections-info.php';
                 if ($getParticipants['status'] == '1') { ?>
                   <li class="completed">
                     <a>
-                      <span class="circle">2</span>
+                      <span class="circle">3</span>
                       <span class="label">Application Approved</span>
                     </a>
                   </li>
                 <?php }
                 if ($getParticipants['status'] == '2') { ?>
-                  <li class="warning">
+                  <li class="warning active">
                     <a>
-                      <span class="circle">2</span>
+                      <span class="circle">3</span>
                       <span class="label">Waitlisted</span>
                     </a>
                   </li>
                   <li class="step">
                     <a>
-                      <span class="circle">3</span>
+                      <span class="circle">4</span>
                       <span class="label">Application Approved</span>
                     </a>
                   </li>
@@ -145,12 +162,24 @@ include '../unitelections-info.php';
           </section>
           <div class="card mb-3">
             <div class="card-body">
-              <h3 class="card-title d-inline-flex">Instructions</h3>
-              <p>This is the unit leader's dashboard for adult nominations to the Order of the Arrow. <b>If you are not the unit leader, please forward the original email to the correct person.</b></p>
-              <p><span class="badge badge-danger">Important:</span> Please start by updating your information, as the unit leader, using the edit button.</p>
-              <p>When you submit a new adult nomination, your unit's chair will be notified. They will review the submission on their own dashboard and approve it. Once approved, the nomination will go to the selection committee of the lodge. The status will be updated on this dashboard; use the link from the email you received to check back routinely.</p>
+              <h3 class="card-title d-inline-flex">What comes next?</h3>
+              <?php
+              if ($getParticipants['deposit'] == '0') {
+              ?>
+                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.d </p>
+              <?php } ?>
             </div>
           </div>
+          <?php if ($getParticipants['deposit'] == '0') { ?>
+            <div class="card mb-3">
+              <div class="card-body">
+              <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
+                <form action="/create-deposit-session" method="POST">
+                  <button type="submit">Pay Deposit</button>
+                </form>
+              </div>
+            </div>
+          <?php } ?>
 
           <div class="card mb-3">
             <div class="card-body">
