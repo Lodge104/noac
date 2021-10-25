@@ -5,25 +5,6 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 include '../unitelections-info.php';
-
-$stripe = getenv('STRIPEKEY');
-
-$session = \Stripe\Checkout\Session::create([
-  'payment_method_types' => ['card'],
-  'line_items' => [[
-    'price_data' => [
-      'currency' => 'usd',
-      'product_data' => [
-        'name' => 'T-shirt',
-      ],
-      'unit_amount' => 2000,
-    ],
-    'quantity' => 1,
-  ]],
-  'mode' => 'payment',
-  'success_url' => 'http://localhost:4242/success',
-  'cancel_url' => 'http://example.com/cancel',
-]);
 ?>
 
 <!DOCTYPE html>
@@ -188,6 +169,25 @@ $session = \Stripe\Checkout\Session::create([
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
+                <?php
+                $host = $_SERVER['SERVER_NAME'];
+                $session = \Stripe\Checkout\Session::create([
+                  'payment_method_types' => ['card'],
+                  'line_items' => [[
+                    'price_data' => [
+                      'currency' => 'usd',
+                      'product_data' => [
+                        'name' => 'T-shirt',
+                      ],
+                      'unit_amount' => 2000,
+                    ],
+                    'quantity' => 1,
+                  ]],
+                  'mode' => 'payment',
+                  'success_url' => $host . '/participant/create-deposit.php?bsaID=' . $bsaID . '&session_id={CHECKOUT_SESSION_ID}',
+                  'cancel_url' => $host . '/participant/index.php?status=3',
+                ]);
+                ?>
                 <button id="deposit">Pay Deposit</button>
                 <script>
                   var stripe = Stripe('pk_live_FsBEU7l4mPPn8VbjTQodbC9h');
