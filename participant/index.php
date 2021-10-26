@@ -185,6 +185,20 @@ $host = $_SERVER['SERVER_NAME'];
           <div class="card mb-3">
             <div class="card-body">
               <h3 class="card-title d-inline-flex">Your Information</h3>
+              <div class="row">
+                <div class="col-md-3">
+                <?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName']?><br>
+                </div>
+                <div class="col-md-3">
+                  <?php echo $getParticipants['address_line1']; ?><br>
+                  <?php echo ($getParticipants['address_line2'] == "" ? '' : $getParticipants['address_line2'] . "<br>"); ?>
+                  <?php echo $getParticipants['city']; ?>, <?php echo $getParticipants['state']; ?> <?php echo $getParticipants['zip']; ?><br>
+                </div>
+                <div class="col-md-3">
+                  <?php echo $getParticipants['sm_email']; ?><br>
+                  <?php echo $getParticipants['sm_phone']; ?><br>
+                </div>
+              </div>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -206,20 +220,6 @@ $host = $_SERVER['SERVER_NAME'];
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              <div class="row">
-                <div class="col-md-3">
-                <?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName']?><<br>
-                </div>
-                <div class="col-md-3">
-                  <?php echo $getParticipants['address_line1']; ?><br>
-                  <?php echo ($getParticipants['address_line2'] == "" ? '' : $getParticipants['address_line2'] . "<br>"); ?>
-                  <?php echo $getParticipants['city']; ?>, <?php echo $getParticipants['state']; ?> <?php echo $getParticipants['zip']; ?><br>
-                </div>
-                <div class="col-md-3">
-                  <?php echo $getParticipants['sm_email']; ?><br>
-                  <?php echo $getParticipants['sm_phone']; ?><br>
-                </div>
               </div>
             </div>
           </div>
