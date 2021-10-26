@@ -16,7 +16,7 @@ $host = $_SERVER['SERVER_NAME'];
   <meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1" />
   <meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
-  <title>Unit Leader's Dashboard | Occoneechee Lodge - Order of the Arrow, BSA</title>
+  <title>NOAC Participant Dashboard | Occoneechee Lodge - Order of the Arrow, BSA</title>
 
   <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
@@ -57,7 +57,7 @@ $host = $_SERVER['SERVER_NAME'];
       if ($_GET['status'] == 2) { ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <div class="alert alert-success" role="alert">
-          <strong>Saved!</strong> Your adult nomination has been saved. Your Unit Chair has been emailed an invite to review and approve of the nomination. Your nomination will not be reviewed by the selection committee until this first step happens.
+          <strong>Saved!</strong> Your application has been submitted. Please see below for additional instructions.
           <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
         </div>
       <?php } ?>

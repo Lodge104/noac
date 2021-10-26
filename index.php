@@ -67,7 +67,7 @@ if (!$userInfo) : ?>
             <div class="card mb-3">
               <div class="card-body">
                 <h3 class="card-title d-inline-flex">Instructions</h3>
-                <p>Welcome to the NOAC Registration Portal for Occoneechee Lodge. Our lodge is moving away from paper forms and instead inviting unit leaders to use this online portal to submit adult nominations. Access to this portal is sent to unit leaders via email using a unique link <b>after</b> a unit election has been conducted and verified by Lodge Leadership. If you did not receive an invitation but should have, please use the live chat in the bottom right-hand corner to request one.</p>
+                <p>Welcome to the NOAC Application Portal for Occoneechee Lodge. Please enter your BSA ID in the field below to start your application or to check the status of your application.</p>
               </div>
             </div>
             <div class="row gx-5 justify-content-center">
@@ -83,10 +83,13 @@ if (!$userInfo) : ?>
                 </form>
                 </div>
               </div>
+              <div class="col-md-2"></div>
               <div class="card col-md-5">
                 <div class="card-body">
-                  <h3 class="form-signin-heading text-center">Administrator Login</h3>
-                  <a role="button" class="btn btn-lg btn-primary btn-block" href="/login.php">Login</a>
+                <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
+                  <a role="button" class="btn btn-lg btn-primary btn-block" href="https://lodge104.net/noac">NOAC Information</a>
+                  <!-- <h3 class="form-signin-heading text-center">Administrator Login</h3>
+                  <a role="button" class="btn btn-lg btn-primary btn-block" href="/login.php">Login</a> -->
                 </div>
               </div>
             </div>
@@ -103,7 +106,7 @@ if (!$userInfo) : ?>
       <meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1" />
       <meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
-      <title>Adult Nomination Portal | Occoneechee Lodge - Order of the Arrow, BSA</title>
+      <title>NOAC Application Portal | Occoneechee Lodge - Order of the Arrow, BSA</title>
 
       <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
