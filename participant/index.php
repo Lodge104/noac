@@ -161,8 +161,8 @@ $host = $_SERVER['SERVER_NAME'];
           <!-- /.Horizontal Steppers -->
           <section class="row">
             <div class="col-12">
+              <a href="refresh.php?bsaID=<?php echo $bsaID ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">Refresh Payment Status</a>
               <h2>NOAC Participant Dashboard</h2>
-              <a href="refresh.php?bsaID=<?php $bsaID ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">Refresh Payment Status</a>
             </div>
           </section>
           <div class="card mb-3">
