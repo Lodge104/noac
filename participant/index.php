@@ -397,7 +397,6 @@ $host = $_SERVER['SERVER_NAME'];
   <script src="../libraries/jquery-3.4.1.min.js"></script>
   <script src="../libraries/popper-1.16.0.min.js"></script>
   <script src="../libraries/bootstrap-4.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
   <script>
     var clipboard = new ClipboardJS('.btn');
