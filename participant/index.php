@@ -162,6 +162,7 @@ $host = $_SERVER['SERVER_NAME'];
           <section class="row">
             <div class="col-12">
               <h2>NOAC Participant Dashboard</h2>
+              <a href="refresh.php?bsaID=<?php $bsaID ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">Refresh Payment Status</a>
             </div>
           </section>
           <div class="card mb-3">
@@ -182,7 +183,6 @@ $host = $_SERVER['SERVER_NAME'];
 
           <div class="card mb-3">
             <div class="card-body">
-              <a href="edit-unit-election.php?accessKey=<?php echo $accessKey; ?>" class="btn btn-sm btn-secondary mb-2 d-inline-flex float-right">edit</a>
               <h3 class="card-title d-inline-flex">Unit Information</h3>
               <div class="table-responsive">
                 <table class="table">
