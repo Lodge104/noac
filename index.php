@@ -83,7 +83,7 @@ if (!$userInfo) : ?>
                 </form>
                 </div>
               </div>
-              <div class="col-md-2"></div>
+              <div class="col-md-1"></div>
               <div class="card col-md-5">
                 <div class="card-body">
                 <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
