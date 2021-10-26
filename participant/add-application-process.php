@@ -50,8 +50,6 @@ $createAdult->execute();
 $createAdult->close();
 
 
-/*
-$parent = "";
 
 include '../unitelections-info.php';
 $mail = new PHPMailer(true);
@@ -64,10 +62,10 @@ $mail = new PHPMailer(true);
   $mail->SMTPSecure = 'tls';       //Sets connection prefix. Options are "", "ssl" or "tls"
   $mail->From = $mfrom;     //Sets the From email address for the message
   $mail->FromName = $mfromname;    //Sets the From name of the message
-  $mail->AddAddress($uc_email);//Adds a "To" address
+  $mail->AddAddress($email);//Adds a "To" address
   $mail->WordWrap = 50;       //Sets word wrapping on the body of the message to a given number of characters
   $mail->IsHTML(true);       //Sets message type to HTML    
-  $mail->Subject = 'Please review OA Adult Nomination for ' . $firstName . ' ' . $lastName;    //Sets the Subject of the message
+  $mail->Subject = 'NOAC Application Submitted for ' . $firstName . ' ' . $lastName;    //Sets the Subject of the message
   $mail->Body = '<table cellspacing="0" cellpadding="0" border="0" width="600px" style="margin:auto">
   <tbody>
     <tr>
@@ -77,7 +75,7 @@ $mail = new PHPMailer(true);
       <td><table cellspacing="0" cellpadding="0" border="0" width="100%">
           <tbody>
             <tr>
-              <td style="text-align:center;color:#ffffff;background-color:#2d3e4f;padding:8px 0;font-size:13px"> Occoneechee Lodge Unit Elections </td>
+              <td style="text-align:center;color:#ffffff;background-color:#2d3e4f;padding:8px 0;font-size:13px"> Occoneechee Lodge NOAC Contingent </td>
             </tr>
             <tr>
               <td style="text-align:left;border:1px solid #2d3e4f;padding:10px 30px;background-color:#fefefe;line-height:18px;color:#2d3e4f;font-size:13px"> 
@@ -89,19 +87,17 @@ $mail = new PHPMailer(true);
                             <tr>
                               <td style="width:100%" valign="top">
                                 <br>
-                                Dear '.$uc_name.',<br>
+                                Dear '.$firstName.' '.$lastName.',<br>
                                 <br>
-                                The unit leader, from '.$unitCommunity.' '.$unitNumber.' has submitted an Adult Nomination for consideration of candidacy in the Order of the Arrow. This nomination is for '.$firstName.' '.$lastName.'. Before the nomination can be reviewed by the Lodge Selection Committee it must be independently reviewed and approved by the Unit Chair. Please click the link below to access the Unit Chair dashboard for your unit and review the nomination.<br>
-                                <br>
-								Additional nominations may be submitted and will be viewable on the same link.
-								</td>
+                                Your application for the NOAC Contingent has been submitted. Your next step is to pay the deposit using the button found on your participant dashboard at the link below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.<br>
+								            </td>
                             </tr>
                           </tbody>
                           <tbody>
                             <tr>
                               <td style="width:100%;text-align:center">
-							  <a href="https://nominate.lodge104.net/unitchair/?accessKey=' . $accessKey . '" target="_blank">
-							  <p>https://nominate.lodge104.net/unitchair/?accessKey=' . $accessKey . '</p>
+							  <a href="https://noac.lodge104.net/participant/check.php?bsaID=' . $bsa_id . '" target="_blank">
+							  <p>https://noac.lodge104.net/participant/check.php?bsaID=' . $bsa_id . '</p>
 							  </a>
 							  </td>
                             </tr>
@@ -118,7 +114,4 @@ $mail = new PHPMailer(true);
 </table>';   //An HTML or plain text message body
   if($mail->Send())        //Send an Email. Return true on success or false on error
 
-*/
 header("Location: index.php?bsaID=" . $bsa_id . "&status=2");
-
-?>
