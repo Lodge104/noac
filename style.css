@@ -1,4 +1,4 @@
-.primary-color, ul.stepper li.active a .circle, ul.stepper li.completed a .circle {
+/* .primary-color, ul.stepper li.active a .circle, ul.stepper li.completed a .circle {
     background-color: #00c751 !important;
 }
 .danger-color,
@@ -227,7 +227,7 @@ ul.stepper li.completed a .label {
     height: calc(100% - 40px);
     content: "";
     background-color: rgba(0, 0, 0, 0.1)
-}
+} */
 
 /*!
  *  FONTS
