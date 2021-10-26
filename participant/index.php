@@ -18,10 +18,11 @@ $host = $_SERVER['SERVER_NAME'];
 
   <title>Unit Leader's Dashboard | Occoneechee Lodge - Order of the Arrow, BSA</title>
 
-  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
 </head>
 
@@ -397,6 +398,7 @@ $host = $_SERVER['SERVER_NAME'];
   <script src="../libraries/jquery-3.4.1.min.js"></script>
   <script src="../libraries/popper-1.16.0.min.js"></script>
   <script src="../libraries/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
   <script>
     var clipboard = new ClipboardJS('.btn');
