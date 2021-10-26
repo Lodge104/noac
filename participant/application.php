@@ -80,12 +80,12 @@ $json = $_SESSION['jsonData'];
                   <div class="form-group">
                     <select id="tshirt" name="tshirt" type="custom-select" class="form-control" required>
                       <option value="" disabled selected>Adult T-Shirt Size</option>
-                      <option value="small">Small</option>
-                      <option value="medium">Medium</option>
-                      <option value="large">Large</option>
-                      <option value="xl">X-Large</option>
-                      <option value="xxl">XX-Large</option>
-                      <option value="xxl">XXX-Large</option>
+                      <option value="Small">Small</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Large">Large</option>
+                      <option value="X-Large">X-Large</option>
+                      <option value="XX-Large">XX-Large</option>
+                      <option value="XXX-Large">XXX-Large</option>
                     </select>
                   </div>
                 </div>
@@ -99,8 +99,8 @@ $json = $_SESSION['jsonData'];
                   <div class="form-group">
                     <select id="gender" name="gender" type="custom-select" class="form-control" placeholder="Gender" required>
                       <option value="" disabled selected>Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
                     </select>
                   </div>
                 </div>

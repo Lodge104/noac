@@ -80,6 +80,7 @@ $host = $_SERVER['SERVER_NAME'];
 
       if (isset($_GET['bsaID'])) {
         $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
+
         $json = $_SESSION['transactions'];
         $transactions = $json['transactions'];
         $sku = array_column($transactions, 'sku');
@@ -197,7 +198,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo $getParticipants['fname']; ?> <?php echo $getParticipants['lname']?></td>
+                      <td><?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName']?></td>
                       <td><?php echo $getParticipants['dob']; ?></td>
                       <td><?php echo $getParticipants['gender']; ?></td>
                       <td><?php echo $getParticipants['chapter']; ?></td>
