@@ -183,25 +183,25 @@ $host = $_SERVER['SERVER_NAME'];
 
           <div class="card mb-3">
             <div class="card-body">
-              <h3 class="card-title d-inline-flex">Unit Information</h3>
+              <h3 class="card-title d-inline-flex">Your Information</h3>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Unit Type</th>
-                      <th scope="col">Unit Number</th>
-                      <th scope="col"># of Youth Elected</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Date of Birth</th>
+                      <th scope="col">Gender</th>
                       <th scope="col">Chapter</th>
-                      <th scope="col">Date of Election</th>
+                      <th scope="col">T-Shirt Size</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo $getUnitElections['unitCommunity']; ?></td>
-                      <td><?php echo $getUnitElections['unitNumber']; ?></td>
-                      <td><?php echo $getUnitElections['numRegisteredYouth']; ?></td>
-                      <td><?php echo $getUnitElections['chapter']; ?></td>
-                      <td><?php echo date("m-d-Y", strtotime($getUnitElections['dateOfElection'])); ?></td>
+                      <td><?php echo $getParticipants['fname']; ?> <?php echo $getParticipants['lname']?></td>
+                      <td><?php echo $getParticipants['dob']; ?></td>
+                      <td><?php echo $getParticipants['gender']; ?></td>
+                      <td><?php echo $getParticipants['chapter']; ?></td>
+                      <td><?php echo $getParticipants['tshirt']; ?></td>
                     </tr>
                   </tbody>
                 </table>
@@ -209,16 +209,16 @@ $host = $_SERVER['SERVER_NAME'];
               <h5 class="card-title">Unit Leader Information</h5>
               <div class="row">
                 <div class="col-md-3">
-                  <?php echo $getUnitElections['sm_name']; ?><br>
+                  <?php echo $getParticipants['sm_name']; ?><br>
                 </div>
                 <div class="col-md-3">
-                  <?php echo $getUnitElections['sm_address_line1']; ?><br>
-                  <?php echo ($getUnitElections['sm_address_line2'] == "" ? '' : $getUnitElections['sm_address_line2'] . "<br>"); ?>
-                  <?php echo $getUnitElections['sm_city']; ?>, <?php echo $getUnitElections['sm_state']; ?> <?php echo $getUnitElections['sm_zip']; ?><br>
+                  <?php echo $getParticipants['sm_address_line1']; ?><br>
+                  <?php echo ($getParticipants['sm_address_line2'] == "" ? '' : $getParticipants['sm_address_line2'] . "<br>"); ?>
+                  <?php echo $getParticipants['sm_city']; ?>, <?php echo $getParticipants['sm_state']; ?> <?php echo $getParticipants['sm_zip']; ?><br>
                 </div>
                 <div class="col-md-3">
-                  <?php echo $getUnitElections['sm_email']; ?><br>
-                  <?php echo $getUnitElections['sm_phone']; ?><br>
+                  <?php echo $getParticipants['sm_email']; ?><br>
+                  <?php echo $getParticipants['sm_phone']; ?><br>
                 </div>
               </div>
             </div>
@@ -226,7 +226,7 @@ $host = $_SERVER['SERVER_NAME'];
 
           <?php
 
-          $rawadults = ($getUnitElections['numRegisteredYouth'] * (2 / 3));
+          $rawadults = ($getParticipants['numRegisteredYouth'] * (2 / 3));
           $numadults = ceil($rawadults);
 
           $tz = 'America/New_York';
@@ -236,10 +236,10 @@ $host = $_SERVER['SERVER_NAME'];
 
           $date = $dt->format("Y-m-d");
           $hour = $dt->format("H");
-          if ((strtotime($getUnitElections['dateOfElection']) < strtotime($date)) || ($getUnitElections['dateOfElection'] == $date && $hour >= 21)) { ?>
+          if ((strtotime($getParticipants['dateOfElection']) < strtotime($date)) || ($getParticipants['dateOfElection'] == $date && $hour >= 21)) { ?>
             <?php
             $adultNominationQuery = $conn->prepare("SELECT * from adultNominations where unitId = ?");
-            $adultNominationQuery->bind_param("s", $getUnitElections['id']);
+            $adultNominationQuery->bind_param("s", $getParticipants['id']);
             $adultNominationQuery->execute();
             $adultNominationQ = $adultNominationQuery->get_result();
             if ($adultNominationQ->num_rows > 0) {
@@ -253,7 +253,7 @@ $host = $_SERVER['SERVER_NAME'];
                     <?php
                     if ($adultNominationQ->num_rows < $numadults) { ?>
                       <div class="col-auto">
-                        <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
+                        <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getParticipants['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
                       </div>
                     <?php } else { ?>
                       <div class="col-auto">
@@ -310,7 +310,7 @@ $host = $_SERVER['SERVER_NAME'];
                   <h3 class="card-title">Adult Nominations</h3>
                   <div class="row">
                     <div class="col-auto">
-                      <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
+                      <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getParticipants['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
                     </div>
                   </div><br>
                   <div class="alert alert-danger" role="alert">
