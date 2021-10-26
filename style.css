@@ -631,6 +631,10 @@ footer a:hover {
     visibility: hidden;
 }
 
+.primary-color, ul.stepper li.active a .circle, ul.stepper li.completed a .circle {
+    background-color: #00c751 !important;
+}
+
 /*!
  *  MEDIA QUERIES
  */

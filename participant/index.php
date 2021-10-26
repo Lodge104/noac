@@ -23,6 +23,7 @@ $host = $_SERVER['SERVER_NAME'];
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
   <link rel="stylesheet" href="../style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
