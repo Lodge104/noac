@@ -189,7 +189,7 @@ $host = $_SERVER['SERVER_NAME'];
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Name</th>
+                      <th scope="col">BSA ID</th>
                       <th scope="col">Date of Birth</th>
                       <th scope="col">Gender</th>
                       <th scope="col">Chapter</th>
@@ -198,7 +198,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName']?></td>
+                      <td><?php echo $getParticipants['bsa_id']; ?></td>
                       <td><?php echo $getParticipants['dob']; ?></td>
                       <td><?php echo $getParticipants['gender']; ?></td>
                       <td><?php echo $getParticipants['chapter']; ?></td>
@@ -207,15 +207,14 @@ $host = $_SERVER['SERVER_NAME'];
                   </tbody>
                 </table>
               </div>
-              <h5 class="card-title">Unit Leader Information</h5>
               <div class="row">
                 <div class="col-md-3">
-                  <?php echo $getParticipants['sm_name']; ?><br>
+                <?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName']?><<br>
                 </div>
                 <div class="col-md-3">
-                  <?php echo $getParticipants['sm_address_line1']; ?><br>
-                  <?php echo ($getParticipants['sm_address_line2'] == "" ? '' : $getParticipants['sm_address_line2'] . "<br>"); ?>
-                  <?php echo $getParticipants['sm_city']; ?>, <?php echo $getParticipants['sm_state']; ?> <?php echo $getParticipants['sm_zip']; ?><br>
+                  <?php echo $getParticipants['address_line1']; ?><br>
+                  <?php echo ($getParticipants['address_line2'] == "" ? '' : $getParticipants['address_line2'] . "<br>"); ?>
+                  <?php echo $getParticipants['city']; ?>, <?php echo $getParticipants['state']; ?> <?php echo $getParticipants['zip']; ?><br>
                 </div>
                 <div class="col-md-3">
                   <?php echo $getParticipants['sm_email']; ?><br>
@@ -224,122 +223,10 @@ $host = $_SERVER['SERVER_NAME'];
               </div>
             </div>
           </div>
-
-          <?php
-
-          $rawadults = ($getParticipants['numRegisteredYouth'] * (2 / 3));
-          $numadults = ceil($rawadults);
-
-          $tz = 'America/New_York';
-          $timestamp = time();
-          $dt = new DateTime("now", new DateTimeZone($tz));
-          $dt->setTimestamp($timestamp);
-
-          $date = $dt->format("Y-m-d");
-          $hour = $dt->format("H");
-          if ((strtotime($getParticipants['dateOfElection']) < strtotime($date)) || ($getParticipants['dateOfElection'] == $date && $hour >= 21)) { ?>
-            <?php
-            $adultNominationQuery = $conn->prepare("SELECT * from adultNominations where unitId = ?");
-            $adultNominationQuery->bind_param("s", $getParticipants['id']);
-            $adultNominationQuery->execute();
-            $adultNominationQ = $adultNominationQuery->get_result();
-            if ($adultNominationQ->num_rows > 0) {
-              //print election info
-            ?>
-              <!--<div class="collapse" id="online">-->
-              <div class="card mb-3">
-                <div class="card-body">
-                  <h3 class="card-title">Adult Nominations</h3>
-                  <div class="row">
-                    <?php
-                    if ($adultNominationQ->num_rows < $numadults) { ?>
-                      <div class="col-auto">
-                        <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getParticipants['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
-                      </div>
-                    <?php } else { ?>
-                      <div class="col-auto">
-                        <div class="alert alert-danger" role="alert">
-                          All out of nominations!
-                        </div>
-                      </div>
-                    <?php } ?>
-                  </div><br>
-                  <div class="alert alert-primary" role="alert">
-                    <b>Your unit is allowed <?php echo ($numadults) ?> adult nominations.</b><br>The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
-                  </div><br>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Name</th>
-                          <th scope="col">BSA ID</th>
-                          <th scope="col">Position</th>
-                          <th scope="col">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
-                        ?><tr>
-                            <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
-                            <td><?php echo $getAdult['bsa_id']; ?></td>
-                            <td><?php echo $getAdult['position']; ?></td>
-                            <td>
-                              <?php
-                              if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
-                                <span class="badge badge-warning">Not Approved by Selection Committee</span>
-                              <?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
-                                <span class="badge badge-success">Approved by Selection Committee</span>
-                              <?php } elseif (($getAdult['leader_signature'] == '1' && $getAdult['chair_signature'] == '1')) { ?>
-                                <span class="badge badge-danger">Waiting for Selection Committee</span>
-                              <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
-                                <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
-                              <?php } ?>
-                            </td>
-                          </tr>
-                        <?php } ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              <!--</div>-->
-            <?php
-            } else {
-            ?>
-              <div class="card mb-3">
-                <div class="card-body">
-                  <h3 class="card-title">Adult Nominations</h3>
-                  <div class="row">
-                    <div class="col-auto">
-                      <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getParticipants['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
-                    </div>
-                  </div><br>
-                  <div class="alert alert-danger" role="alert">
-                    <b>There are no adult nominations yet. Your unit is allowed <?php echo ($numadults) ?> adult nominations.</b><br>Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
-                  </div>
-                </div>
-              </div>
-            <?php
-            }
-            ?>
-          <?php } else { ?>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h3 class="card-title">Adult Nominations</h3>
-                <div class="alert alert-danger" role="alert">
-                  Adult nominations are not available until 9:00 pm EST on the day of the election. Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than two-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the two-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months. To prepare your nominations in advance, please see this <a href='https://lodge104.net/download/5525/' target="_blank">PDF with the exact same questions</a>.
-                </div>
-              </div>
-            </div>
-          <?php } ?>
-
-
         <?php
         } else {
+          header("Location: participant/check.php?bsaID=" . $bsaID);
         ?>
-          <div class="alert alert-danger" role="alert">
-            There are no elections in the database.
-          </div>
         <?php
         }
       } else {
@@ -350,10 +237,10 @@ $host = $_SERVER['SERVER_NAME'];
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
               <h3 class="card-title">BSA ID </h3>
-              <form action='' method="get">
+              <form action='/participant/check.php' method="get">
                 <div class="form-group">
-                  <label for="accessKey" class="required">BSA ID</label>
-                  <input type="text" id="accessKey" name="accessKey" class="form-control" autocomplete="off" required>
+                  <label for="bsaID" class="required">BSA ID</label>
+                  <input type="text" id="bsaID" name="bsaID" class="form-control" autocomplete="off" required>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Submit">
               </form>
