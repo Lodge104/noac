@@ -197,15 +197,11 @@ $host = $_SERVER['SERVER_NAME'];
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               
               <?php
-                print_r($sku);
-                if(in_array('WB20-EVENT', $sku)) {
+                if(!in_array('WB20-EVENT', $sku)) {
                  ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                <script src="https://js.stripe.com/v3/"></script>
-                <form action="/participant/create-deposit-session.php" method="POST">
-                  <button type="submit" id="checkout-button">Checkout</button>
-                </form>
+                <button type="button" class="btn btn-primary" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id']?>">Pay</button>
                 <?php } ?>
             </div>
           </div>
