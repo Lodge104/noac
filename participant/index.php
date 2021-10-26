@@ -21,9 +21,8 @@ $host = $_SERVER['SERVER_NAME'];
   <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
   <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
-  <link rel="stylesheet" href="../style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="stylesheet" href="../style.css">
 
 </head>
 
@@ -195,16 +194,16 @@ $host = $_SERVER['SERVER_NAME'];
           <div class="card mb-3">
             <div class="card-body">
               <h3 class="card-title d-inline-flex">What comes next?</h3>
-              
+
               <?php
-                if(!in_array('WB20-EVENT2', $sku)) {
-                 ?>
+              if (!in_array('WB20-EVENT2', $sku)) {
+              ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id']?>">
-                <button type="button" class="btn btn-primary">Pay</button>
+                <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
+                  <button type="button" class="btn btn-primary">Pay</button>
                 </a>
-                <?php } ?>
+              <?php } ?>
             </div>
           </div>
 
