@@ -197,7 +197,7 @@ $host = $_SERVER['SERVER_NAME'];
               <h3 class="card-title d-inline-flex">What comes next?</h3>
               
               <?php
-                if(!in_array('WB20-EVENT', $sku)) {
+                if(!in_array('WB20-EVENT2', $sku)) {
                  ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
