@@ -404,6 +404,28 @@ footer a:hover {
     background-color: #00c751 !important;
 }
 
+font-weight: 500
+}
+.stepper-vertical li .step-content {
+    display: block;
+    padding: .94rem;
+    margin-top: 0;
+    margin-left: 3.13rem
+}
+.stepper-vertical li .step-content p {
+    font-size: .88rem
+}
+.stepper-vertical li:not(:last-child):after {
+    position: absolute;
+    top: 3.44rem;
+    left: 2.19rem;
+    width: 1px;
+    height: calc(100% - 40px);
+    content: "";
+    background-color: rgba(0, 0, 0, 0.1)
+}
+
+
 /*!
  *  MEDIA QUERIES
  */
