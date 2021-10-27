@@ -106,29 +106,11 @@ $host = $_SERVER['SERVER_NAME'];
                   </a>
                 </li>
                 <?php
-                if (!in_array("WB20-EVENT2", $sku)) {
-                ?>
-                  <li class="warning active">
-                    <a>
-                      <span class="circle">2</span>
-                      <span class="label">Deposit Needed</span>
-                    </a>
-                  </li>
-                <?php }
-                if (in_array("WB20-EVENT2", $sku)) { ?>
-                  <li class="completed">
-                    <a>
-                      <span style="background-color: #4caf50 !important;" class="circle">2</span>
-                      <span class="label">Deposit Completed</span>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php
                 if ($getParticipants['status'] == '0') {
                 ?>
                   <li class="">
                     <a>
-                      <span class="circle">3</span>
+                      <span class="circle">2</span>
                       <span class="label">Application Approval</span>
                     </a>
                   </li>
@@ -136,7 +118,7 @@ $host = $_SERVER['SERVER_NAME'];
                 if ($getParticipants['status'] == '1') { ?>
                   <li class="completed">
                     <a>
-                      <span class="circle">3</span>
+                      <span class="circle">2</span>
                       <span class="label">Application Approved</span>
                     </a>
                   </li>
@@ -144,14 +126,32 @@ $host = $_SERVER['SERVER_NAME'];
                 if ($getParticipants['status'] == '2') { ?>
                   <li class="warning active">
                     <a>
-                      <span class="circle">3</span>
+                      <span class="circle">2</span>
                       <span class="label">Waitlisted</span>
                     </a>
                   </li>
                   <li class="step">
                     <a>
-                      <span class="circle">4</span>
+                      <span class="circle">3</span>
                       <span class="label">Application Approved</span>
+                    </a>
+                  </li>
+                <?php } ?>
+                <?php
+                if (!in_array("NOAC Paid-in-Full" || "NOAC Payment 1", $sku)) {
+                ?>
+                  <li class="warning active">
+                    <a>
+                      <span class="circle">3</span>
+                      <span class="label">Payment Needed</span>
+                    </a>
+                  </li>
+                <?php }
+                if (in_array("NOAC Paid-in-Full" || "NOAC Payment 1", $sku)) { ?>
+                  <li class="completed">
+                    <a>
+                      <span style="background-color: #4caf50 !important;" class="circle">3</span>
+                      <span class="label">Deposit Completed</span>
                     </a>
                   </li>
                 <?php } ?>
