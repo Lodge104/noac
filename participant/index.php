@@ -138,7 +138,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </li>
                 <?php } ?>
                 <?php
-                if (!in_array("NOAC Paid-in-Full" || "NOAC Payment 1", $sku)) {
+                if (!in_array("NOAC Paid-in-Full" OR "NOAC Payment 1", $sku)) {
                 ?>
                   <li class="warning active">
                     <a>
@@ -147,7 +147,7 @@ $host = $_SERVER['SERVER_NAME'];
                     </a>
                   </li>
                 <?php }
-                if (in_array("NOAC Paid-in-Full" || "NOAC Payment 1", $sku)) { ?>
+                if (in_array("NOAC Paid-in-Full" OR "NOAC Payment 1", $sku)) { ?>
                   <li class="completed">
                     <a>
                       <span style="background-color: #4caf50 !important;" class="circle">3</span>
