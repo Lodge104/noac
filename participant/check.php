@@ -56,7 +56,7 @@ if (isset($_GET['bsaID'])) {
         $json = json_decode($resp, true);
         $_SESSION['transactions'] = $json;
 
-    header("Location: index.php?bsaID=" . $bsaID . "status=" . $status);
+    header("Location: index.php?bsaID=" . $bsaID . "&status=" . $status);
     } else {
         $url = ($membersURL . $bsaID);
 
