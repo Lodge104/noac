@@ -19,6 +19,8 @@ if ($conn->connect_error) {
 
 if (isset($_GET['bsaID'])) {
     $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
+    if (isset($_GET['status'])) {
+        $status = $_POST['status'] = $_GET['status'];} else{$status="1";}
 
     $getbsaIDQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
     $getbsaIDQuery->bind_param("s", $bsaID);
@@ -54,7 +56,7 @@ if (isset($_GET['bsaID'])) {
         $json = json_decode($resp, true);
         $_SESSION['transactions'] = $json;
 
-    header("Location: index.php?bsaID=" . $bsaID);
+    header("Location: index.php?bsaID=" . $bsaID . "status=" . $status);
     } else {
         $url = ($membersURL . $bsaID);
 

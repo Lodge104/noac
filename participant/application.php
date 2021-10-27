@@ -240,10 +240,10 @@ $json = $_SESSION['jsonData'];
 ?>
   <div class="card col-md-6 mx-auto">
     <div class="card-body">
-      <h5 class="card-title">Access Key </h5>
+      <h5 class="card-title">BSA ID</h5>
       <form action='' method="get">
         <div class="form-group">
-          <label for="bsaID">Access Key</label>
+          <label for="bsaID">BSA ID</label>
           <input type="text" id="bsaID" name="bsaID" class="form-control">
         </div>
         <input type="submit" class="btn btn-primary" value="Submit">

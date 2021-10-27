@@ -114,4 +114,4 @@ $mail = new PHPMailer(true);
 </table>';   //An HTML or plain text message body
   if($mail->Send())        //Send an Email. Return true on success or false on error
 
-header("Location: index.php?bsaID=" . $bsa_id . "&status=2");
+header("Location: check.php?bsaID=" . $bsa_id . "&status=2");

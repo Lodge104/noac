@@ -49,7 +49,7 @@ $host = $_SERVER['SERVER_NAME'];
       if ($_GET['status'] == 1) { ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <div class="alert alert-success" role="alert">
-          <strong>Saved!</strong> Your data has been saved! Thanks!
+          <strong>Loaded!</strong> Your payment data is up to date!
           <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
         </div>
       <?php } ?>
@@ -65,7 +65,7 @@ $host = $_SERVER['SERVER_NAME'];
       if ($_GET['status'] == 3) { ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <div class="alert alert-danger" role="alert">
-          <strong>Warning!</strong> Your adult nomination was canceled and no data was saved.
+          <strong>Warning!</strong> Your application was canceled and no data was saved.
           <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
         </div>
       <?php } ?>
