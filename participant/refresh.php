@@ -39,5 +39,5 @@ if (isset($_GET['bsaID'])) {
     $json = json_decode($resp, true);
     $_SESSION['transactions'] = $json;
 
-header("Location: index.php?bsaID=" . $bsaID);
+header("Location: index.php?bsaID=" . $bsaID . "&status=1");
 }
