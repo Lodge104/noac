@@ -106,11 +106,29 @@ $host = $_SERVER['SERVER_NAME'];
                   </a>
                 </li>
                 <?php
+                if (!in_array("22NOAC Deposit", $sku)) {
+                ?>
+                  <li class="warning active">
+                    <a>
+                      <span class="circle">2</span>
+                      <span class="label">Deposit Needed</span>
+                    </a>
+                  </li>
+                <?php }
+                if (in_array("22NOAC Deposit", $sku)) { ?>
+                  <li class="completed">
+                    <a>
+                      <span style="background-color: #4caf50 !important;" class="circle">2</span>
+                      <span class="label">Deposit Completed</span>
+                    </a>
+                  </li>
+                <?php } ?>
+                <?php
                 if ($getParticipants['status'] == '0') {
                 ?>
                   <li class="">
                     <a>
-                      <span class="circle">2</span>
+                      <span class="circle">3</span>
                       <span class="label">Application Approval</span>
                     </a>
                   </li>
@@ -118,7 +136,7 @@ $host = $_SERVER['SERVER_NAME'];
                 if ($getParticipants['status'] == '1') { ?>
                   <li class="completed">
                     <a>
-                      <span class="circle">2</span>
+                      <span class="circle">3</span>
                       <span class="label">Application Approved</span>
                     </a>
                   </li>
@@ -126,32 +144,14 @@ $host = $_SERVER['SERVER_NAME'];
                 if ($getParticipants['status'] == '2') { ?>
                   <li class="warning active">
                     <a>
-                      <span class="circle">2</span>
+                      <span class="circle">3</span>
                       <span class="label">Waitlisted</span>
                     </a>
                   </li>
                   <li class="step">
                     <a>
-                      <span class="circle">3</span>
+                      <span class="circle">4</span>
                       <span class="label">Application Approved</span>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php
-                if (!in_array("NOAC Paid-in-Full", $sku)) {
-                ?>
-                  <li class="warning active">
-                    <a>
-                      <span class="circle">3</span>
-                      <span class="label">Payment Needed</span>
-                    </a>
-                  </li>
-                <?php }
-                if (in_array("NOAC Paid-in-Full", $sku)) { ?>
-                  <li class="completed">
-                    <a>
-                      <span style="background-color: #4caf50 !important;" class="circle">3</span>
-                      <span class="label">Deposit Completed</span>
                     </a>
                   </li>
                 <?php } ?>
@@ -171,12 +171,18 @@ $host = $_SERVER['SERVER_NAME'];
               <h3 class="card-title d-inline-flex">What comes next?</h3>
 
               <?php
-              if (!in_array('WB20-EVENT2', $sku)) {
+              if (!in_array('22NOAC Deposit', $sku)) {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
                   <button type="button" class="btn btn-primary">Pay</button>
+                </a>
+              <?php } ?>
+              <?php
+              if (in_array('22NOAC Deposit', $sku)) {
+              ?>
+                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted and your deposit has been paid! Your application will be reviewed by the contingent leadership. <?php if ($getParticipants['payment'] == '1') {?> You selected payment schedule option 1 to pay your NOAC fees in full by December 7th. Once you're notified your application is approved, check back for more instructions on finishing your payment. <?php } else {?> You selected payment schedule option 2 to pay your NOAC fees in equal payments. Once you're notified your application is approved, check back for more instructions on finishing your payments. <?php } ?> </p>
                 </a>
               <?php } ?>
             </div>
