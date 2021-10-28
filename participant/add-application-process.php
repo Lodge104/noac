@@ -35,6 +35,7 @@ if (isset($_POST['gender'])) {  $gender = $_POST['gender']; } else { $gender = "
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; } else { $dob = ""; }
 if (isset($_POST['level'])) {  $level = $_POST['level']; } else { $level = ""; }
+if (isset($_POST['payment'])) {  $payment = $_POST['payment']; } else { $payment = ""; }
 if (isset($_POST['aia_check'])) {  $aiacheck = $_POST['aia_check']; } else { $aiacheck = ""; }
 if (isset($_POST['aia'])) {  $aia = $_POST['aia']; } else { $aia = ""; }
 if (isset($_POST['signature'])) {  $signature = $_POST['signature']; } else { $signature = ""; }
@@ -44,8 +45,8 @@ $d = date("m-d-Y h:i:sa");
 $s = "0";
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("ssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $aiacheck, $aia, $signature, $parent, $d, $s);
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, payment, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $payment, $aiacheck, $aia, $signature, $parent, $d, $s);
 $createAdult->execute();
 $createAdult->close();
 
