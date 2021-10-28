@@ -52,10 +52,13 @@ $createAdult->close();
 
 if ($payment == '1') { $poption = 'Option 1';} else { $poption = 'Option 2';}
 
-$tz  = new DateTimeZone('America/New_York');
-$age = DateTime::createFromFormat('d/m/Y', $dob, $tz)
-     ->diff(new DateTime('now', $tz))
-     ->y;
+//explode the date to get month, day and year
+$birthDate = explode("/", $dob);
+//get age from date or birthdate
+$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+  ? ((date("Y") - $birthDate[2]) - 1)
+  : (date("Y") - $birthDate[2]));
+echo "Age is:" . $age;
 
 
 
