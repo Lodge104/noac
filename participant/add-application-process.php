@@ -50,6 +50,13 @@ $createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstNa
 $createAdult->execute();
 $createAdult->close();
 
+if ($payment = '1') { $poption = 'Option 1';} else { $poption = 'Option 2';}
+
+$tz  = new DateTimeZone('America/New_York');
+$age = DateTime::createFromFormat('d/m/Y', $dob, $tz)
+     ->diff(new DateTime('07/05/2022', $tz))
+     ->y;
+
 
 
 include '../unitelections-info.php';
@@ -64,6 +71,7 @@ $mail = new PHPMailer(true);
   $mail->From = $mfrom;     //Sets the From email address for the message
   $mail->FromName = $mfromname;    //Sets the From name of the message
   $mail->AddAddress($email);//Adds a "To" address
+  $mail->addBCC($notify);
   $mail->WordWrap = 50;       //Sets word wrapping on the body of the message to a given number of characters
   $mail->IsHTML(true);       //Sets message type to HTML    
   $mail->Subject = 'NOAC Application Submitted for ' . $firstName . ' ' . $lastName;    //Sets the Subject of the message
@@ -91,7 +99,9 @@ $mail = new PHPMailer(true);
                                 Dear '.$firstName.' '.$lastName.',<br>
                                 <br>
                                 Your application for the NOAC Contingent has been submitted. Your next step is to pay the deposit using the button found on your participant dashboard at the link below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.<br>
-								            </td>
+                                <br>Payment option selected: '.$poption.'<br>
+                                <br>Age at NOAC: '.$age.' 
+                                </td>
                             </tr>
                           </tbody>
                           <tbody>
