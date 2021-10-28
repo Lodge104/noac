@@ -174,9 +174,10 @@ $json = $_SESSION['jsonData'];
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>Payment Options</h3>
-                  <p>For NOAC 2022, there are two different payment schedules. <b>Option 1:</b> Pay the full amount by December 7th, 2021 and receive a $50 discount. <b>Option 2:</b> Pay in equal payments due by January 20th, February 20th, and (for adults) March 20th. Please select which payment schedule you'd like. This is a committment and can not be changed later.</p>
+                  <p>For NOAC 2022, there are two different payment schedules.<br><br><b>Option 1:</b> Pay the full amount by December 7th, 2021 and receive a $50 discount.<br><br><b>Option 2:</b> Pay in equal payments due by January 20th, February 20th, and (for adults) March 20th. Please select which payment schedule you'd like. This is a committment and can not be changed later.</p>
                   <div class="form-group">
                     <select id="payment" name="payment" type="custom-select" class="form-control" required>
+                    <option value="" disabled selected>Select an Option</option>
                       <option value="0" selected>Option 1 - Pay in Full</option>
                       <option value="1">Option 2 - Payment Schedule</option>
                     </select>
