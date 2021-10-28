@@ -54,7 +54,7 @@ if ($payment = '1') { $poption = 'Option 1';} else { $poption = 'Option 2';}
 
 $tz  = new DateTimeZone('America/New_York');
 $age = DateTime::createFromFormat('d/m/Y', $dob, $tz)
-     ->diff(new DateTime('07/05/2022', $tz))
+     ->diff(new DateTime('now', $tz))
      ->y;
 
 
@@ -100,7 +100,8 @@ $mail = new PHPMailer(true);
                                 <br>
                                 Your application for the NOAC Contingent has been submitted. Your next step is to pay the deposit using the button found on your participant dashboard at the link below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.<br>
                                 <br>Payment option selected: '.$poption.'<br>
-                                <br>Age at NOAC: '.$age.' 
+                                <br>Current Age: '.$age.'<br>
+                                Date of Birth: '.$dob.'<br><br>
                                 </td>
                             </tr>
                           </tbody>
