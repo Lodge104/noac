@@ -70,6 +70,14 @@ $host = $_SERVER['SERVER_NAME'];
         </div>
       <?php } ?>
       <?php
+      if ($_GET['status'] == 4) { ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <div class="alert alert-danger" role="alert">
+          <strong>Oh No!</strong> We can't find you BSA ID! Try again!
+          <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+        </div>
+      <?php } ?>
+      <?php
       include '../unitelections-info.php';
       // Create connection
       $conn = new mysqli($servername, $username, $password, $dbname);
@@ -173,7 +181,7 @@ $host = $_SERVER['SERVER_NAME'];
               <?php
               if (!in_array('22NOAC Deposit', $sku)) {
               ?>
-                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership. You will not be considered apart of contingent until your depsit has been paid and your application has been approved.s </p>
+                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership. You will not be considered apart of contingent until your depsit has been paid and your application has been approved.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
                 <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
                   <button type="button" class="btn btn-primary">Pay</button>
@@ -182,7 +190,7 @@ $host = $_SERVER['SERVER_NAME'];
               <?php
               if (in_array('22NOAC Deposit', $sku)) {
               ?>
-                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted and your deposit has been paid! Your application will be reviewed by the contingent leadership before you are officially apart of the contingent. <?php if ($getParticipants['payment'] == '1') {?> You selected payment schedule option 1 to pay your NOAC fees in full by December 7th. Once you're notified your application is approved, check back for more instructions on finishing your payment. <?php } else {?> You selected payment schedule option 2 to pay your NOAC fees in equal payments. Once you're notified your application is approved, check back for more instructions on finishing your payments. <?php } ?> </p>
+                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted and your deposit has been paid! Your application will be reviewed by the contingent leadership before you are officially apart of the contingent. <?php if ($getParticipants['payment'] == '1') {?> You selected payment schedule option 1 to pay your NOAC fees in full by December 7th. Once you're notified your application is approved, check back for more instructions on finishing your payment. <?php } else {?> You selected payment schedule option 2 to pay your NOAC fees in equal payments. Once you're notified your application is approved, check back for more instructions on finishing your payments.<?php } ?> </p>
                 </a>
               <?php } ?>
             </div>

@@ -80,7 +80,7 @@ if (!curl_errno($curl)) {
       header("Location: application.php?bsaID=" . $bsaID);
         break;
       default:
-      header("Location: index.php?status=3");
+      header("Location: index.php?status=4");
     }
   }
 curl_close($curl);
