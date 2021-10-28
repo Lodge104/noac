@@ -50,7 +50,7 @@ $createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstNa
 $createAdult->execute();
 $createAdult->close();
 
-if ($payment = '1') { $poption = 'Option 1';} else { $poption = 'Option 2';}
+if ($payment == '1') { $poption = 'Option 1';} else { $poption = 'Option 2';}
 
 $tz  = new DateTimeZone('America/New_York');
 $age = DateTime::createFromFormat('d/m/Y', $dob, $tz)
