@@ -133,10 +133,10 @@ $json = $_SESSION['jsonData'];
                     <input id="email" name="email" type="email" class="form-control" placeholder="Email" required>
                   </div>
                   <div class="form-group">
-                    <input id="hphone" name="hphone" type="text" class="form-control" placeholder="Home Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555">
+                    <input id="hphone" name="hphone" type="text" class="form-control" placeholder="Home Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555">
                   </div>
                   <div class="form-group">
-                    <input id="cphone" name="cphone" type="text" class="form-control" placeholder="Cell Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
+                    <input id="cphone" name="cphone" type="text" class="form-control" placeholder="Cell Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
                   </div>
                 </div>
               </div>
@@ -177,9 +177,9 @@ $json = $_SESSION['jsonData'];
                   <p>For NOAC 2022, there are two different payment schedules.<br><br><b>Option 1:</b> Pay the full amount by December 7th, 2021 and receive a $50 discount.<br><br><b>Option 2:</b> Pay in equal payments due by January 20th, February 20th, and (for adults) March 20th.<br><br>Please select which payment schedule you'd like. This is a commitment and can not be changed later.</p>
                   <div class="form-group">
                     <select id="payment" name="payment" type="custom-select" class="form-control" required>
-                    <option value="" disabled selected>Select an Option</option>
-                      <option value="0" selected>Option 1 - Pay in Full</option>
-                      <option value="1">Option 2 - Payment Schedule</option>
+                      <option value="" disabled selected>Select an Option</option>
+                      <option value="1" selected>Option 1 - Pay in Full</option>
+                      <option value="2">Option 2 - Payment Schedule</option>
                     </select>
                   </div>
                 </div>
