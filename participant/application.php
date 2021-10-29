@@ -207,12 +207,12 @@ $json = $_SESSION['jsonData'];
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>Conduct and Commitment Agreement</h3>
-                  <p>I understand that the Contingent fees are $700/Arrowman which include NOAC registration, transportation to the event, 1 nights lodging prior to the event, all meals during the Conference, selected meals while travelling and Contingent spirit items as determined by the Lodge NOAC Committee.<br><br>As a member of the Order of the Arrow and wanting to attend the 2022 NOAC, I will do the following:
+                  <p>I understand that the Contingent fees are $600/875/Arrowman which include NOAC registration, transportation to the event, all meals during the Conference, selected meals while travelling and Contingent spirit items as determined by the Lodge NOAC Committee.<br><br>As a member of the Order of the Arrow and wanting to attend the 2022 NOAC, I will do the following:
                   <ol>
                     <li>Attend all contingent meetings for NOAC 2022 which will be held during regular Lodge weekends or as otherwise scheduled prior to departure.</li>
                     <li><b>Pay the Fee presented by the Lodge which is not refundable, but fully transferrable to another person. If I am unable to attend NOAC, I understand that it is my responsibility to find a replacement for my registration or forfeit.</b></li>
                     <li>I will attend all evening shows with the Lodge Contingent and wear the uniform indicated by the Contingent Leadership.</li>
-                    <li>I will not leave the IU campus without the expressed consent of the Contingent Leadership.</li>
+                    <li>I will not leave the UT campus without the expressed consent of the Contingent Leadership.</li>
                     <li>I will be in the dorm by our curfew.</li>
                     <li>I will obey all NOAC 2022 and Lodge Rules; I will set the example as a proper Arrowman and be a representative of our Lodge. I will follow all instructions given to me by the Contingent leadership.</li>
                     <li>I will follow the priorities of activities set by the group and stay with the plan.</li>
