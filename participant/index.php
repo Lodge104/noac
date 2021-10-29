@@ -114,7 +114,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </a>
                 </li>
                 <?php
-                if (!in_array("22Y-NOAC Deposit", $sku) OR !in_array("22A-NOAC Deposit", $sku)) {
+                if (!in_array("22Y-NOAC Deposit", $sku) AND !in_array("22A-NOAC Deposit", $sku)) {
                 ?>
                   <li class="warning active">
                     <a>
@@ -179,7 +179,7 @@ $host = $_SERVER['SERVER_NAME'];
               <h3 class="card-title d-inline-flex">What comes next?</h3>
 
               <?php
-              if (!in_array('22Y-NOAC Deposit', $sku) OR !in_array('22A-NOAC Deposit', $sku)) {
+              if (!in_array('22Y-NOAC Deposit', $sku) AND !in_array('22A-NOAC Deposit', $sku)) {
               ?>
                 <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership. You will not be considered apart of contingent until your depsit has been paid and your application has been approved.</p>
                 <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
