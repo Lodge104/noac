@@ -211,6 +211,7 @@ $json = $_SESSION['jsonData'];
                   <ol>
                     <li>Attend all contingent meetings for NOAC 2022 which will be held during regular Lodge weekends or as otherwise scheduled prior to departure.</li>
                     <li><b>Pay the Fee presented by the Lodge which is not refundable, but fully transferrable to another person. If I am unable to attend NOAC, I understand that it is my responsibility to find a replacement for my registration or forfeit.</b></li>
+                    <li>I understand all application will be reviewed prior to acceptance.</li>
                     <li>I will attend all evening shows with the Lodge Contingent and wear the uniform indicated by the Contingent Leadership.</li>
                     <li>I will not leave the UT campus without the expressed consent of the Contingent Leadership.</li>
                     <li>I will be in the dorm by our curfew.</li>
