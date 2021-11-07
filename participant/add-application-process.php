@@ -152,6 +152,10 @@ $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birt
   ? ((date("Y") - $birthDate[2]) - 1)
   : (date("Y") - $birthDate[2]));
 
+  include '../unitelections-info.php';
+
+  require __DIR__ . '../vendor/autoload.php';
+
 
 use MailerSend\MailerSend;
 use MailerSend\Helpers\Builder\Variable;
