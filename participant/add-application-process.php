@@ -3,10 +3,10 @@ include '../unitelections-info.php';
 
 require '../vendor/autoload.php';
 
-// use MailerSend\MailerSend;
-// use MailerSend\Helpers\Builder\Variable;
-// use MailerSend\Helpers\Builder\Recipient;
-// use MailerSend\Helpers\Builder\EmailParams;
+use MailerSend\MailerSend;
+use MailerSend\Helpers\Builder\Variable;
+use MailerSend\Helpers\Builder\Recipient;
+use MailerSend\Helpers\Builder\EmailParams;
 
 date_default_timezone_set("America/New_York");
 
@@ -157,38 +157,38 @@ $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birt
   ? ((date("Y") - $birthDate[2]) - 1)
   : (date("Y") - $birthDate[2]));
 
-// $mailersend = new MailerSend(['api_key' => getenv('MAILERSEND')]);
+$mailersend = new MailerSend(['api_key' => getenv('MAILERSEND')]);
 
-// $variables = [
-//   new Variable($email, [
-//     'age' => $age,
-//     'dob' => $dob,
-//     'zip' => $zip,
-//     'city' => $city,
-//     'bsaid' => $bsa_id,
-//     'level' => $level,
-//     'gender' => $gender,
-//     'chapter' => $chapter,
-//     'poption' => $poption,
-//     'street1' => $address_line1,
-//     'street2' => $address_line2,
-//     'lastName' => $lastName,
-//     'firstName' => $firstName
-//   ])
-// ];
+$variables = [
+  new Variable($email, [
+    'age' => $age,
+    'dob' => $dob,
+    'zip' => $zip,
+    'city' => $city,
+    'bsaid' => $bsa_id,
+    'level' => $level,
+    'gender' => $gender,
+    'chapter' => $chapter,
+    'poption' => $poption,
+    'street1' => $address_line1,
+    'street2' => $address_line2,
+    'lastName' => $lastName,
+    'firstName' => $firstName
+  ])
+];
 
-// $recipients = [
-//   new Recipient($email, 'Nicholas Anderson'),
-// ];
+$recipients = [
+  new Recipient($email, 'Nicholas Anderson'),
+];
 
-// $emailParams = (new EmailParams())
-// ->setFrom('noac@lodge104.com')
-// ->setFromName('Occoneechee Lodge NOAC Leadership')
-// ->setRecipients($recipients)
-// ->setSubject('NOAC Application')
-// ->setTemplateId('jy7zpl9pwpg5vx6k')
-// ->setVariables($variables);
+$emailParams = (new EmailParams())
+->setFrom('noac@lodge104.com')
+->setFromName('Occoneechee Lodge NOAC Leadership')
+->setRecipients($recipients)
+->setSubject('NOAC Application')
+->setTemplateId('jy7zpl9pwpg5vx6k')
+->setVariables($variables);
 
-// $mailersend->email->send($emailParams);
+$mailersend->email->send($emailParams);
 
 header("Location: check.php?bsaID=" . $bsa_id . "&status=2");
