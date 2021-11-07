@@ -7,6 +7,7 @@ use MailerSend\MailerSend;
 use MailerSend\Helpers\Builder\Variable;
 use MailerSend\Helpers\Builder\Recipient;
 use MailerSend\Helpers\Builder\EmailParams;
+use MailerSend\Exceptions\MailerSendValidationException;
 
 date_default_timezone_set("America/New_York");
 
@@ -184,7 +185,12 @@ $emailParams = (new EmailParams())
     ->setTemplateId('jy7zpl9pwpg5vx6k')
     ->setVariables($variables);
 
-$mailersend->email->send($emailParams);
+    try{
+      $mailersend->email->send($emailParams);
+  } catch(MailerSendValidationException $e){
+      // See src/Exceptions/MailerSendValidationException.php for more more info
+      print_r($e->getResponse()->getBody()->getContents());
+  }
 
 
 $createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, payment, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
