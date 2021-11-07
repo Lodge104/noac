@@ -6,12 +6,12 @@ require __DIR__ . '../vendor/autoload.php';
 date_default_timezone_set("America/New_York");
 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+// // Check connection
+// if ($conn->connect_error) {
+//   die("Connection failed: " . $conn->connect_error);
+// }
 
 
 if (isset($_POST['bsa_id'])) {
@@ -134,10 +134,10 @@ $d = date("m-d-Y h:i:sa");
 $s = "0";
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, payment, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $payment, $aiacheck, $aia, $signature, $parent, $d, $s);
-$createAdult->execute();
-$createAdult->close();
+// $createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, payment, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+// $createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $payment, $aiacheck, $aia, $signature, $parent, $d, $s);
+// $createAdult->execute();
+// $createAdult->close();
 
 if ($payment == '1') {
   $poption = 'Option 1';
@@ -183,11 +183,14 @@ $variables = [
 ];
 
 $recipients = [
-  new Recipient($email, $firstName . ' ' . $lastName),
+  new Recipient($email, 'Nicholas Anderson'),
 ];
 
 $emailParams = (new EmailParams())
-  ->setRecipients($recipients)
+->setFrom('noac@lodge104.com')
+->setFromName('Occoneechee Lodge NOAC Leadership')
+->setRecipients($recipients)
+->setSubject('NOAC Application')
   ->setTemplateId('jy7zpl9pwpg5vx6k')
   ->setVariables($variables);
 
