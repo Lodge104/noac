@@ -193,9 +193,6 @@ if (!$userInfo) : ?>
 
                         ?><tr>
                             <td><?php echo $getAdult['chapter']; ?></td>
-                          <?php }
-                        $submissionsQuery->close();
-                          ?>
                           <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
                           <td><?php echo $getAdult['bsa_id']; ?></td>
                           <td><?php echo $getAdult['level']; ?></td>
@@ -214,7 +211,7 @@ if (!$userInfo) : ?>
                                 <?php } ?> -->
                           </td>
                           </tr>
-                        <?php } ?>
+                        <?php } } ?>
                       </tbody>
                     </table>
                   </div>
