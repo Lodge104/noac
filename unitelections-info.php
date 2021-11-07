@@ -5,8 +5,6 @@ require 'vendor/autoload.php';
 use Auth0\SDK\Auth0;
 use Twilio\Rest\Client;
 
-\Stripe\Stripe::setApiKey(getenv('STRIPEKEY'));
-
 $servername = getenv('SERVERNAME');
 $username = getenv('DBUSERNAME');
 $password = getenv('DBPASSWORD');
