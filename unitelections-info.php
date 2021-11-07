@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 
 use Auth0\SDK\Auth0;
 use Twilio\Rest\Client;
+use MailerSend\MailerSend;
 
 $servername = getenv('SERVERNAME');
 $username = getenv('DBUSERNAME');
@@ -21,6 +22,7 @@ $sidp = getenv('TWILIOID');
 $tokenp = getenv('TWILIOTOKEN');
 $transactionURL = getenv('TRANSACTIONURL');
 $membersURL = getenv('MEMBERSURL');
+$mailersend = new MailerSend(['api_key' => getenv('MAILERSEND')]);
 $auth0 = new Auth0([
     'domain' => getenv('AUTH0DOMAIN'),
     'client_id' => getenv('AUTH0CLIENTID'),
