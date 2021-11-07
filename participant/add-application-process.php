@@ -1,7 +1,7 @@
 <?php
 include '../unitelections-info.php';
 
-require __DIR__ . '../vendor/autoload.php';
+require '../vendor/autoload.php';
 
 date_default_timezone_set("America/New_York");
 
@@ -154,7 +154,7 @@ $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birt
 
   include '../unitelections-info.php';
 
-  require __DIR__ . '../vendor/autoload.php';
+  require '../vendor/autoload.php';
 
 
 use MailerSend\MailerSend;
