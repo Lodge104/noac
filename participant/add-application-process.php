@@ -198,4 +198,4 @@ $createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstNa
 $createAdult->execute();
 $createAdult->close();
 
-header("Location: check.php?bsaID=" . $bsa_id . "&status=2");
+// header("Location: check.php?bsaID=" . $bsa_id . "&status=2");
