@@ -2,9 +2,9 @@
 include '../unitelections-info.php';
 require '../vendor/autoload.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+use MailerSend\Helpers\Builder\Variable;
+use MailerSend\Helpers\Builder\Recipient;
+use MailerSend\Helpers\Builder\EmailParams;
 
 date_default_timezone_set("America/New_York");
 
@@ -60,73 +60,33 @@ $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birt
   : (date("Y") - $birthDate[2]));
 echo "Age is:" . $age;
 
+$variables = [
+  new Variable($email, [
+      'age' => $age,
+      'dob' => $dob,
+      'zip' => $zip,
+      'city' => $city,
+      'bsaid' => $bsa_id,
+      'level' => $level,
+      'gender' => $gender,
+      'chapter' => $chapter,
+      'poption' => $poption,
+      'street1' => $address_line1,
+      'street2' => $address_line2,
+      'lastName' => $lastName,
+      'firstName' => $firstName
+  ])
+];
 
+$recipients = [
+  new Recipient($email, $firstName . ' ' . $lastName),
+];
 
-include '../unitelections-info.php';
-$mail = new PHPMailer(true);
-  $mail->IsSMTP();        //Sets Mailer to send message using SMTP
-  $mail->Host = $host;  //Sets the SMTP hosts
-  $mail->Port = $port;        //Sets the default SMTP server port
-  $mail->SMTPAuth = true;       //Sets SMTP authentication. Utilizes the Username and Password variables
-  $mail->Username = $musername;     //Sets SMTP username
-  $mail->Password = $mpassword;     //Sets SMTP password
-  $mail->SMTPSecure = 'tls';       //Sets connection prefix. Options are "", "ssl" or "tls"
-  $mail->From = $mfrom;     //Sets the From email address for the message
-  $mail->FromName = $mfromname;    //Sets the From name of the message
-  $mail->AddAddress($email);//Adds a "To" address
-  $mail->addBCC($notify);
-  $mail->WordWrap = 50;       //Sets word wrapping on the body of the message to a given number of characters
-  $mail->IsHTML(true);       //Sets message type to HTML    
-  $mail->Subject = 'NOAC Application Submitted for ' . $firstName . ' ' . $lastName;    //Sets the Subject of the message
-  $mail->Body = '<table cellspacing="0" cellpadding="0" border="0" width="600px" style="margin:auto">
-  <tbody>
-    <tr>
-      <td style="text-align:center;padding:10px 0 20px 0"><a href="%%7Brecipient.ticket_link%7D" target="_blank"> <img src="https://lodge104.net/wp-content/uploads/2018/09/Horizontal-Brand-Color.png" alt="Occonechee Lodge Support" width="419" height="69" data-image="xoo68adcoon5"></a></td>
-    </tr>
-    <tr>
-      <td><table cellspacing="0" cellpadding="0" border="0" width="100%">
-          <tbody>
-            <tr>
-              <td style="text-align:center;color:#ffffff;background-color:#2d3e4f;padding:8px 0;font-size:13px"> Occoneechee Lodge NOAC Contingent </td>
-            </tr>
-            <tr>
-              <td style="text-align:left;border:1px solid #2d3e4f;padding:10px 30px;background-color:#fefefe;line-height:18px;color:#2d3e4f;font-size:13px"> 
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tbody>
-                    <tr>
-                      <td style="padding:15px 0; width:100%"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed">
-                          <tbody>
-                            <tr>
-                              <td style="width:100%" valign="top">
-                                <br>
-                                Dear '.$firstName.' '.$lastName.',<br>
-                                <br>
-                                Your application for the NOAC Contingent has been submitted. Your next step is to pay the deposit using the button found on your participant dashboard at the link below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership.<br>
-                                <br>Payment option selected: '.$poption.'<br>
-                                <br>Current Age: '.$age.'<br>
-                                Date of Birth: '.$dob.'<br><br>
-                                </td>
-                            </tr>
-                          </tbody>
-                          <tbody>
-                            <tr>
-                              <td style="width:100%;text-align:center">
-							  <a href="https://noac.lodge104.net/participant/check.php?bsaID=' . $bsa_id . '" target="_blank">
-							  <p>https://noac.lodge104.net/participant/check.php?bsaID=' . $bsa_id . '</p>
-							  </a>
-							  </td>
-                            </tr>
-                          </tbody>
-                        </table></td>
-                    </tr>
-                  </tbody>
-                </table></td>
-            </tr>
-          </tbody>
-        </table></td>
-    </tr>
-  </tbody>
-</table>';   //An HTML or plain text message body
-  if($mail->Send())        //Send an Email. Return true on success or false on error
+$emailParams = (new EmailParams())
+  ->setRecipients($recipients)
+  ->setTemplateId('jy7zpl9pwpg5vx6k')
+  ->setVariables($variables);
+
+$mailersend->email->send($emailParams);
 
 header("Location: check.php?bsaID=" . $bsa_id . "&status=2");
