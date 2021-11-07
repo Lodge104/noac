@@ -139,11 +139,6 @@ $d = date("m-d-Y h:i:sa");
 $s = "0";
 
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, payment, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $payment, $aiacheck, $aia, $signature, $parent, $d, $s);
-$createAdult->execute();
-$createAdult->close();
-
 if ($payment == '1') {
   $poption = 'Option 1';
 } else {
@@ -190,5 +185,11 @@ $emailParams = (new EmailParams())
     ->setVariables($variables);
 
 $mailersend->email->send($emailParams);
+
+
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, level, payment, aia_check, aia, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult->bind_param("sssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $level, $payment, $aiacheck, $aia, $signature, $parent, $d, $s);
+$createAdult->execute();
+$createAdult->close();
 
 header("Location: check.php?bsaID=" . $bsa_id . "&status=2");
