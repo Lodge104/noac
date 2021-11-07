@@ -73,20 +73,20 @@ if (!$userInfo) : ?>
             <div class="row gx-5 justify-content-center">
               <div class="card col-md-5">
                 <div class="card-body">
-                <form action="/participant/check.php" method="get">
-                <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
-                  <div class="form-group">
-                    <label for="bsaID" class="required">BSA ID</label>
-                    <input type="text" id="bsaID" name="bsaID" class="form-control" required>
-                  </div>
-                  <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
-                </form>
+                  <form action="/participant/check.php" method="get">
+                    <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
+                    <div class="form-group">
+                      <label for="bsaID" class="required">BSA ID</label>
+                      <input type="text" id="bsaID" name="bsaID" class="form-control" required>
+                    </div>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+                  </form>
                 </div>
               </div>
               <div class="col-md-1"></div>
               <div class="card col-md-5">
                 <div class="card-body">
-                <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
+                  <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
                   <a role="button" class="btn btn-lg btn-primary btn-block" href="https://lodge104.net/noac">NOAC Information</a>
                   <!-- <h3 class="form-signin-heading text-center">Administrator Login</h3>
                   <a role="button" class="btn btn-lg btn-primary btn-block" href="/login.php">Login</a> -->
@@ -152,79 +152,58 @@ if (!$userInfo) : ?>
             }
 
             ?>
-              <?php
-              if ($_GET['status'] == 1) { ?>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <div class="alert alert-success" role="alert">
-                  <strong>Saved!</strong> Your data has been saved! Thanks!
-                  <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
-                </div>
-              <?php } ?>
-              <section class="row">
-                <div class="col-12">
-                  <h2>Review Adult Nominations</h2>
-                </div>
-              </section>
+            <?php
+            if ($_GET['status'] == 1) { ?>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+              <div class="alert alert-success" role="alert">
+                <strong>Saved!</strong> Your data has been saved! Thanks!
+                <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+              </div>
+            <?php } ?>
+            <section class="row">
+              <div class="col-12">
+                <h2>Review NOAC Applications</h2>
+              </div>
+            </section>
 
-              <?php
-              $host = $_SERVER['SERVER_NAME'];
-              if($host == 'nominate-test.lodge104.net') {
-              $adultNominationQuery = $conn->prepare("SELECT * from adultNominations");
-              } else {
-              $adultNominationQuery = $conn->prepare("SELECT unitElections.unitCommunity, adultNominations.* from adultNominations INNER JOIN unitElections ON adultNominations.unitId=unitElections.id WHERE unitElections.unitCommunity != 'Test Unit'");
-              }
-              $adultNominationQuery->execute();
-              $adultNominationQ = $adultNominationQuery->get_result();
-              if ($adultNominationQ->num_rows > 0) {
-                //print election info
-              ?>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h3 class="card-title">Adult Nominations</h3>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Unit</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">BSA ID</th>
-                            <th scope="col">Position</th>
-                            <th scope="col">Review and Approve</th>
-                            <th scope="col">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
+            <?php
+            $adultNominationQuery = $conn->prepare("SELECT * from participants");
+            $adultNominationQuery->execute();
+            $adultNominationQ = $adultNominationQuery->get_result();
+            if ($adultNominationQ->num_rows > 0) {
+              //print election info
+            ?>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h3 class="card-title">Adult Nominations</h3>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Chapter</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">BSA ID</th>
+                          <th scope="col">Level</th>
+                          <th scope="col">Review and Approve</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
 
-                          ?><tr>
-                              <?php
-                              $submissionsQuery = $conn->prepare("SELECT * from unitElections WHERE id=?");
-                              $submissionsQuery->bind_param("s", $getAdult['unitId']);
-                              $submissionsQuery->execute();
-                              $submissionsQ = $submissionsQuery->get_result();
-                              if ($submissionsQ->num_rows > 0) {
-                                $submissions = $submissionsQ->fetch_assoc();
-                              ?>
-                                <td><?php echo $submissions['unitCommunity']; ?> <?php echo $submissions['unitNumber']; ?></td>
-                              <?php }
-                              $submissionsQuery->close();
-                              ?>
-                              <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
-                              <td><?php echo $getAdult['bsa_id']; ?></td>
-                              <td><?php echo $getAdult['position']; ?></td>
-                              <td><?php
-                                  if (($getAdult['advisor_signature'] == '1')) { ?>
-                                  <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review Again</a>
-                                <?php } elseif (($getAdult['advisor_signature'] == '2')) { ?>
-                                  <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review Again</a>
-                                <?php } elseif (($getAdult['chair_signature'] == '1')) { ?>
-                                  <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review and Approve</a>
-                                  <? } else { ?>
-                                  <span class="text-muted">Not Ready</span>
-                                <?php } ?>
-                              <td>
-                                <?php
-                                if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
+                        ?><tr>
+                            <td><?php echo $getAdult['chapter']; ?></td>
+                          <?php }
+                        $submissionsQuery->close();
+                          ?>
+                          <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
+                          <td><?php echo $getAdult['bsa_id']; ?></td>
+                          <td><?php echo $getAdult['level']; ?></td>
+                          <td>
+                            <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review and Approve</a>
+                          <td>
+                            <!-- <?php
+                                  if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
                                   <span class="badge badge-warning">Not Approved</span>
                                 <?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
                                   <span class="badge badge-success">Approved</span>
@@ -232,25 +211,15 @@ if (!$userInfo) : ?>
                                   <span class="badge badge-danger">Waiting for Selection Committee</span>
                                 <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
                                   <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
-                                <?php } ?>
-                              </td>
-                            </tr>
-                          <?php } ?>
-                        </tbody>
-                      </table>
-                    </div>
+                                <?php } ?> -->
+                          </td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-                <!--</div>-->
-              <?php
-              } else {
-              ?>
-                <div class="alert alert-danger" role="alert">
-                  There are no elections in the database.
-                </div>
-              <?php
-              }
-              ?>
+              </div>
           </div>
       </div>
       </main>
