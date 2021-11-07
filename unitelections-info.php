@@ -21,6 +21,7 @@ $sidp = getenv('TWILIOID');
 $tokenp = getenv('TWILIOTOKEN');
 $transactionURL = getenv('TRANSACTIONURL');
 $membersURL = getenv('MEMBERSURL');
+$mailersend = getenv('MAILERSEND');
 $auth0 = new Auth0([
     'domain' => getenv('AUTH0DOMAIN'),
     'client_id' => getenv('AUTH0CLIENTID'),

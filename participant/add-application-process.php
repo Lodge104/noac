@@ -146,47 +146,7 @@ $birthDate = explode("-", $dob);
 $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
   ? ((date("Y") - $birthDate[2]) - 1)
   : (date("Y") - $birthDate[2]));
-
-// $mailersend = new MailerSend(['api_key' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYWRiOTEyNGQ2NWE0Zjk1YjNmMTljOTQ2YTNkNjNlZmZlZDcyNDg1ZDg0YjU1OWY3NDBlMzU1ZGQzNzZkODU3ZjkxZjZmMWYxNzFhYzZjYjkiLCJpYXQiOjE2MzYzMTkyMTcuODc5NjY2LCJuYmYiOjE2MzYzMTkyMTcuODc5NjcsImV4cCI6NDc5MTk5MjgxNy44MjY1NjcsInN1YiI6IjE1MjYyIiwic2NvcGVzIjpbImVtYWlsX2Z1bGwiXX0.QRmCze0blgfVdpc__Oti7GZoR5GdNLVF41z3LXGAeL_6OZ_eNTLQdKXS6aP4D0GOqJnJRRTOPRBiLAviD6v5TYceoCaZkvQV1SLSKnrN8pEe-8aiATj5w4dqnNqyPMsm7lRaQ5adBKfytl8RxvXo2Vc9y-5ZjzzXqtIrfT-KsCQ1wOqPdl8Axi8l5aAQ2mOLWRe0ZoqvvW9nb4aMld25jHMmV3PlQXq6LeI9Wd_eZyMQMfBRnQPltOHxRaT_6T14RjUix7tuiKtwsowlWyPEMKJ-dCBGrotfJx_bjgHvs_LfMctqx6HLQR4sidO_QM2kAcQVopOYbbQAlRRbA0rzIrV0sdhYwZ9l9RIQFs-XNOZoq5OO558peh3JWnc1wwSz_Gr3IJJKP6yvrUrb_JTmmOOUY8P8SgOTgfYdvI-aqZhGnnYTPPRI4bX6_FoH7nEplyNQ770PizgLGgz4iLDKjCQTx9CKILrNU1JHpF7eXLZMR_oCS4HE8YWVShS688jDs2kNyitk6ct47VGC6tUUuEyJGOcnbZSUqtGwFBTaUk5tnelLy-DfuCMCN-AJhMrWuEZD4ILh0jR0Mo34Fd2zbrbG5ETZSPz4DFhdyEhWBgEGfq3l0djoQv6MAwjeVTp_tQAoSVpxoaiuz9BqkjA4vQOUnzz6nwJXzQsoRaKHtow']);
-
-// $variables = [
-//     new Variable('nickanderson1998@gmail.com', [
-//         'age' => '34',
-//         'dob' => 'DOB',
-//         'zip' => 'ZIP',
-//         'city' => 'CITY',
-//         'bsaid' => 'BSAID',
-//         'level' => 'LEVEL',
-//         'gender' => 'GENDER',
-//         'chapter' => 'CHAPTER',
-//         'poption' => 'POPTION',
-//         'street1' => 'STREET1',
-//         'street2' => 'STREET2',
-//         'lastName' => 'LASTNAME',
-//         'firstName' => 'FIRSTNAME'
-//     ])
-// ];
-
-// $recipients = [
-//     new Recipient('nickanderson1998@gmail.com', 'Nicholas Anderson'),
-// ];
-
-// $emailParams = (new EmailParams())
-//     ->setFrom('noac@lodge104.net')
-//     ->setFromName('Occoneechee Lodge NOAC Leadership')
-//     ->setRecipients($recipients)
-//     ->setSubject('NOAC Application')
-//     ->setTemplateId('jy7zpl9pwpg5vx6k')
-//     ->setVariables($variables);
-
-//     try{
-//       $mailersend->email->send($emailParams);
-//   } catch(MailerSendValidationException $e){
-//       // See src/Exceptions/MailerSendValidationException.php for more more info
-//       print_r($e->getResponse()->getBody()->getContents());
-//   }
-
-
+  
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'https://api.mailersend.com/v1/email');
@@ -197,7 +157,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n    \"from\": {\n        \"email\": \"n
 $headers = array();
 $headers[] = 'Content-Type: application/json';
 $headers[] = 'X-Requested-With: XMLHttpRequest';
-$headers[] = 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYWRiOTEyNGQ2NWE0Zjk1YjNmMTljOTQ2YTNkNjNlZmZlZDcyNDg1ZDg0YjU1OWY3NDBlMzU1ZGQzNzZkODU3ZjkxZjZmMWYxNzFhYzZjYjkiLCJpYXQiOjE2MzYzMTkyMTcuODc5NjY2LCJuYmYiOjE2MzYzMTkyMTcuODc5NjcsImV4cCI6NDc5MTk5MjgxNy44MjY1NjcsInN1YiI6IjE1MjYyIiwic2NvcGVzIjpbImVtYWlsX2Z1bGwiXX0.QRmCze0blgfVdpc__Oti7GZoR5GdNLVF41z3LXGAeL_6OZ_eNTLQdKXS6aP4D0GOqJnJRRTOPRBiLAviD6v5TYceoCaZkvQV1SLSKnrN8pEe-8aiATj5w4dqnNqyPMsm7lRaQ5adBKfytl8RxvXo2Vc9y-5ZjzzXqtIrfT-KsCQ1wOqPdl8Axi8l5aAQ2mOLWRe0ZoqvvW9nb4aMld25jHMmV3PlQXq6LeI9Wd_eZyMQMfBRnQPltOHxRaT_6T14RjUix7tuiKtwsowlWyPEMKJ-dCBGrotfJx_bjgHvs_LfMctqx6HLQR4sidO_QM2kAcQVopOYbbQAlRRbA0rzIrV0sdhYwZ9l9RIQFs-XNOZoq5OO558peh3JWnc1wwSz_Gr3IJJKP6yvrUrb_JTmmOOUY8P8SgOTgfYdvI-aqZhGnnYTPPRI4bX6_FoH7nEplyNQ770PizgLGgz4iLDKjCQTx9CKILrNU1JHpF7eXLZMR_oCS4HE8YWVShS688jDs2kNyitk6ct47VGC6tUUuEyJGOcnbZSUqtGwFBTaUk5tnelLy-DfuCMCN-AJhMrWuEZD4ILh0jR0Mo34Fd2zbrbG5ETZSPz4DFhdyEhWBgEGfq3l0djoQv6MAwjeVTp_tQAoSVpxoaiuz9BqkjA4vQOUnzz6nwJXzQsoRaKHtow';
+$headers[] = 'Authorization: Bearer ' . $mailersend;
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $result = curl_exec($ch);
