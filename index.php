@@ -221,13 +221,45 @@ if (!$userInfo) : ?>
                                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#Personal-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="home">Personal Information</a>
                                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#Contact-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="profile">Contact Information</a>
                                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="messages">Scouting Information</a>
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#Payment-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="payment">Payment Information</a>
                                           </div>
                                         </div>
+                                        <?php
+                                                    $url = ($transactionURL . $getAdult['bsa_id']);
+
+                                                    $curl = curl_init($url);
+                                                    curl_setopt($curl, CURLOPT_URL, $url);
+                                                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                                                
+                                                    $headers = array(
+                                                      "Accept: application/json",
+                                                      ("Authorization: Bearer " . $bearer),
+                                                    );
+                                                    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+                                                    //for debug only!
+                                                    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                                                    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                                                
+                                                    $resp = curl_exec($curl);
+                                                    if (!curl_errno($curl)) {
+                                                      switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+                                                        case 200:  # OK
+                                                          break;
+                                                        default:
+                                                      }
+                                                    }
+                                                    curl_close($curl);
+                                                
+                                                    $json = json_decode($resp, true);
+                                                    $transactions = $json['transactions'];
+                                                    $sku = array_column($transactions, 'sku');
+                                                    ?>
                                         <div class="col-8">
                                           <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="Personal-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-home-list"><?php echo $getAdult['address_line1'] . ", " . $getAdult['address_line2']; ?><br><?php echo $getAdult['city'] . ", " . $getAdult['state'] . " " . $getAdult['zip']; ?><br><b>Date of Birth: </b><?php echo $getAdult['dob']; ?><br><b>Gender: </b><?php echo $getAdult['gender']; ?><br><b>T-Shirt Size: </b><?php echo $getAdult['tshirt']; ?></div>
                                             <div class="tab-pane fade" id="Contact-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list"><b>Home Phone: </b><?php echo $getAdult['hphone']; ?><br><b>Cell Phone: </b><?php echo $getAdult['cphone']; ?><br><b>Email Address: </b><?php echo $getAdult['email']; ?></div>
                                             <div class="tab-pane fade" id="Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-messages-list"><b>Chapter: </b><?php echo $getAdult['chapter']; ?><br><b>Level: </b><?php echo $getAdult['level']; ?><br><b>BSA ID: </b><?php echo $getAdult['bsa_id']; ?><br><?php if ($getAdult['aia_check'] == '1') { ?><b>AIA Participation: </b>Yes<br><b>AIA Reasoning: <?php echo $getAdult['aia']; ?></b><?php } ?></div>
+                                            <div class="tab-pane fade" id="Payment-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list">Payment Option: <?php if ($getAdult['payment'] == '1') { ?>Pay in Full <br>Paid?: <?php if ((in_array("NOAC Paid-in-Full-Y", $sku)) || (in_array("NOAC Paid-in-Full", $sku))) { ?> Yes <?php } else { ?>No<?php }} else {?>Payment Plan<br></div>
                                           </div>
                                         </div>
                                       </div>
