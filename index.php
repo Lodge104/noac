@@ -236,17 +236,17 @@ if (!$userInfo) : ?>
                                         <form action="action.php" method="post">
                                           <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
                                           <input name="Option" type="hidden" value="3">
-                                          <input type="submit" class="btn btn-primary">
+                                          <input type="submit" class="btn btn-primary" value="Reject">
                                         </form>
                                         <form action="action.php" method="post">
                                           <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
                                           <input name="Option" type="hidden" value="2">
-                                          <input type="button" class="btn btn-primary">
+                                          <input type="submit" class="btn btn-primary" value="Waitlist">
                                         </form>
                                         <form action="action.php" method="post">
                                           <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>"></input>
                                           <input name="Option" type="hidden" value="1">
-                                          <input type="submit" class="btn btn-primary">
+                                          <input type="submit" class="btn btn-primary" value="Approve">
                                         </form>
                                       </div>
                                     </div>
