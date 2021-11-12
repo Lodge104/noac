@@ -88,7 +88,7 @@ if (!$userInfo) : ?>
               <div class="card col-md-5">
                 <div class="card-body">
                   <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
-                  <a role="button" class="btn btn-lg btn-primary btn-block" href="https://lodge104.net/noac">NOAC Information</a>
+                  <a role="button" class="btn btn-lg btn-primary btn-block" href="https://lodge104.net/calendar/noac">NOAC Information</a>
                   <!-- <h3 class="form-signin-heading text-center">Administrator Login</h3>
                   <a role="button" class="btn btn-lg btn-primary btn-block" href="/login.php">Login</a> -->
                 </div>
