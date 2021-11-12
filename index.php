@@ -233,21 +233,28 @@ if (!$userInfo) : ?>
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel & Close</button>
+
+                                        <?php if ($getAdult['status'] != '1') { ?>
                                         <form action="action.php" method="post">
                                           <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
                                           <input name="Option" type="hidden" value="3">
                                           <input type="submit" class="btn btn-primary" value="Reject">
                                         </form>
+                                        <?php if ($getAdult['status'] != '2' || $getAdult['status'] != '3') { ?>
                                         <form action="action.php" method="post">
                                           <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
                                           <input name="Option" type="hidden" value="2">
                                           <input type="submit" class="btn btn-primary" value="Waitlist">
                                         </form>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php if ($getAdult['status'] != '3') { ?>
                                         <form action="action.php" method="post">
                                           <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>"></input>
                                           <input name="Option" type="hidden" value="1">
                                           <input type="submit" class="btn btn-primary" value="Approve">
                                         </form>
+                                        <?php } ?>
                                       </div>
                                     </div>
                                   </div>
