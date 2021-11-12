@@ -299,8 +299,6 @@ if (!$userInfo) : ?>
                                   </div>
                                 </div>
                             <td><?php if ((in_array("22Y-NOAC Deposit", $sku)) || (in_array("22A-NOAC Deposit", $sku))) { ?>
-                                <span class="badge badge-danger">Awaiting Deposit</span>
-                              <?php } else { ?>
                                 <?php
                                   if ($getAdult['status'] == '0') { ?>
                                   <span class="badge badge-warning">Awaiting Review</span>
@@ -311,6 +309,8 @@ if (!$userInfo) : ?>
                                 <?php } elseif ($getAdult['status'] == '3') { ?>
                                   <span class="badge badge-danger">Rejected</span>
                                 <?php } ?>
+                              <?php } else { ?>
+                                <span class="badge badge-danger">Awaiting Deposit</span>
                               <?php } ?>
                             </td>
                           </tr>
