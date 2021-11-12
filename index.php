@@ -130,7 +130,7 @@ if (!$userInfo) : ?>
 
           <div class="collapse navbar-collapse c-navbar-content" id="navbar-main">
             <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link" href="/admin">Unit List</a>
+              <!--<a class="nav-item nav-link" href="/admin">Unit List</a>-->
               <a class="nav-item nav-link" href="https://lodge104.net" target="_blank">Occoneechee Lodge Home</a>
             </div>
           </div>
