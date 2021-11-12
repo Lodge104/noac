@@ -197,7 +197,7 @@ if (!$userInfo) : ?>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
                             <td>
-                              <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal">Review and Approve</a>
+                              <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal"<?php $modal = $getAdult['bsa_id']; ?>>Review and Approve</a>
                             <td>
                               <!-- <?php
                                     if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
@@ -223,7 +223,7 @@ if (!$userInfo) : ?>
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title <?php echo $modal; ?> </h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
