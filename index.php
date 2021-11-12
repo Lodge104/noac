@@ -204,12 +204,12 @@ if (!$userInfo) : ?>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
                             <td>
-                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal-<?php echo $getAdult['bsa_id']; ?>">Review and Approve</button>
-                              <div class="modal fade" id="exampleModal-<?php echo $getAdult['bsa_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#Modal-<?php echo $getAdult['bsa_id']; ?>">Review and Approve</button>
+                              <div class="modal fade" id="Modal-<?php echo $getAdult['bsa_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title <?php echo $getAdult['bsa_id']; ?> </h5>
+                                      <h5 class="modal-title" id="exampleModalLabel"><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
@@ -224,17 +224,16 @@ if (!$userInfo) : ?>
                                   </div>
                                 </div>
                               </div>
-                            <td>
-                              <!-- <?php
-                                    if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
-                                  <span class="badge badge-warning">Not Approved</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
-                                  <span class="badge badge-success">Approved</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1' && $getAdult['chair_signature'] == '1')) { ?>
-                                  <span class="badge badge-danger">Waiting for Selection Committee</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
-                                  <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
-                                <?php } ?> -->
+                            <td><?php
+                                if ($getAdult['status'] == '0') { ?>
+                                <span class="badge badge-warning">Awaiting Review</span>
+                              <?php } elseif ($getAdult['status'] == '1') { ?>
+                                <span class="badge badge-success">Approved</span>
+                              <?php } elseif ($getAdult['leader_signature'] == '2') { ?>
+                                <span class="badge badge-danger">Waitlisted</span>
+                              <?php } elseif ($getAdult['leader_signature'] == '3') { ?>
+                                <span class="badge badge-danger">Rejected</span>
+                              <?php } ?>
                             </td>
                           </tr>
                       <?php }
