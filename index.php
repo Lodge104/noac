@@ -187,11 +187,11 @@ if (!$userInfo) : ?>
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">Chapter</th>
                           <th scope="col">Name</th>
                           <th scope="col">BSA ID</th>
                           <th scope="col">Level</th>
-                          <th scope="col">Review and Approve</th>
+                          <th scope="col">Chapter</th>
+                          <th scope="col">Review</th>
                           <th scope="col">Status</th>
                         </tr>
                       </thead>
@@ -199,12 +199,12 @@ if (!$userInfo) : ?>
                         <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
 
                         ?><tr>
-                            <td><?php echo $getAdult['chapter']; ?></td>
                             <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
+                            <td><?php echo $getAdult['chapter']; ?></td>
                             <td>
-                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#Modal-<?php echo $getAdult['bsa_id']; ?>">Review and Approve</button>
+                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#Modal-<?php echo $getAdult['bsa_id']; ?>">Review</button>
                               <div class="modal fade" id="Modal-<?php echo $getAdult['bsa_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                   <div class="modal-content">
