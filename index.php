@@ -45,6 +45,7 @@ if (!$userInfo) : ?>
 
         <div class="collapse navbar-collapse c-navbar-content" id="navbar-main">
           <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link" href="/login.php">Admin Login</a>
             <a class="nav-item nav-link" href="https://lodge104.net" target="_blank">Occoneechee Lodge Home</a>
           </div>
         </div>
@@ -130,7 +131,7 @@ if (!$userInfo) : ?>
 
           <div class="collapse navbar-collapse c-navbar-content" id="navbar-main">
             <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link" href="/admin">Unit List</a>
+              <!--<a class="nav-item nav-link" href="/admin">Unit List</a>-->
               <a class="nav-item nav-link" href="https://lodge104.net" target="_blank">Occoneechee Lodge Home</a>
             </div>
           </div>
@@ -172,6 +173,13 @@ if (!$userInfo) : ?>
             $adultNominationQ = $adultNominationQuery->get_result();
             if ($adultNominationQ->num_rows > 0) {
               //print election info
+
+              session_start();
+              if (!isset($_SESSION['count'])) {
+                $_SESSION['count'] = 0;
+              } else {
+                $_SESSION['count']++;
+              }
             ?>
               <div class="card mb-3">
                 <div class="card-body">
@@ -180,11 +188,11 @@ if (!$userInfo) : ?>
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">Chapter</th>
                           <th scope="col">Name</th>
                           <th scope="col">BSA ID</th>
                           <th scope="col">Level</th>
-                          <th scope="col">Review and Approve</th>
+                          <th scope="col">Chapter</th>
+                          <th scope="col">Review</th>
                           <th scope="col">Status</th>
                         </tr>
                       </thead>
@@ -192,26 +200,123 @@ if (!$userInfo) : ?>
                         <?php while ($getAdult = $adultNominationQ->fetch_assoc()) {
 
                         ?><tr>
+                            <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
+                            <td><?php echo $getAdult['bsa_id']; ?></td>
+                            <td><?php echo $getAdult['level']; ?></td>
                             <td><?php echo $getAdult['chapter']; ?></td>
-                          <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
-                          <td><?php echo $getAdult['bsa_id']; ?></td>
-                          <td><?php echo $getAdult['level']; ?></td>
-                          <td>
-                            <a href="approve-nomination.php?bsaID=<?php echo $getAdult['bsaID']; ?>" class="btn btn-primary" role="button">Review and Approve</a>
-                          <td>
-                            <!-- <?php
-                                  if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
-                                  <span class="badge badge-warning">Not Approved</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
+                            <td>
+                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#Modal-<?php echo $getAdult['bsa_id']; ?>">Review</button>
+                              <div class="modal fade" id="Modal-<?php echo $getAdult['bsa_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="row">
+                                        <div class="col-4">
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#Personal-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="home">Personal Information</a>
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#Contact-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="profile">Contact Information</a>
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="messages">Scouting Information</a>
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#Payment-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="payment">Payment Information</a>
+                                          </div>
+                                        </div>
+                                        <?php
+                                        $url = ($transactionURL . $getAdult['bsa_id']);
+
+                                        $curl = curl_init($url);
+                                        curl_setopt($curl, CURLOPT_URL, $url);
+                                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                                        $headers = array(
+                                          "Accept: application/json",
+                                          ("Authorization: Bearer " . $bearer),
+                                        );
+                                        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+                                        //for debug only!
+                                        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                                        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+                                        $resp = curl_exec($curl);
+                                        if (!curl_errno($curl)) {
+                                          switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+                                            case 200:  # OK
+                                              break;
+                                            default:
+                                          }
+                                        }
+                                        curl_close($curl);
+
+                                        $json = json_decode($resp, true);
+                                        $transactions = $json['transactions'];
+                                        $sku = array_column($transactions, 'sku');
+                                        ?>
+                                        <div class="col-8">
+                                          <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="Personal-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-home-list"><?php echo $getAdult['address_line1'] . ", " . $getAdult['address_line2']; ?><br><?php echo $getAdult['city'] . ", " . $getAdult['state'] . " " . $getAdult['zip']; ?><br><b>Date of Birth: </b><?php echo $getAdult['dob']; ?><br><b>Gender: </b><?php echo $getAdult['gender']; ?><br><b>T-Shirt Size: </b><?php echo $getAdult['tshirt']; ?></div>
+                                            <div class="tab-pane fade" id="Contact-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list"><b>Home Phone: </b><?php echo $getAdult['hphone']; ?><br><b>Cell Phone: </b><?php echo $getAdult['cphone']; ?><br><b>Email Address: </b><?php echo $getAdult['email']; ?></div>
+                                            <div class="tab-pane fade" id="Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-messages-list"><b>Chapter: </b><?php echo $getAdult['chapter']; ?><br><b>Level: </b><?php echo $getAdult['level']; ?><br><b>BSA ID: </b><?php echo $getAdult['bsa_id']; ?><br><?php if ($getAdult['aia_check'] == '1') { ?><b>AIA Participation: </b>Yes<br><b>AIA Reasoning: <?php echo $getAdult['aia']; ?></b><?php } ?></div>
+                                            <div class="tab-pane fade" id="Payment-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list">Payment Option: <?php if ($getAdult['payment'] == '1') { ?>Pay in Full <br>Paid in Full?: <?php if ((in_array("NOAC Paid-in-Full-Y", $sku)) || (in_array("NOAC Paid-in-Full", $sku))) { ?> Yes <?php } else { ?>No<?php }
+                                                                                                                                                                                                                                                                                                                                                                                          } else { ?>Payment Plan<br><?php } ?></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel & Close</button>
+                                        <?php if ((in_array("22Y-NOAC Deposit", $sku)) || (in_array("22A-NOAC Deposit", $sku))) { ?>
+
+                                          <?php if ($getAdult['status'] != '1') { ?>
+                                            <form action="action.php" method="post">
+                                              <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                              <input name="Option" type="hidden" value="3">
+                                              <input type="submit" class="btn btn-primary" value="Reject">
+                                            </form>
+                                            <?php if ($getAdult['status'] != '2' || $getAdult['status'] != '3') { ?>
+                                              <form action="action.php" method="post">
+                                                <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                                <input name="Option" type="hidden" value="2">
+                                                <input type="submit" class="btn btn-primary" value="Waitlist">
+                                              </form>
+                                            <?php } ?>
+                                          <?php } ?>
+                                          <?php if ($getAdult['status'] != '3') { ?>
+                                            <form action="action.php" method="post">
+                                              <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>"></input>
+                                              <input name="Option" type="hidden" value="1">
+                                              <input type="submit" class="btn btn-primary" value="Approve">
+                                            </form>
+                                          <?php } ?>
+                                        <?php } else { ?>
+                                          <div class="alert alert-danger" role="alert">
+                                            Deposit has not yet been paid.
+                                          </div>
+                                        <?php } ?>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            <td><?php if ((in_array("22Y-NOAC Deposit", $sku)) || (in_array("22A-NOAC Deposit", $sku))) { ?>
+                                <?php
+                                  if ($getAdult['status'] == '0') { ?>
+                                  <span class="badge badge-warning">Awaiting Review</span>
+                                <?php } elseif ($getAdult['status'] == '1') { ?>
                                   <span class="badge badge-success">Approved</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1' && $getAdult['chair_signature'] == '1')) { ?>
-                                  <span class="badge badge-danger">Waiting for Selection Committee</span>
-                                <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
-                                  <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
-                                <?php } ?> -->
-                          </td>
+                                <?php } elseif ($getAdult['status'] == '2') { ?>
+                                  <span class="badge badge-danger">Waitlisted</span>
+                                <?php } elseif ($getAdult['status'] == '3') { ?>
+                                  <span class="badge badge-danger">Rejected</span>
+                                <?php } ?>
+                              <?php } else { ?>
+                                <span class="badge badge-danger">Awaiting Deposit</span>
+                              <?php } ?>
+                            </td>
                           </tr>
-                        <?php } } ?>
+                      <?php }
+                      } ?>
                       </tbody>
                     </table>
                   </div>
