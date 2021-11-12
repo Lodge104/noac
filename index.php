@@ -204,8 +204,8 @@ if (!$userInfo) : ?>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
                             <td>
-                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal">Review and Approve</button>
-                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal-<?php echo $getAdult['bsa_id']; ?>">Review and Approve</button>
+                              <div class="modal fade" id="exampleModal-<?php echo $getAdult['bsa_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
