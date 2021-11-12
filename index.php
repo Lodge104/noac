@@ -257,9 +257,9 @@ if (!$userInfo) : ?>
                                 <span class="badge badge-warning">Awaiting Review</span>
                               <?php } elseif ($getAdult['status'] == '1') { ?>
                                 <span class="badge badge-success">Approved</span>
-                              <?php } elseif ($getAdult['leader_signature'] == '2') { ?>
+                              <?php } elseif ($getAdult['status'] == '2') { ?>
                                 <span class="badge badge-danger">Waitlisted</span>
-                              <?php } elseif ($getAdult['leader_signature'] == '3') { ?>
+                              <?php } elseif ($getAdult['status'] == '3') { ?>
                                 <span class="badge badge-danger">Rejected</span>
                               <?php } ?>
                             </td>
