@@ -234,18 +234,18 @@ if (!$userInfo) : ?>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel & Close</button>
                                         <form action="action.php" method="post">
-                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
-                                          <input id="Option" type="hidden" value="3">
+                                          <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                          <input name="Option" type="hidden" value="3">
                                           <input type="submit" class="btn btn-primary">
                                         </form>
                                         <form action="action.php" method="post">
-                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
-                                          <input id="Option" type="hidden" value="2">
+                                          <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                          <input name="Option" type="hidden" value="2">
                                           <input type="button" class="btn btn-primary">
                                         </form>
                                         <form action="action.php" method="post">
-                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>"></input>
-                                          <input id="Option" type="hidden" value="1">
+                                          <input name="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>"></input>
+                                          <input name="Option" type="hidden" value="1">
                                           <input type="submit" class="btn btn-primary">
                                         </form>
                                       </div>
