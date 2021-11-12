@@ -73,20 +73,20 @@ if (!$userInfo) : ?>
             <div class="row gx-5 justify-content-center">
               <div class="card col-md-5">
                 <div class="card-body">
-                <form action="/participant/check.php" method="get">
-                <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
-                  <div class="form-group">
-                    <label for="bsaID" class="required">BSA ID</label>
-                    <input type="text" id="bsaID" name="bsaID" class="form-control" required>
-                  </div>
-                  <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
-                </form>
+                  <form action="/participant/check.php" method="get">
+                    <h3 class="form-signin-heading text-center">Applicant and Participant Login</h3>
+                    <div class="form-group">
+                      <label for="bsaID" class="required">BSA ID</label>
+                      <input type="text" id="bsaID" name="bsaID" class="form-control" required>
+                    </div>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+                  </form>
                 </div>
               </div>
               <div class="col-md-1"></div>
               <div class="card col-md-5">
                 <div class="card-body">
-                <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
+                  <h3 class="form-signin-heading text-center">Learn More About NOAC</h3>
                   <a role="button" class="btn btn-lg btn-primary btn-block" href="https://lodge104.net/noac">NOAC Information</a>
                   <!-- <h3 class="form-signin-heading text-center">Administrator Login</h3>
                   <a role="button" class="btn btn-lg btn-primary btn-block" href="/login.php">Login</a> -->

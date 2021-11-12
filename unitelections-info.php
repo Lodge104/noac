@@ -5,8 +5,6 @@ require 'vendor/autoload.php';
 use Auth0\SDK\Auth0;
 use Twilio\Rest\Client;
 
-\Stripe\Stripe::setApiKey(getenv('STRIPEKEY'));
-
 $servername = getenv('SERVERNAME');
 $username = getenv('DBUSERNAME');
 $password = getenv('DBPASSWORD');
@@ -23,6 +21,7 @@ $sidp = getenv('TWILIOID');
 $tokenp = getenv('TWILIOTOKEN');
 $transactionURL = getenv('TRANSACTIONURL');
 $membersURL = getenv('MEMBERSURL');
+$mailersend = getenv('MAILERSEND');
 $auth0 = new Auth0([
     'domain' => getenv('AUTH0DOMAIN'),
     'client_id' => getenv('AUTH0CLIENTID'),

@@ -24,7 +24,7 @@ if (!$userInfo) : ?>
     <meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1" />
     <meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
-    <title>Adult Nomination Portal | Occoneechee Lodge - Order of the Arrow, BSA</title>
+    <title>NOAC Application Portal | Occoneechee Lodge - Order of the Arrow, BSA</title>
 
     <link rel="stylesheet" href="../libraries/bootstrap-4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
