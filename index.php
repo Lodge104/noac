@@ -232,8 +232,22 @@ if (!$userInfo) : ?>
                                         </div>
                                       </div>
                                       <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel & Close</button>
+                                        <form action="action.php" method="post">
+                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                          <input id="Option" type="hidden" value="3">
+                                          <input type="submit" class="btn btn-primary" value="Reject">
+                                        </form>
+                                        <form action="action.php" method="post">
+                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                          <input id="Option" type="hidden" value="2">
+                                          <input type="button" class="btn btn-primary" value="Waitlist">
+                                        </form>
+                                        <form action="action.php" method="post">
+                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                          <input id="Option" type="hidden" value="1">
+                                          <input type="submit" class="btn btn-primary" value="Approve">
+                                        </form>
                                       </div>
                                     </div>
                                   </div>
