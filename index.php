@@ -298,15 +298,19 @@ if (!$userInfo) : ?>
                                     </div>
                                   </div>
                                 </div>
-                            <td><?php
-                                if ($getAdult['status'] == '0') { ?>
-                                <span class="badge badge-warning">Awaiting Review</span>
-                              <?php } elseif ($getAdult['status'] == '1') { ?>
-                                <span class="badge badge-success">Approved</span>
-                              <?php } elseif ($getAdult['status'] == '2') { ?>
-                                <span class="badge badge-danger">Waitlisted</span>
-                              <?php } elseif ($getAdult['status'] == '3') { ?>
-                                <span class="badge badge-danger">Rejected</span>
+                            <td><?php if ((in_array("22Y-NOAC Deposit", $sku)) || (in_array("22A-NOAC Deposit", $sku))) { ?>
+                                <span class="badge badge-danger">Awaiting Deposit</span>
+                              <?php } else { ?>
+                                <?php
+                                  if ($getAdult['status'] == '0') { ?>
+                                  <span class="badge badge-warning">Awaiting Review</span>
+                                <?php } elseif ($getAdult['status'] == '1') { ?>
+                                  <span class="badge badge-success">Approved</span>
+                                <?php } elseif ($getAdult['status'] == '2') { ?>
+                                  <span class="badge badge-danger">Waitlisted</span>
+                                <?php } elseif ($getAdult['status'] == '3') { ?>
+                                  <span class="badge badge-danger">Rejected</span>
+                                <?php } ?>
                               <?php } ?>
                             </td>
                           </tr>
