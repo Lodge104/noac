@@ -197,7 +197,7 @@ if (!$userInfo) : ?>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
                             <td>
-                              <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal"<?php while($modal = $getAdult['bsa_id']); ?>>Review and Approve</a>
+                              <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal"<?php foreach($modal = $getAdult['bsa_id']); ?>>Review and Approve</a>
                             <td>
                               <!-- <?php
                                     if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
