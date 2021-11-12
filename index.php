@@ -206,7 +206,7 @@ if (!$userInfo) : ?>
                             <td>
                               <form action="" method="post">
                                 <input type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
-                                <input type="submit" value="change header" name="submit">
+                                <input type="submit" class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal" value="Review and Approve" name="submit">
                               </form>
                               <!-- <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal" onClick="function()">Review and Approve</button> -->
                             <td>
