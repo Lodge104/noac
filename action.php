@@ -40,7 +40,7 @@ if ($option == '1' && $getUnitElections['payment'] == '2') {
     $headers = array();
     $headers[] = 'Content-Type: application/json';
     $headers[] = 'X-Requested-With: XMLHttpRequest';
-    $headers[] = 'Authorization: Bearer {place your token here without brackets}';
+    $headers[] = 'Authorization: Bearer ' . $mailersend;
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     
     $result = curl_exec($ch);
@@ -62,7 +62,7 @@ elseif ($option == '1' && $getUnitElections['payment'] == '1'){
     $headers = array();
     $headers[] = 'Content-Type: application/json';
     $headers[] = 'X-Requested-With: XMLHttpRequest';
-    $headers[] = 'Authorization: Bearer {place your token here without brackets}';
+    $headers[] = 'Authorization: Bearer ' . $mailersend;
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     
     $result = curl_exec($ch);
@@ -84,7 +84,7 @@ elseif ($option == '2') {
     $headers = array();
     $headers[] = 'Content-Type: application/json';
     $headers[] = 'X-Requested-With: XMLHttpRequest';
-    $headers[] = 'Authorization: Bearer {place your token here without brackets}';
+    $headers[] = 'Authorization: Bearer ' . $mailersend;
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     
     $result = curl_exec($ch);
@@ -104,7 +104,7 @@ elseif ($option == '3') {
     $headers = array();
     $headers[] = 'Content-Type: application/json';
     $headers[] = 'X-Requested-With: XMLHttpRequest';
-    $headers[] = 'Authorization: Bearer {place your token here without brackets}';
+    $headers[] = 'Authorization: Bearer ' . $mailersend;
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     
     $result = curl_exec($ch);
