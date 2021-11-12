@@ -172,6 +172,13 @@ if (!$userInfo) : ?>
             $adultNominationQ = $adultNominationQuery->get_result();
             if ($adultNominationQ->num_rows > 0) {
               //print election info
+
+              session_start();
+              if (!isset($_SESSION['count'])) {
+                $_SESSION['count'] = 0;
+              } else {
+                $_SESSION['count']++;
+              }
             ?>
               <div class="card mb-3">
                 <div class="card-body">
@@ -197,7 +204,11 @@ if (!$userInfo) : ?>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
                             <td>
-                              <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal"<?php foreach($modal = $getAdult['bsa_id']); ?>>Review and Approve</a>
+                              <form action="" method="post">
+                                <input type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
+                                <input type="submit" value="change header" name="submit">
+                              </form>
+                              <!-- <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal" onClick="function()">Review and Approve</button> -->
                             <td>
                               <!-- <?php
                                     if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
