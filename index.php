@@ -244,8 +244,8 @@ if (!$userInfo) : ?>
                                           <input type="button" class="btn btn-primary" value="Waitlist">
                                         </form>
                                         <form action="action.php" method="post">
-                                          <input id="BSAID" type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
-                                          <input id="Option" type="hidden" value="1">
+                                          <input id="BSAID" type="hidden"><?php echo $getAdult['bsa_id']; ?></input>
+                                          <input id="Option" type="hidden">1</input>
                                           <input type="submit" class="btn btn-primary" value="Approve">
                                         </form>
                                       </div>
