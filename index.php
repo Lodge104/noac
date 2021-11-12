@@ -204,11 +204,26 @@ if (!$userInfo) : ?>
                             <td><?php echo $getAdult['bsa_id']; ?></td>
                             <td><?php echo $getAdult['level']; ?></td>
                             <td>
-                              <form action="" method="post">
-                                <input type="hidden" value="<?php echo $getAdult['bsa_id']; ?>">
-                                <input type="submit" class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal" value="Review and Approve" name="submit">
-                              </form>
-                              <!-- <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal" onClick="function()">Review and Approve</button> -->
+                              <button class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal">Review and Approve</button>
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Modal title <?php echo $getAdult['bsa_id']; ?> </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      ...
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             <td>
                               <!-- <?php
                                     if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
@@ -226,26 +241,6 @@ if (!$userInfo) : ?>
                       } ?>
                       </tbody>
                     </table>
-                  </div>
-                </div>
-              </div>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title <?php echo $modal; ?> </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
                   </div>
                 </div>
               </div>
