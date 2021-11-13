@@ -234,6 +234,14 @@ $host = $_SERVER['SERVER_NAME'];
                     </a>
                   </li>
                 <?php } ?>
+                <?php if ($getParticipants['status'] == '3') { ?>
+                  <li class="warning active">
+                    <a>
+                      <span class="circle">3</span>
+                      <span class="label">Rejected</span>
+                    </a>
+                  </li>
+                <?php } ?>
               </ul>
               <!-- /.Stepers Wrapper -->
             </div>
@@ -286,7 +294,12 @@ $host = $_SERVER['SERVER_NAME'];
                 <?php } elseif ($getParticipants['payment'] == '2') { ?>
                   <p>Your application to be a part of the Lodge's NOAC contingent has been approved and you're all paid up! Congrats! Sit tight and wait for more information from contingent leadership.</p>
                 <?php } ?>
-              <?php } ?>
+              <?php } if ($getParticipants['status'] == '2') {?>
+                <p>At this time, your application for NOAC has been waitlisted. Currently all our spots for the contingent are full. If a spot opens up and we're able to approve your application, we'll let you know via email and text. You can track your status on this dashboard. If we aren't able to approve your application in time for NOAC, your deposit will be refunded.</p>
+                <?php } ?>
+                <?php } if ($getParticipants['status'] == '3') {?>
+                <p>We're so sorry to inform you that your application for NOAC has been rejected by contingent leadership. The most likely reason for this is that both our contingent and waitlist has been filled. We hope to see you at the next NOAC.<br><br>Your deposit, if paid, will be refunded to your original card in 7-10 business days. Please reply if you have any questions or comments.</p>
+                <?php } ?>
             </div>
           </div>
 
