@@ -124,28 +124,28 @@ if (isset($_POST['aia'])) {
 } else {
   $aia = "";
 }
-if (isset($_POST['ec_fn'])) {
-  $ec_fn = $_POST['ec_fn'];
+if (isset($_POST['ecfn'])) {
+  $ec_fn = $_POST['ecfn'];
 } else {
   $ec_fn = "";
 }
-if (isset($_POST['ec_ln'])) {
-  $ec_ln = $_POST['ec_ln'];
+if (isset($_POST['ecln'])) {
+  $ec_ln = $_POST['ecln'];
 } else {
   $ec_ln = "";
 }
-if (isset($_POST['ec_relationship'])) {
-  $ec_relationship = $_POST['ec_relationship'];
+if (isset($_POST['ecrelationship'])) {
+  $ec_relationship = $_POST['ecrelationship'];
 } else {
   $ec_relationship = "";
 }
-if (isset($_POST['ec_email'])) {
-  $ec_email = $_POST['ec_email'];
+if (isset($_POST['ecemail'])) {
+  $ec_email = $_POST['ecemail'];
 } else {
   $ec_email = "";
 }
-if (isset($_POST['ec_phone'])) {
-  $ec_phone = $_POST['ec_phone'];
+if (isset($_POST['ecphone'])) {
+  $ec_phone = $_POST['ecphone'];
 } else {
   $ec_phone = "";
 }

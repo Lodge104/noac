@@ -222,21 +222,21 @@ $json = $_SESSION['jsonData'];
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input id="ec_fn" name="Emergency Contact First Name" type="text" class="form-control" placeholder="First Name" required>
+                    <input id="ecfn" name="ecfn" type="text" class="form-control" placeholder="First Name" required>
                   </div>
                   <div class="form-group">
-                    <input id="ec_ln" name="Emergency Contact Last Name" type="text" class="form-control" placeholder="Last Name" required>
+                    <input id="ecln" name="ecln" type="text" class="form-control" placeholder="Last Name" required>
                   </div>
                   <div class="form-group">
-                    <input id="ec_relationship" name="Emergency Contact Relationship" type="text" class="form-control" placeholder="Relationship" required>
+                    <input id="ecrelationship" name="ecrelationship" type="text" class="form-control" placeholder="Relationship" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input id="ec_email" name="Emergency Contact Email" type="email" class="form-control" placeholder="Email" required>
+                    <input id="ecemail" name="ecemail" type="email" class="form-control" placeholder="Email" required>
                   </div>
                   <div class="form-group">
-                    <input id="ec_phone" name="Emergency Contact Phone" type="text" class="form-control" placeholder="Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
+                    <input id="ecphone" name="ecphone" type="text" class="form-control" placeholder="Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
                   </div>
                 </div>
               </div>
