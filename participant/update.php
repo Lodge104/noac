@@ -53,114 +53,76 @@ if ($conn->connect_error) {
 
       <?php
       if (isset($_GET['bsaID'])) {
-          $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
+        $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
       ?>
-          <section class="row">
-            <div class="col-12">
-              <h2>Update Application</h2>
+        <section class="row">
+          <div class="col-12">
+            <h2>Update Application</h2>
+          </div>
+        </section>
+        <?php
+        $getUnitElectionsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
+        $getUnitElectionsQuery->bind_param("s", $bsaID);
+        $getUnitElectionsQuery->execute();
+        $getUnitElectionsQ = $getUnitElectionsQuery->get_result();
+        if ($getUnitElectionsQ->num_rows > 0) {
+          //print election info
+        ?>
+          <div class="card mb-3">
+            <div class="card-body">
+              <p>We need some additional information from you. Please update your application with the requested information below.</p>
+              <?php $getUnitElections = $getUnitElectionsQ->fetch_assoc(); ?>
+              <form action="update-process.php" method="post">
+                <input type="hidden" id="bsaID" name="bsaID" value="<?php echo $getUnitElections['bsa_id']; ?>">
+                <div class="form-row">
+                  <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="rank">BSA Rank</label>
+                    <select id="rank" name="rank" type="custom-select" class="form-control">
+                      <option value="None">Not Applicable</option>
+                      <option value="First">First Class</option>
+                      <option value="Star">Star</option>
+                      <option value="Life">Life</option>
+                      <option value="Eagle">Eagle</option>
+                    </select>
+                  </div>
+                  </div>
+                </div>
+                <hr>
+                </hr>
+                <div class="form-row">
+                  <div class="col-md-12">
+                    <h3 class="required">Emegency Contact Information Information</h3>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input id="ecfn" name="ecfn" type="text" class="form-control" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                      <input id="ecln" name="ecln" type="text" class="form-control" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                      <input id="ecrelationship" name="ecrelationship" type="text" class="form-control" placeholder="Relationship" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input id="ecemail" name="ecemail" type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                      <input id="ecphone" name="ecphone" type="text" class="form-control" placeholder="Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
+                    </div>
+                  </div>
+                </div>
+                <a href="/" class="btn btn-secondary">Cancel</a>
+                <input type="submit" class="btn btn-primary" value="Update">
+              </form>
             </div>
-          </section>
-          <?php
-          $getUnitElectionsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
-          $getUnitElectionsQuery->bind_param("s", $bsaID);
-          $getUnitElectionsQuery->execute();
-          $getUnitElectionsQ = $getUnitElectionsQuery->get_result();
-          if ($getUnitElectionsQ->num_rows > 0) {
-            //print election info
-          ?>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h3 class="card-title d-inline-flex">Edit Unit Election Information</h3>
-                <?php $getUnitElections = $getUnitElectionsQ->fetch_assoc(); ?>
-                <form action="update-process.php" method="post">
-                  <input type="hidden" id="bsaID" name="bsaID" value="<?php echo $getUnitElections['bsa_id']; ?>">
-                  <div class="form-row">
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label for="unitNumber">Unit Number</label>
-                        <input id="unitNumber" name="unitNumber" type="number" class="form-control" value="<?php echo $getUnitElections['unitNumber']; ?>" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="unitCommunity">Unit Type</label>
-                        <input id="unitCommunity" name="unitCommunity" type="text" class="form-control" value="<?php echo $getUnitElections['unitCommunity']; ?>" disabled>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label for="numRegisteredYouth"># of Youth Elected</label>
-                        <input id="numRegisteredYouth" name="numRegisteredYouth" type="number" class="form-control" value="<?php echo $getUnitElections['numRegisteredYouth']; ?>" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label for="dateOfElection">Date of Unit Election</label>
-                        <input id="dateOfElection" name="dateOfElection" type="date" class="form-control" value="<?php echo $getUnitElections['dateOfElection']; ?>" disabled>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="chapter">Chapter</label>
-                        <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $getUnitElections['chapter']; ?>" disabled>
-                      </div>
-                    </div>
-                  </div>
-                  <hr>
-                  </hr>
-                  <h4 class="card-title">Unit Leader Information</h4>
-                  <div class="form-row">
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <input id="sm_name" name="sm_name" type="text" class="form-control" placeholder="Name" value="<?php echo $getUnitElections['sm_name']; ?>" required>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <input id="sm_address_line1" name="sm_address_line1" type="text" class="form-control" placeholder="Address" value="<?php echo $getUnitElections['sm_address_line1']; ?>" required>
-                      </div>
-                      <div class="form-group">
-                        <input id="sm_address_line2" name="sm_address_line2" type="text" class="form-control" placeholder="Address Line 2 (optional)" value="<?php echo $getUnitElections['sm_address_line2']; ?>">
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <input id="sm_city" name="sm_city" type="text" class="form-control" placeholder="City" value="<?php echo $getUnitElections['sm_city']; ?>" required>
-                      </div>
-                      <div class="form-row">
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <input id="sm_state" name="sm_state" type="text" class="form-control" placeholder="State" value="<?php echo $getUnitElections['sm_state']; ?>" required>
-                          </div>
-                        </div>
-                        <div class="col-md-8">
-                          <div class="form-group">
-                            <input id="sm_zip" name="sm_zip" type="text" class="form-control" placeholder="Zip" value="<?php echo $getUnitElections['sm_zip']; ?>" required>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <input id="sm_email" name="sm_email" type="email" class="form-control" placeholder="Email" value="<?php echo $getUnitElections['sm_email']; ?>" required>
-                      </div>
-                      <div class="form-group">
-                        <input id="sm_phone" name="sm_phone" type="text" class="form-control" placeholder="Phone (###-###-####)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<?php echo $getUnitElections['sm_phone']; ?>" required>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="index.php?accessKey=<?php echo $accessKey; ?>" class="btn btn-secondary">Cancel</a>
-                  <input type="submit" class="btn btn-primary" value="Save">
-                </form>
-              </div>
-            </div>
-          <?php
-          }
-         else {
+          </div>
+        <?php
+        } else {
           //accesskey bad
-          ?>
+        ?>
           <div class="alert alert-danger" role="alert">
             <h5 class="alert-heading">Invalid Access Key</h5>
             You have an invalid access key. Please use the personalized link provided in your email, or enter your access key below.
