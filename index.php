@@ -49,7 +49,7 @@ if (!$userInfo) : ?>
 
         <div class="collapse navbar-collapse c-navbar-content" id="navbar-main">
           <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="/login.php">Admin Login</a>
+            <a class="nav-item nav-link" href="/login.php">Admin Login</a>
             <a class="nav-item nav-link" href="https://lodge104.net" target="_blank">Occoneechee Lodge Home</a>
           </div>
         </div>
@@ -187,7 +187,6 @@ if (!$userInfo) : ?>
             ?>
               <div class="card mb-3">
                 <div class="card-body">
-                  <h3 class="card-title">Adult Nominations</h3>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -227,6 +226,8 @@ if (!$userInfo) : ?>
                                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#Contact-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="profile">Contact Information</a>
                                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="messages">Scouting Information</a>
                                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#Payment-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="payment">Payment Information</a>
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#EC-<?php echo $getAdult['bsa_id']; ?>" role="tab" aria-controls="emergency-contacts">Emergency Contact</a>
+
                                           </div>
                                         </div>
                                         <?php
@@ -265,7 +266,8 @@ if (!$userInfo) : ?>
                                             <div class="tab-pane fade" id="Contact-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list"><b>Home Phone: </b><?php echo $getAdult['hphone']; ?><br><b>Cell Phone: </b><?php echo $getAdult['cphone']; ?><br><b>Email Address: </b><?php echo $getAdult['email']; ?></div>
                                             <div class="tab-pane fade" id="Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-messages-list"><b>Chapter: </b><?php echo $getAdult['chapter']; ?><br><b>Level: </b><?php echo $getAdult['level']; ?><br><b>BSA ID: </b><?php echo $getAdult['bsa_id']; ?><br><?php if ($getAdult['aia_check'] == '1') { ?><b>AIA Participation: </b>Yes<br><b>AIA Reasoning: <?php echo $getAdult['aia']; ?></b><?php } ?></div>
                                             <div class="tab-pane fade" id="Payment-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list"><b>Payment Option: </b><?php if ($getAdult['payment'] == '1') { ?>Pay in Full<br><b>Paid in Full?: </b><?php if ((in_array("NOAC Paid-in-Full-Y", $sku)) || (in_array("NOAC Paid-in-Full", $sku))) { ?> Yes <?php } else { ?>No<?php }
-                                                                                                                                                                                                                                                                                                                                                                                          } else { ?>Payment Plan<br><?php } ?></div>
+                                                                                                                                                                                                                                                                                                                                                                                                      } else { ?>Payment Plan<br><?php } ?></div>
+                                            <div class="tab-pane fade" id="EC-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-emergency-contact-list"><b>Name: </b><?php echo $getAdult['ec_fn'] . " " . $getAdult['ec_lnn']; ?><br><b>Relationship: </b><?php echo $getAdult['ec_relationship']; ?><br><b>Email: </b><?php echo $getAdult['ec_email']; ?><br><b>Phone: </b><?php echo $getAdult['ec_phone']; ?></div>
                                           </div>
                                         </div>
                                       </div>
