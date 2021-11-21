@@ -141,7 +141,7 @@ $json = $_SESSION['jsonData'];
                 </div>
               </div>
               <div class="form-row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="chapter">Chapter</label>
                     <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $json['chapter']; ?>" disabled>
