@@ -92,7 +92,7 @@ if ($conn->connect_error) {
                 </hr>
                 <div class="form-row">
                   <div class="col-md-12">
-                    <h3 class="required">Emegency Contact Information Information</h3>
+                    <h3 class="required">Emegency Contact Information</h3>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
