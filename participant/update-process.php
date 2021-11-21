@@ -18,7 +18,7 @@ if (isset($_POST['ecphone'])) {  $ecphone = $_POST['ecphone']; } else { $ecphone
 
 
 $updateElection = $conn->prepare("UPDATE participants SET bsa_rank=?,ec_fn=?,ec_ln=?,ec_relationship=?,ec_email=?,ec_phone=? WHERE bsa_id = ?");
-$updateElection->bind_param("sssssss", $$rank, $ecfn, $ecln, $ecrelationship, $ecemail, $ecphone, $bsaID);
+$updateElection->bind_param("sssssss", $rank, $ecfn, $ecln, $ecrelationship, $ecemail, $ecphone, $bsaID);
 $updateElection->execute();
 $updateElection->close();
 
