@@ -141,14 +141,14 @@ $json = $_SESSION['jsonData'];
                 </div>
               </div>
               <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="chapter">Chapter</label>
                     <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $json['chapter']; ?>" disabled>
                     <input id="chapter" name="chapter" type="hidden" class="form-control" value="<?php echo $json['chapter']; ?>">
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="bsa_id">BSA ID</label>
                     <input id="bsa_id" name="bsa_id" type="text" class="form-control" value="<?php echo $json['bsaID']; ?>" disabled>
@@ -161,7 +161,19 @@ $json = $_SESSION['jsonData'];
                     <input id="dob" name="dob" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" type="text" class="form-control" placeholder="MM-DD-YYYY" required>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="rank">BSA Rank</label>
+                    <select id="rank" name="rank" type="custom-select" class="form-control">
+                      <option value="None">Not Applicable</option>
+                      <option value="First">First Class</option>
+                      <option value="Star">Star</option>
+                      <option value="Life">Life</option>
+                      <option value="Eagle">Eagle</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="level">Membership Level</label>
                     <input id="level" name="level" type="text" class="form-control" value="<?php echo $json['obv']; ?>" disabled>
@@ -204,11 +216,10 @@ $json = $_SESSION['jsonData'];
               </div>
               <hr>
               </hr>
-              <hr></hr>
               <div class="form-row">
-              <div class="col-md-12">
-                <h3 class="required">Emegency Contact Information Information</h3>
-              </div>
+                <div class="col-md-12">
+                  <h3 class="required">Emegency Contact Information Information</h3>
+                </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <input id="ec_fn" name="Emergency Contact First Name" type="text" class="form-control" placeholder="First Name" required>
@@ -229,6 +240,7 @@ $json = $_SESSION['jsonData'];
                   </div>
                 </div>
               </div>
+              <hr></hr>
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>Conduct and Commitment Agreement</h3>
