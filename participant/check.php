@@ -60,7 +60,7 @@ if (isset($_GET['bsaID'])) {
     $json = json_decode($resp, true);
     $_SESSION['transactions'] = $json;
     if ($getApplicant['ec_fn'] == null || $getApplicant['bsa_rank'] == null) {
-      header("Location: update.php?bsa=" . $bsaID);
+      header("Location: update.php?bsaID=" . $bsaID);
     } else {
       header("Location: index.php?bsaID=" . $bsaID . "&status=" . $status);
     }
