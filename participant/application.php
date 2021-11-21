@@ -204,6 +204,31 @@ $json = $_SESSION['jsonData'];
               </div>
               <hr>
               </hr>
+              <hr></hr>
+              <div class="form-row">
+              <div class="col-md-12">
+                <h3 class="required">Emegency Contact Information Information</h3>
+              </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input id="ec_fn" name="Emergency Contact First Name" type="text" class="form-control" placeholder="First Name" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="ec_ln" name="Emergency Contact Last Name" type="text" class="form-control" placeholder="Last Name" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="ec_relationship" name="Emergency Contact Relationship" type="text" class="form-control" placeholder="Relationship" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input id="ec_email" name="Emergency Contact Email" type="email" class="form-control" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="ec_phone" name="Emergency Contact Phone" type="text" class="form-control" placeholder="Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
+                  </div>
+                </div>
+              </div>
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>Conduct and Commitment Agreement</h3>
@@ -255,8 +280,8 @@ $json = $_SESSION['jsonData'];
 ?>
   <div class="card col-md-6 mx-auto">
     <div class="card-body">
-      <h5 class="card-title">BSA ID</h5>
-      <form action='' method="get">
+      <h5 class="card-title">ERROR | Please enter your BSA ID to get started</h5>
+      <form action='/participant/check.php' method="get">
         <div class="form-group">
           <label for="bsaID">BSA ID</label>
           <input type="text" id="bsaID" name="bsaID" class="form-control">
