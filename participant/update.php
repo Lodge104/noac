@@ -52,18 +52,17 @@ if ($conn->connect_error) {
     <main class="container-fluid flex-shrink-0">
 
       <?php
-      if (isset($_GET['accessKey'])) {
-        if (preg_match("/^([a-z\d]){8}-([a-z\d]){4}-([a-z\d]){4}-([a-z\d]){4}-([a-z\d]){12}$/", $_GET['accessKey'])) {
-          $accessKey = $_POST['accessKey'] = $_GET['accessKey'];
+      if (isset($_GET['bsaID'])) {
+          $bsaID = $_POST['bsaID'] = $_GET['bsaID'];
       ?>
           <section class="row">
             <div class="col-12">
-              <h2>Unit Election Administration</h2>
+              <h2>Update Application</h2>
             </div>
           </section>
           <?php
-          $getUnitElectionsQuery = $conn->prepare("SELECT * from unitElections where accessKey = ?");
-          $getUnitElectionsQuery->bind_param("s", $accessKey);
+          $getUnitElectionsQuery = $conn->prepare("SELECT * from participants where bsa_id = ?");
+          $getUnitElectionsQuery->bind_param("s", $bsaID);
           $getUnitElectionsQuery->execute();
           $getUnitElectionsQ = $getUnitElectionsQuery->get_result();
           if ($getUnitElectionsQ->num_rows > 0) {
@@ -73,9 +72,8 @@ if ($conn->connect_error) {
               <div class="card-body">
                 <h3 class="card-title d-inline-flex">Edit Unit Election Information</h3>
                 <?php $getUnitElections = $getUnitElectionsQ->fetch_assoc(); ?>
-                <form action="edit-election-process.php" method="post">
-                  <input type="hidden" id="unitId" name="unitId" value="<?php echo $getUnitElections['id']; ?>">
-                  <input type="hidden" id="accessKey" name="accessKey" value="<?php echo $getUnitElections['accessKey']; ?>">
+                <form action="update-process.php" method="post">
+                  <input type="hidden" id="bsaID" name="bsaID" value="<?php echo $getUnitElections['bsa_id']; ?>">
                   <div class="form-row">
                     <div class="col-md-3">
                       <div class="form-group">
@@ -159,14 +157,8 @@ if ($conn->connect_error) {
               </div>
             </div>
           <?php
-          } else {
-          ?>
-            <div class="alert alert-danger" role="alert">
-              There are no elections in the database.
-            </div>
-          <?php
           }
-        } else {
+         else {
           //accesskey bad
           ?>
           <div class="alert alert-danger" role="alert">
