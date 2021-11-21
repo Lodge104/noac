@@ -114,7 +114,7 @@ $host = $_SERVER['SERVER_NAME'];
                   </a>
                 </li>
                 <?php
-                if ((!in_array("22Y-NOAC Deposit", $sku)) AND (!in_array("22A-NOAC Deposit", $sku))) {
+                if ((!in_array("22Y-NOAC Deposit", $sku)) and (!in_array("22A-NOAC Deposit", $sku))) {
                 ?>
                   <li class="warning active">
                     <a>
@@ -148,7 +148,78 @@ $host = $_SERVER['SERVER_NAME'];
                       <span class="label">Application Approved</span>
                     </a>
                   </li>
-                <?php }
+                  <?php if ($getParticipants['payment'] == '1') { ?>
+                    <?php if ((!in_array("NOAC Paid-in-Full-Y", $sku)) and (!in_array("NOAC Paid-in-Full", $sku))) { ?>
+                      <li class="warning active">
+                        <a>
+                          <span class="circle">4</span>
+                          <span class="label">Final Payment Needed by 12/7/2021</span>
+                        </a>
+                      </li>
+                    <?php } else { ?>
+                      <li class="completed">
+                        <a>
+                          <span class="circle">4</span>
+                          <span class="label">Final Payment Completed</span>
+                        </a>
+                      </li>
+                    <?php }
+                  } else { ?>
+                    <?php if ((!in_array("22Y-NOAC Payment 1", $sku)) and (!in_array("22A-NOAC Payment 1", $sku))) { ?>
+                      <li class="warning active">
+                        <a>
+                          <span class="circle">4</span>
+                          <span class="label">Payment 1 Needed by 1/20/2022</span>
+                        </a>
+                      </li>
+                    <?php } else { ?>
+                      <li class="completed">
+                        <a>
+                          <span class="circle">4</span>
+                          <span class="label">Payment 1 Completed</span>
+                        </a>
+                      </li>
+                    <?php } ?>
+                    <?php if ((!in_array("22Y-NOAC Payment 2", $sku)) and (!in_array("22A-NOAC Payment 2", $sku))) { ?>
+                      <li class="warning active">
+                        <a>
+                          <span class="circle">5</span>
+                          <span class="label">Payment 2 Needed by 2/20/2022</span>
+                        </a>
+                      </li>
+                    <?php } else { ?>
+                      <li class="completed">
+                        <a>
+                          <span class="circle">5</span>
+                          <span class="label">Payment 2 Completed</span>
+                        </a>
+                      </li>
+                    <?php } ?>
+                    <?php
+                    //explode the date to get month, day and year
+                    $birthDate = explode("-", $getParticipants['dob']);
+                    //get age from date or birthdate
+                    $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+                      ? ((date("Y") - $birthDate[2]) - 1)
+                      : (date("Y") - $birthDate[2]));
+
+                    if (($age >= '21') and (!in_array("22A-NOAC Payment 3", $sku))) { ?>
+                      <li class="warning active">
+                        <a>
+                          <span class="circle">6</span>
+                          <span class="label">Payment 3 Needed by 3/20/2022</span>
+                        </a>
+                      </li>
+                    <?php } elseif (($age >= '21') and (in_array("22A-NOAC Payment 3", $sku))) { ?>
+                      <li class="completed">
+                        <a>
+                          <span class="circle">5</span>
+                          <span class="label">Payment 3 Completed</span>
+                        </a>
+                      </li>
+                    <?php } ?>
+                  <?php }
+                }
                 if ($getParticipants['status'] == '2') { ?>
                   <li class="warning active">
                     <a>
@@ -160,6 +231,14 @@ $host = $_SERVER['SERVER_NAME'];
                     <a>
                       <span class="circle">4</span>
                       <span class="label">Application Approved</span>
+                    </a>
+                  </li>
+                <?php } ?>
+                <?php if ($getParticipants['status'] == '3') { ?>
+                  <li class="warning active">
+                    <a>
+                      <span class="circle">3</span>
+                      <span class="label">Rejected</span>
                     </a>
                   </li>
                 <?php } ?>
@@ -179,20 +258,48 @@ $host = $_SERVER['SERVER_NAME'];
               <h3 class="card-title d-inline-flex">What comes next?</h3>
 
               <?php
-              if ((!in_array('22Y-NOAC Deposit', $sku)) AND (!in_array('22A-NOAC Deposit', $sku))) {
+              if ($getParticipants['status'] == '0') {
+                if ((!in_array('22Y-NOAC Deposit', $sku)) and (!in_array('22A-NOAC Deposit', $sku))) {
               ?>
-                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership. You will not be considered apart of contingent until your depsit has been paid and your application has been approved.</p>
-                <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
-                <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
-                  <button type="button" class="btn btn-primary">Pay</button>
-                </a>
-              <?php } ?>
-              <?php
-              if ((in_array('22Y-NOAC Deposit', $sku)) OR (in_array('22A-NOAC Deposit', $sku))) {
-              ?>
-                <p>Your application to be a part of the Lodge's NOAC contingent has been submitted and your deposit has been paid! Your application will be reviewed by the contingent leadership before you are officially apart of the contingent. <?php if ($getParticipants['payment'] == '1') {?> You selected payment schedule option 1 to pay your NOAC fees in full by December 7th. Once you're notified your application is approved, check back for more instructions on finishing your payment. <?php } else {?> You selected payment schedule option 2 to pay your NOAC fees in equal payments. Once you're notified your application is approved, check back for more instructions on finishing your payments.<?php } ?> </p>
-                </a>
-              <?php } ?>
+                  <p>Your application to be a part of the Lodge's NOAC contingent has been submitted. Your next step is to pay the deposit using the button below. Once your deposit has been successfully submitted, your application will be reviewed by the contingent leadership. You will not be considered apart of contingent until your depsit has been paid and your application has been approved.</p>
+                  <h3 class="card-title d-inline-flex">Pay your Deposit</h3>
+                  <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
+                    <button type="button" class="btn btn-primary">Pay</button>
+                  </a>
+                <?php
+                } else {
+                ?>
+                  <p>Your application to be a part of the Lodge's NOAC contingent has been submitted and your deposit has been paid! Your application will be reviewed by the contingent leadership before you are officially apart of the contingent. <?php if ($getParticipants['payment'] == '1') { ?> You selected payment schedule option 1 to pay your NOAC fees in full by December 7th. Once you're notified your application is approved, check back for more instructions on finishing your payment. <?php } else { ?> You selected payment schedule option 2 to pay your NOAC fees in equal payments. Once you're notified your application is approved, check back for more instructions on finishing your payments.<?php } ?> </p>
+                <?php }
+              } if ($getParticipants['status'] == '1') {
+                if ($getParticipants['payment'] == '1' and ((!in_array('NOAC Paid-in-Full-Y', $sku)) and (!in_array('NOAC Paid-in-Full', $sku)))) { ?>
+                  <p>Your application to be a part of the Lodge's NOAC contingent has been approved and your deposit has been paid! You selected payment schedule option 1 to pay your NOAC fees in full by December 7th. Your next step is to pay this fee using the button below.</p>
+                  <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
+                    <button type="button" class="btn btn-primary">Pay</button>
+                  </a>
+                <?php } elseif ($getParticipants['payment'] == '1') { ?>
+                  <p>Your application to be a part of the Lodge's NOAC contingent has been approved and you're all paid up! Congrats! Sit tight and wait for more information from contingent leadership.</p>
+                <?php } ?>
+                <?php if ($getParticipants['payment'] == '2' and ((!in_array('22Y-NOAC Payment 2', $sku)) and (!in_array('22A-NOAC Payment 3', $sku)))) { ?>
+                  <p>Your application to be a part of the Lodge's NOAC contingent has been approved and your deposit has been paid! You selected payment schedule option 2 to pay your NOAC fees in scheduled payments. Your next step is to pay these fees using the button below starting December 8th.</p>
+                  <?php if (strtotime('12-08-2021') >= strtotime('now')) { ?>
+                    <a target="_blank" href="https://registration.lodge104.net/MemberRegistration/Select/<?php echo $getParticipants['oalm_id'] ?>">
+                      <button type="button" class="btn btn-primary">Pay</button>
+                    </a>
+                  <?php } else { ?>
+                    <div class="alert alert-danger" role="alert">
+                      Payment plan available after December 7th.
+                    </div>
+                  <?php } ?>
+                <?php } elseif ($getParticipants['payment'] == '2') { ?>
+                  <p>Your application to be a part of the Lodge's NOAC contingent has been approved and you're all paid up! Congrats! Sit tight and wait for more information from contingent leadership.</p>
+                <?php } ?>
+              <?php } if ($getParticipants['status'] == '2') {?>
+                <p>At this time, your application for NOAC has been waitlisted. Currently all our spots for the contingent are full. If a spot opens up and we're able to approve your application, we'll let you know via email and text. You can track your status on this dashboard. If we aren't able to approve your application in time for NOAC, your deposit will be refunded.</p>
+                <?php } ?>
+                <?php if ($getParticipants['status'] == '3') {?>
+                <p>We're so sorry to inform you that your application for NOAC has been rejected by contingent leadership. The most likely reason for this is that both our contingent and waitlist has been filled. We hope to see you at the next NOAC.<br><br>Your deposit, if paid, will be refunded to your original card in 7-10 business days. Please reply if you have any questions or comments.</p>
+                <?php } ?>
             </div>
           </div>
 
@@ -201,7 +308,7 @@ $host = $_SERVER['SERVER_NAME'];
               <h3 class="card-title d-inline-flex">Your Information</h3>
               <div class="row">
                 <div class="col-md-3">
-                <?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName']?><br>
+                  <?php echo $getParticipants['firstName']; ?> <?php echo $getParticipants['lastName'] ?><br>
                 </div>
                 <div class="col-md-3">
                   <?php echo $getParticipants['address_line1']; ?><br>

@@ -148,7 +148,7 @@ $json = $_SESSION['jsonData'];
                     <input id="chapter" name="chapter" type="hidden" class="form-control" value="<?php echo $json['chapter']; ?>">
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="bsa_id">BSA ID</label>
                     <input id="bsa_id" name="bsa_id" type="text" class="form-control" value="<?php echo $json['bsaID']; ?>" disabled>
@@ -161,7 +161,19 @@ $json = $_SESSION['jsonData'];
                     <input id="dob" name="dob" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" type="text" class="form-control" placeholder="MM-DD-YYYY" required>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="rank">BSA Rank</label>
+                    <select id="rank" name="rank" type="custom-select" class="form-control">
+                      <option value="None">Not Applicable</option>
+                      <option value="First">First Class</option>
+                      <option value="Star">Star</option>
+                      <option value="Life">Life</option>
+                      <option value="Eagle">Eagle</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2">
                   <div class="form-group">
                     <label for="level">Membership Level</label>
                     <input id="level" name="level" type="text" class="form-control" value="<?php echo $json['obv']; ?>" disabled>
@@ -204,6 +216,31 @@ $json = $_SESSION['jsonData'];
               </div>
               <hr>
               </hr>
+              <div class="form-row">
+                <div class="col-md-12">
+                  <h3 class="required">Emegency Contact Information Information</h3>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input id="ecfn" name="ecfn" type="text" class="form-control" placeholder="First Name" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="ecln" name="ecln" type="text" class="form-control" placeholder="Last Name" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="ecrelationship" name="ecrelationship" type="text" class="form-control" placeholder="Relationship" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input id="ecemail" name="ecemail" type="email" class="form-control" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="ecphone" name="ecphone" type="text" class="form-control" placeholder="Phone (555-555-5555)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" required>
+                  </div>
+                </div>
+              </div>
+              <hr></hr>
               <div class="form-row">
                 <div class="col-md-12">
                   <h3>Conduct and Commitment Agreement</h3>
@@ -255,8 +292,8 @@ $json = $_SESSION['jsonData'];
 ?>
   <div class="card col-md-6 mx-auto">
     <div class="card-body">
-      <h5 class="card-title">BSA ID</h5>
-      <form action='' method="get">
+      <h5 class="card-title">ERROR | Please enter your BSA ID to get started</h5>
+      <form action='/participant/check.php' method="get">
         <div class="form-group">
           <label for="bsaID">BSA ID</label>
           <input type="text" id="bsaID" name="bsaID" class="form-control">
