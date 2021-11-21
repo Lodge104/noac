@@ -29,6 +29,7 @@ if (isset($_GET['bsaID'])) {
   $getbsaIDQuery->bind_param("s", $bsaID);
   $getbsaIDQuery->execute();
   $getbsaIDQ = $getbsaIDQuery->get_result();
+  $getApplicant = $getbsaIDQ->fetch_assoc();
   if ($getbsaIDQ->num_rows > 0) {
 
     $url = ($transactionURL . $bsaID);
@@ -58,7 +59,7 @@ if (isset($_GET['bsaID'])) {
 
     $json = json_decode($resp, true);
     $_SESSION['transactions'] = $json;
-    if ($getbsaIDQ['ec_fn'] == null || $getbsaIDQ['bsa_rank'] == null) {
+    if ($getApplicant['ec_fn'] == null || $getApplicant['bsa_rank'] == null) {
       header("Location: update.php?bsa=" . $bsaID);
     } else {
       header("Location: index.php?bsaID=" . $bsaID . "&status=" . $status);
