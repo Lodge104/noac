@@ -196,7 +196,7 @@ if (curl_errno($ch)) {
 }
 curl_close($ch);
 
-$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, rank, level, payment, aia_check, aia, ec_fn, ec_ln, ec_relationship, ec_email, ec_phone, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createAdult = $conn->prepare("INSERT INTO participants(bsa_id, oalm_id, firstName, lastName, address_line1, address_line2, city, state, zip, email, hphone, cphone, tshirt, text_agreement, gender, chapter, dob, bsa_rank, level, payment, aia_check, aia, ec_fn, ec_ln, ec_relationship, ec_email, ec_phone, signature, parent, created, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 $createAdult->bind_param("sssssssssssssssssssssssssssssss", $bsa_id, $oalmID, $firstName, $lastName, $address_line1, $address_line2, $city, $state, $zip, $email, $hphone, $cphone, $tshirt, $text, $gender, $chapter, $dob, $rank, $level, $payment, $aiacheck, $aia, $ec_fn, $ec_ln, $ec_relationship, $ec_email, $ec_phone, $signature, $parent, $d, $s);
 $createAdult->execute();
 $createAdult->close();
