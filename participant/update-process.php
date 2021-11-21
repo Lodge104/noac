@@ -8,29 +8,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_POST['unitId'])) { $unitId = $_POST['unitId']; } else { die("No unit id."); }
-if (isset($_POST['accessKey'])) { $accessKey = $_POST['accessKey']; } else { die("No unit key."); }
-if (isset($_POST['unitNumber'])) {  $unitNumber = $_POST['unitNumber']; } else { $unitNumber = ""; }
-if (isset($_POST['unitCommunity'])) {  $unitCommunity = $_POST['unitCommunity']; } else { $unitCommunity = ""; }
-if (isset($_POST['dateOfElection'])) {  $dateOfElection = $_POST['dateOfElection']; } else { $dateOfElection = ""; }
-if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
-
-if (isset($_POST['sm_name'])) {  $sm_name = $_POST['sm_name']; } else { $sm_name = ""; }
-if (isset($_POST['sm_address_line1'])) {  $sm_address_line1 = $_POST['sm_address_line1']; } else { $sm_address_line1 = ""; }
-if (isset($_POST['sm_address_line2'])) {  $sm_address_line2 = $_POST['sm_address_line2']; } else { $sm_address_line2 = ""; }
-if (isset($_POST['sm_city'])) {  $sm_city = $_POST['sm_city']; } else { $sm_city = ""; }
-if (isset($_POST['sm_state'])) {  $sm_state = $_POST['sm_state']; } else { $sm_state = ""; }
-if (isset($_POST['sm_zip'])) {  $sm_zip = $_POST['sm_zip']; } else { $sm_zip = ""; }
-if (isset($_POST['sm_email'])) {  $sm_email = $_POST['sm_email']; } else { $sm_email = ""; }
-if (isset($_POST['sm_phone'])) {  $sm_phone = $_POST['sm_phone']; } else { $sm_phone = ""; }
+if (isset($_POST['bsaID'])) { $bsaID = $_POST['bsaID']; } else { die("No BSAID id."); }
+if (isset($_POST['rank'])) {  $rank = $_POST['rank']; } else { $rank = ""; }
+if (isset($_POST['ecfn'])) {  $ecfn = $_POST['ecfn']; } else { $ecfn = ""; }
+if (isset($_POST['ecln'])) {  $ecln = $_POST['ecln']; } else { $ecln = ""; }
+if (isset($_POST['ecrelationship'])) {  $ecrelationship = $_POST['ecrelationship']; } else { $ecrelationship = ""; }
+if (isset($_POST['ecemail'])) {  $ecemail = $_POST['ecemail']; } else { $ecemail = ""; }
+if (isset($_POST['ecphone'])) {  $ecphone = $_POST['ecphone']; } else { $ecphone = ""; }
 
 
-$updateElection = $conn->prepare("UPDATE unitElections SET sm_name=?,sm_address_line1=?,sm_address_line2=?,sm_city=?,sm_state=?,sm_zip=?,sm_email=?,sm_phone=? WHERE id = ?");
-$updateElection->bind_param("sssssssss", $sm_name, $sm_address_line1, $sm_address_line2, $sm_city, $sm_state, $sm_zip, $sm_email, $sm_phone, $unitId);
+$updateElection = $conn->prepare("UPDATE participants SET bsa_rank=?,ec_fn=?,ec_ln=?,ec_relationship=?,ec_email=?,ec_phone=? WHERE bsa_id = ?");
+$updateElection->bind_param("sssssss", $$rank, $ecfn, $ecln, $ecrelationship, $ecemail, $ecphone, $bsaID);
 $updateElection->execute();
 $updateElection->close();
 
 
-header("Location: index.php?accessKey=" . $accessKey . "&status=1");
+header("Location: check.php?bsaID=" . $bsaID);
 
 ?>
