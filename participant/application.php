@@ -190,7 +190,7 @@ $json = $_SESSION['jsonData'];
                   <div class="form-group">
                     <select id="payment" name="payment" type="custom-select" class="form-control" required>
                       <option value="" disabled selected>Select an Option</option>
-                      <option value="1" selected>Option 1 - Pay in Full</option>
+                      <option value="" disabled>Option 1 - Pay in Full</option>
                       <option value="2">Option 2 - Payment Schedule</option>
                     </select>
                   </div>
@@ -218,7 +218,7 @@ $json = $_SESSION['jsonData'];
               </hr>
               <div class="form-row">
                 <div class="col-md-12">
-                  <h3 class="required">Emegency Contact Information Information</h3>
+                  <h3 class="required">Emegency Contact Information</h3>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
