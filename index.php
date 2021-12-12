@@ -266,7 +266,8 @@ if (!$userInfo) : ?>
                                             <div class="tab-pane fade" id="Contact-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list"><b>Home Phone: </b><?php echo $getAdult['hphone']; ?><br><b>Cell Phone: </b><?php echo $getAdult['cphone']; ?><br><b>Email Address: </b><?php echo $getAdult['email']; ?></div>
                                             <div class="tab-pane fade" id="Scouting-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-messages-list"><b>Chapter: </b><?php echo $getAdult['chapter']; ?><br><b>Level: </b><?php echo $getAdult['level']; ?><br><b>BSA Rank: </b><?php echo $getAdult['bsa_rank']; ?><br><b>BSA ID: </b><?php echo $getAdult['bsa_id']; ?><br><?php if ($getAdult['aia_check'] == '1') { ?><b>AIA Participation: </b>Yes<br><b>AIA Reasoning: <?php echo $getAdult['aia']; ?></b><?php } ?></div>
                                             <div class="tab-pane fade" id="Payment-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-profile-list"><b>Payment Option: </b><?php if ($getAdult['payment'] == '1') { ?>Pay in Full<br><b>Paid in Full?: </b><?php if ((in_array("NOAC Paid-in-Full-Y", $sku)) || (in_array("NOAC Paid-in-Full", $sku))) { ?> Yes <?php } else { ?>No<?php }
-                                                                                                                                                                                                                                                                                                                                                                                                      } else { ?>Payment Plan<br><?php } ?></div>
+                                                                                                                                                                                                                                                                                                                                                                                                      } else { ?>Payment Plan<br><b>Payment 1?: </b><?php if ((in_array("22Y-NOAC Payment 1", $sku)) || (in_array("22A-NOAC Payment 1", $sku))) { ?> Yes <?php } else { ?>No<?php } ?><br><b>Payment 2?: </b><?php if ((in_array("22Y-NOAC Payment 2", $sku)) || (in_array("22A-NOAC Payment 2", $sku))) { ?> Yes <?php } else { ?>No<?php } $dob = strtotime($getAdult['dob']);
+                                                                                                                                                                                                                                                                                                                                                                                                      $NOAC = strtotime('2001-07-30'); if ($dob < $NOAC) { ?> <br><b>Payment 3?: </b><?php if ((in_array("22A-NOAC Payment 3", $sku))) { ?> Yes <?php } else { ?>No<?php } ?> <?php } ?><?php } ?></div>
                                             <div class="tab-pane fade" id="EC-<?php echo $getAdult['bsa_id']; ?>" role="tabpanel" aria-labelledby="list-emergency-contact-list"><b>Name: </b><?php echo $getAdult['ec_fn'] . " " . $getAdult['ec_ln']; ?><br><b>Relationship: </b><?php echo $getAdult['ec_relationship']; ?><br><b>Email: </b><?php echo $getAdult['ec_email']; ?><br><b>Phone: </b><?php echo $getAdult['ec_phone']; ?></div>
                                           </div>
                                         </div>
@@ -317,7 +318,17 @@ if (!$userInfo) : ?>
                                       <span class="badge badge-danger">Missed Deadline</span>
                                     <?php } ?>
                                   <?php } else { ?>
-                                  <span class="badge badge-success">Approved</span>
+                                    <?php $dob = strtotime($getAdult['dob']);
+                                          $NOAC = strtotime('2001-07-30'); ?>
+                                    <?php if (!((in_array("22Y-NOAC Payment 1", $sku)) || (in_array("22A-NOAC Payment 1", $sku)))) { ?>
+                                      <span class="badge badge-secondary">Missing Payment 1</span>
+                                      <?php } elseif (!((in_array("22Y-NOAC Payment 2", $sku)) || (in_array("22A-NOAC Payment 2", $sku)))) { ?>
+                                        <span class="badge badge-secondary">Missing Payment 2</span>
+                                      <?php } elseif (($dob < $NOAC) AND (!in_array("22A-NOAC Payment 3", $sku))) { ?>
+                                        <span class="badge badge-secondary">Missing Payment 3</span>
+                                      <?php } else { ?>
+                                        <span class="badge badge-success">Paid in Full</span>
+                                        <?php } ?>
                                   <?php } ?>
                                 <?php } elseif ($getAdult['status'] == '2') { ?>
                                   <span class="badge badge-danger">Waitlisted</span>

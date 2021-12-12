@@ -9,6 +9,7 @@
             "role": "Developer"
         }
     ],
+    "license": "MIT",
     "autoload": {
       "psr-4": {
         "PHPLogin\\": "login/class"
