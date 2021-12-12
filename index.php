@@ -310,7 +310,15 @@ if (!$userInfo) : ?>
                                   if ($getAdult['status'] == '0') { ?>
                                   <span class="badge badge-warning">Awaiting Review</span>
                                 <?php } elseif ($getAdult['status'] == '1') { ?>
+                                  <?php if ($getAdult['payment'] == '1') { ?>
+                                    <?php if (((in_array("NOAC Paid-in-Full-Y", $sku)) || (in_array("NOAC Paid-in-Full", $sku)))) { ?>
+                                      <span class="badge badge-success">Paid in Full</span>
+                                      <?php } else { ?>
+                                      <span class="badge badge-danger">Missed Deadline</span>
+                                    <?php } ?>
+                                  <?php } else { ?>
                                   <span class="badge badge-success">Approved</span>
+                                  <?php } ?>
                                 <?php } elseif ($getAdult['status'] == '2') { ?>
                                   <span class="badge badge-danger">Waitlisted</span>
                                 <?php } elseif ($getAdult['status'] == '3') { ?>
