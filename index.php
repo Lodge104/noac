@@ -317,7 +317,17 @@ if (!$userInfo) : ?>
                                       <span class="badge badge-danger">Missed Deadline</span>
                                     <?php } ?>
                                   <?php } else { ?>
-                                  <span class="badge badge-success">Approved</span>
+                                    <?php $dob = strtotime($getAdult['dob']);
+                                          $NOAC = strtotime('2001-07-30'); ?>
+                                    <?php if (!((in_array("22Y-NOAC Payment 1", $sku)) || (in_array("22A-NOAC Payment 1", $sku)))) { ?>
+                                      <span class="badge badge-danger">Missing Payment 1</span>
+                                      <?php } elseif (!((in_array("22Y-NOAC Payment 2", $sku)) || (in_array("22A-NOAC Payment 2", $sku)))) { ?>
+                                        <span class="badge badge-danger">Missing Payment 2</span>
+                                      <?php } elseif (($NOAC < $dob) AND (!in_array("22A-NOAC Payment 3", $sku))) { ?>
+                                        <span class="badge badge-danger">Missing Payment 3</span>
+                                      <?php } else { ?>
+                                        <span class="badge badge-success">Paid in Full</span>
+                                        <?php } ?>
                                   <?php } ?>
                                 <?php } elseif ($getAdult['status'] == '2') { ?>
                                   <span class="badge badge-danger">Waitlisted</span>
